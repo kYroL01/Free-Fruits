@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=DM+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#EDEDE7;font-family:"DM Sans",system-ui,sans-serif}
+a{color:#D4148B}a:hover{color:#12734A}
+[data-ff]{--ff-bg:#F5F7F2;--ff-surface:#FFFFFF;--ff-surface2:#EDF1E9;--ff-text:#10160F;--ff-dim:#6C7A6E;--ff-line:rgba(16,22,15,.10);--ff-green:#12734A;--ff-green-soft:#E2F1E6;--ff-fuchsia:#D4148B;--ff-fuchsia-soft:#FCE3F1;--ff-gold:#A87400;--ff-gold-soft:#F7EBCF;--ff-land:#E9ECE1;--ff-road:#FFFFFF;--ff-park:#D6E8CE;--ff-water:#CDDFEA;--ff-ph:rgba(16,22,15,.06)}
+[data-ff="dark"]{--ff-bg:#0D1210;--ff-surface:#161D18;--ff-surface2:#1E2721;--ff-text:#EDF3EC;--ff-dim:#8FA093;--ff-line:rgba(255,255,255,.13);--ff-green:#43C384;--ff-green-soft:rgba(67,195,132,.15);--ff-fuchsia:#FF57BC;--ff-fuchsia-soft:rgba(255,87,188,.16)}
+[data-ff="dark"]{--ff-gold:#EFC154;--ff-gold-soft:rgba(239,193,84,.16);--ff-land:#121814;--ff-road:#212A23;--ff-park:#18291C;--ff-water:#152431;--ff-ph:rgba(255,255,255,.07)}
+.dv-turn{padding:44px 48px 36px;border-bottom:1px solid rgba(0,0,0,.08)}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 22px}
+.dv-tid{font:600 10px "IBM Plex Mono",monospace;padding:3px 7px;background:#10160F;color:#fff;border-radius:4px;text-decoration:none}
+.dv-tname{font:700 13px/1.2 Archivo,sans-serif;color:#10160F}
+.dv-opts{display:flex;flex-wrap:wrap;gap:36px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:10px}
+.dv-oid{font:600 10.5px "IBM Plex Mono",monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#10160F;border-radius:5px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11.5px/1.3 "DM Sans",sans-serif;color:rgba(0,0,0,.55)}
+.dv-next{margin:26px 0 0;font:12px/1.6 "DM Sans",sans-serif;color:rgba(0,0,0,.5)}
+.ff-scroll::-webkit-scrollbar{display:none}
+.ff-scroll{scrollbar-width:none}
+@keyframes ffpulse{0%{transform:scale(1);opacity:.55}70%{transform:scale(2.4);opacity:0}100%{transform:scale(2.4);opacity:0}}
+</style></helmet>
+
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Free Fruits — first pass: 7 screens, live prototype</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" style="width:300px">
+<div class="dv-olabel">System</div>
+<div style="width:300px;background:#fff;border:1px solid rgba(0,0,0,.09);border-radius:10px;padding:20px 20px 22px;display:flex;flex-direction:column;gap:16px">
+<div style="font:800 19px/1.15 Archivo,sans-serif;color:#10160F;letter-spacing:-0.02em;max-width:7em">Nothing ripe should rot.</div>
+<div style="font:400 12px/1.55 'DM Sans',sans-serif;color:#5C6A5E">Activist tone, forager-first. Map is the product; everything else is one tap from it. Repo <code style="font:500 11px 'IBM Plex Mono',monospace">kYroL01/Free-Fruits</code> is empty, so this is built from scratch.</div>
+<div style="height:1px;background:rgba(0,0,0,.08)"></div>
+<div style="display:flex;flex-direction:column;gap:9px">
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.09em;color:#8B978D">RARITY = VALUE</div>
+<div style="display:flex;flex-direction:column;gap:7px">
+<div style="display:flex;align-items:center;gap:9px"><div style="width:16px;height:16px;border-radius:50%;background:#12734A"></div><div style="font:500 12px 'DM Sans',sans-serif;color:#10160F">Common · orange, lemon</div><div style="margin-left:auto;font:600 11px 'IBM Plex Mono',monospace;color:#6C7A6E">10–15</div></div>
+<div style="display:flex;align-items:center;gap:9px"><div style="width:16px;height:16px;border-radius:50%;background:#D4148B"></div><div style="font:500 12px 'DM Sans',sans-serif;color:#10160F">Rare · fig, loquat</div><div style="margin-left:auto;font:600 11px 'IBM Plex Mono',monospace;color:#6C7A6E">30–35</div></div>
+<div style="display:flex;align-items:center;gap:9px"><div style="width:16px;height:16px;border-radius:50%;background:#A87400"></div><div style="font:500 12px 'DM Sans',sans-serif;color:#10160F">Legendary · peach, mulberry</div><div style="margin-left:auto;font:600 11px 'IBM Plex Mono',monospace;color:#6C7A6E">45–50</div></div>
+</div>
+</div>
+<div style="height:1px;background:rgba(0,0,0,.08)"></div>
+<div style="display:flex;flex-direction:column;gap:7px">
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.09em;color:#8B978D">DECIDED</div>
+<div style="font:400 12px/1.6 'DM Sans',sans-serif;color:#5C6A5E">Points spend three ways: tier status, funding a real sapling (500 pts), unlocking rare-fruit map layers (300 pts). Verification is photo + GPS, then two community confirmations. Dark mode toggles from the map header.</div>
+</div>
+<div style="height:1px;background:rgba(0,0,0,.08)"></div>
+<div style="display:flex;flex-direction:column;gap:7px">
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.09em;color:#8B978D">NEXT STEPS</div>
+<div style="font:400 12px/1.6 'DM Sans',sans-serif;color:#5C6A5E">Local community chat (25 km radius + moderation), partner perks, offline map caching, empty/first-run states.</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1a">
+<div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Live prototype — tap anything. Map · detail · add · points · alerts · you · filters</div>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ isDark }}" hint-size="402px,874px">
+<div data-ff="{{ theme }}" style="--ff-fuchsia:{{ fuchsia }};--ff-green:{{ green }};height:874px;box-sizing:border-box;padding-bottom:88px;position:relative;background:var(--ff-bg);color:var(--ff-text);font-family:'DM Sans',system-ui,sans-serif;overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;left:0;right:0;bottom:0;height:88px;box-sizing:border-box;z-index:20;background:var(--ff-surface);border-top:1px solid var(--ff-line);padding:9px 10px 30px;display:flex;align-items:flex-start;gap:2px">
+<div onClick="{{ goMap }}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;padding-top:4px">
+<div style="width:18px;height:18px;border-radius:6px;border:2px solid {{ cMap }}"></div>
+<div style="font:600 8.5px 'IBM Plex Mono',monospace;letter-spacing:.05em;color:{{ cMap }}">MAP</div>
+</div>
+<div onClick="{{ goRewards }}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;padding-top:4px">
+<div style="width:18px;height:18px;border-radius:50%;border:2px solid {{ cPts }}"></div>
+<div style="font:600 8.5px 'IBM Plex Mono',monospace;letter-spacing:.05em;color:{{ cPts }}">POINTS</div>
+</div>
+<div onClick="{{ goAdd }}" style="flex:1;display:flex;justify-content:center;cursor:pointer">
+<div style="width:52px;height:52px;margin-top:-16px;border-radius:18px;background:var(--ff-fuchsia);box-shadow:0 8px 20px rgba(212,20,139,.4);display:flex;align-items:center;justify-content:center;font:400 26px Archivo,sans-serif;color:#fff;line-height:1">+</div>
+</div>
+<div onClick="{{ goNotif }}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;padding-top:4px">
+<div style="width:18px;height:18px;border-radius:3px 3px 9px 9px;border:2px solid {{ cAlerts }}"></div>
+<div style="font:600 8.5px 'IBM Plex Mono',monospace;letter-spacing:.05em;color:{{ cAlerts }}">ALERTS</div>
+</div>
+<div onClick="{{ goProfile }}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;padding-top:4px">
+<div style="width:18px;height:18px;border-radius:50%;border:2px solid {{ cYou }}"></div>
+<div style="font:600 8.5px 'IBM Plex Mono',monospace;letter-spacing:.05em;color:{{ cYou }}">YOU</div>
+</div>
+</div>
+
+<sc-if value="{{ isMap }}" hint-placeholder-val="{{ true }}">
+<div style="position:absolute;inset:0;background:var(--ff-land)">
+<div style="position:absolute;left:-10%;top:8%;width:130%;height:66px;background:var(--ff-road);transform:rotate(-7deg)"></div>
+<div style="position:absolute;left:-10%;top:44%;width:130%;height:46px;background:var(--ff-road);transform:rotate(-7deg)"></div>
+<div style="position:absolute;left:-10%;top:74%;width:130%;height:34px;background:var(--ff-road);transform:rotate(-7deg)"></div>
+<div style="position:absolute;left:18%;top:-10%;width:38px;height:130%;background:var(--ff-road);transform:rotate(6deg)"></div>
+<div style="position:absolute;left:58%;top:-10%;width:52px;height:130%;background:var(--ff-road);transform:rotate(6deg)"></div>
+<div style="position:absolute;left:86%;top:-10%;width:26px;height:130%;background:var(--ff-road);transform:rotate(6deg)"></div>
+<div style="position:absolute;left:-14%;top:56%;width:140%;height:52px;background:var(--ff-water);transform:rotate(11deg)"></div>
+<div style="position:absolute;left:24%;top:16%;width:150px;height:120px;border-radius:40% 55% 45% 60%;background:var(--ff-park)"></div>
+<div style="position:absolute;left:64%;top:66%;width:120px;height:96px;border-radius:55% 40% 60% 45%;background:var(--ff-park)"></div>
+<div style="position:absolute;left:30%;top:22%;font:600 9px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:var(--ff-dim);opacity:.85">PARCO SOLARI</div>
+<div style="position:absolute;left:8%;top:62%;font:600 9px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:var(--ff-dim);opacity:.85;transform:rotate(11deg)">NAVIGLIO GRANDE</div>
+</div>
+
+<sc-for list="{{ pins }}" as="p" hint-placeholder-count="6">
+<div onClick="{{ p.open }}" style="position:absolute;left:{{ p.x }}%;top:{{ p.y }}%;transform:translate(-50%,-100%);cursor:pointer;z-index:6">
+<div style="display:flex;flex-direction:column;align-items:center">
+<div style="width:34px;height:34px;border-radius:50% 50% 50% 4px;transform:rotate(45deg);background:{{ p.color }};box-shadow:0 4px 12px rgba(0,0,0,.28);display:flex;align-items:center;justify-content:center;border:2.5px solid var(--ff-surface)">
+<div style="transform:rotate(-45deg);font:700 12px Archivo,sans-serif;color:#fff">{{ p.initial }}</div>
+</div>
+</div>
+</div>
+</sc-for>
+
+<div style="position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);z-index:5">
+<div style="position:absolute;inset:0;border-radius:50%;background:var(--ff-fuchsia);animation:ffpulse 2.4s ease-out infinite"></div>
+<div style="width:16px;height:16px;border-radius:50%;background:var(--ff-fuchsia);border:3px solid var(--ff-surface);box-shadow:0 2px 8px rgba(0,0,0,.3);position:relative"></div>
+</div>
+
+<div style="position:relative;z-index:10;padding:58px 16px 0;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;align-items:center;gap:8px">
+<div style="flex:1;display:flex;align-items:center;gap:10px;background:var(--ff-surface);border:1px solid var(--ff-line);border-radius:14px;padding:11px 13px;box-shadow:0 6px 20px rgba(0,0,0,.10)">
+<div style="width:8px;height:8px;border-radius:50%;background:var(--ff-green)"></div>
+<div style="flex:1;min-width:0">
+<div style="font:600 9px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:var(--ff-dim)">NEAREST CITY · AUTO</div>
+<div style="font:700 14px Archivo,sans-serif;letter-spacing:-.01em">Milan — Navigli</div>
+</div>
+<div onClick="{{ goSearch }}" style="font:600 10px 'IBM Plex Mono',monospace;color:var(--ff-fuchsia);border:1px solid var(--ff-fuchsia);border-radius:8px;padding:6px 8px;cursor:pointer">FILTER</div>
+</div>
+<div onClick="{{ toggleTheme }}" style="width:44px;height:44px;flex:none;border-radius:14px;background:var(--ff-surface);border:1px solid var(--ff-line);box-shadow:0 6px 20px rgba(0,0,0,.10);display:flex;align-items:center;justify-content:center;cursor:pointer">
+<div style="font:600 8.5px 'IBM Plex Mono',monospace;color:var(--ff-text);letter-spacing:.04em">{{ themeLabel }}</div>
+</div>
+</div>
+
+<sc-if value="{{ showPrompt }}" hint-placeholder-val="{{ true }}">
+<div style="background:var(--ff-fuchsia);border-radius:16px;padding:14px 15px;box-shadow:0 10px 28px rgba(0,0,0,.22)">
+<div style="font:600 9px 'IBM Plex Mono',monospace;letter-spacing:.09em;color:rgba(255,255,255,.75)">YOU'RE 12 M AWAY</div>
+<div style="font:700 15px/1.3 Archivo,sans-serif;color:#fff;margin-top:4px;letter-spacing:-.01em">Someone logged a pomegranate here. Is it real?</div>
+<div style="display:flex;gap:8px;margin-top:12px">
+<div onClick="{{ confirmTree }}" style="flex:1;text-align:center;background:#fff;color:var(--ff-fuchsia);border-radius:11px;padding:11px;font:700 13px Archivo,sans-serif;cursor:pointer">Yes, it's there</div>
+<div onClick="{{ dismissPrompt }}" style="flex:1;text-align:center;border:1.5px solid rgba(255,255,255,.55);color:#fff;border-radius:11px;padding:11px;font:700 13px Archivo,sans-serif;cursor:pointer">Not there</div>
+</div>
+</div>
+</sc-if>
+</div>
+
+<div style="margin-top:auto;position:relative;z-index:10;padding-bottom:8px">
+<div style="display:flex;align-items:center;justify-content:space-between;margin:0 16px 8px;padding:7px 10px;border-radius:11px;background:var(--ff-surface);border:1px solid var(--ff-line);box-shadow:0 4px 14px rgba(0,0,0,.10)">
+<div style="font:700 13px Archivo,sans-serif;letter-spacing:-.01em">{{ nearbyLabel }} within {{ radiusLabel }}</div>
+<div onClick="{{ goSearch }}" style="font:600 10px 'IBM Plex Mono',monospace;color:var(--ff-dim);cursor:pointer">SEE ALL</div>
+</div>
+<sc-if value="{{ noneVisible }}">
+<div style="margin:0 16px;background:var(--ff-surface);border:1px solid var(--ff-line);border-radius:16px;padding:16px;text-align:center">
+<div style="font:700 13px Archivo,sans-serif">Nothing matches these filters</div>
+<div onClick="{{ goSearch }}" style="font:600 10px 'IBM Plex Mono',monospace;color:var(--ff-fuchsia);margin-top:7px;cursor:pointer">LOOSEN THEM</div>
+</div>
+</sc-if>
+<div class="ff-scroll" style="display:flex;gap:12px;overflow-x:auto;padding:2px 16px 4px;scroll-snap-type:x mandatory">
+<sc-for list="{{ nearby }}" as="t" hint-placeholder-count="3">
+<div onClick="{{ t.open }}" style="flex:none;width:212px;scroll-snap-align:start;background:var(--ff-surface);border:1px solid var(--ff-line);border-radius:18px;padding:12px;box-shadow:0 10px 26px rgba(0,0,0,.13);cursor:pointer">
+<div style="height:84px;border-radius:12px;background:repeating-linear-gradient(135deg,var(--ff-ph) 0 7px,transparent 7px 14px);display:flex;align-items:flex-end;justify-content:space-between;padding:8px">
+<div style="font:600 8px 'IBM Plex Mono',monospace;color:var(--ff-dim)">PHOTO · IN CONTEXT</div>
+<div style="font:700 10px 'IBM Plex Mono',monospace;color:#fff;background:{{ t.color }};border-radius:6px;padding:3px 6px">{{ t.rarity }}</div>
+</div>
+<div style="display:flex;align-items:baseline;gap:6px;margin-top:11px">
+<div style="font:700 16px Archivo,sans-serif;letter-spacing:-.02em">{{ t.name }}</div>
+<div style="margin-left:auto;font:700 13px 'IBM Plex Mono',monospace;color:var(--ff-fuchsia)">+{{ t.pts }}</div>
+</div>
+<div style="display:flex;align-items:center;gap:8px;margin-top:5px">
+<div style="font:500 11.5px 'DM Sans',sans-serif;color:var(--ff-dim)">{{ t.dist }} · {{ t.street }}</div>
+</div>
+<div style="display:flex;align-items:center;gap:5px;margin-top:9px;padding-top:9px;border-top:1px solid var(--ff-line)">
+<div style="width:6px;height:6px;border-radius:50%;background:{{ t.statusColor }}"></div>
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;color:var(--ff-dim);letter-spacing:.04em">{{ t.status }}</div>
+<div style="margin-left:auto;font:600 9.5px 'IBM Plex Mono',monospace;color:{{ t.repColor }};letter-spacing:.04em">{{ t.repShort }}</div>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isDetail }}">
+<div class="ff-scroll" style="flex:1;min-height:0;overflow-y:auto">
+<div style="height:300px;position:relative;background:repeating-linear-gradient(135deg,var(--ff-ph) 0 9px,transparent 9px 18px);background-color:var(--ff-surface2)">
+<div style="position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;height:100%">
+<div style="font:600 10px 'IBM Plex Mono',monospace;color:var(--ff-dim);letter-spacing:.06em">PHOTO TAKEN AT THE PIN</div>
+</div>
+<div onClick="{{ goBack }}" style="position:absolute;top:58px;left:16px;width:38px;height:38px;border-radius:12px;background:var(--ff-surface);border:1px solid var(--ff-line);display:flex;align-items:center;justify-content:center;font:700 15px Archivo,sans-serif;cursor:pointer">&larr;</div>
+<div style="position:absolute;top:58px;right:16px;font:700 10px 'IBM Plex Mono',monospace;color:#fff;background:{{ sel.color }};border-radius:8px;padding:7px 9px;letter-spacing:.05em">{{ sel.rarity }}</div>
+</div>
+<div style="padding:20px 18px 24px;display:flex;flex-direction:column;gap:18px">
+<div>
+<div style="display:flex;align-items:flex-start;gap:10px">
+<div>
+<div style="font:800 27px/1.1 Archivo,sans-serif;letter-spacing:-.03em">{{ sel.name }}</div>
+<div style="font:400 13px 'DM Sans',sans-serif;color:var(--ff-dim);margin-top:4px">{{ sel.street }} · {{ sel.dist }} away</div>
+</div>
+<div style="margin-left:auto;text-align:right">
+<div style="font:700 22px 'IBM Plex Mono',monospace;color:var(--ff-fuchsia)">+{{ sel.pts }}</div>
+<div style="font:600 8.5px 'IBM Plex Mono',monospace;color:var(--ff-dim);letter-spacing:.06em">STRAWBERRY PTS</div>
+</div>
+</div>
+</div>
+
+<div style="background:{{ vBlockBg }};border-radius:16px;padding:15px">
+<div style="display:flex;align-items:center;gap:8px">
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:{{ vColor }}">{{ vHeading }}</div>
+<div style="margin-left:auto;font:700 11px 'IBM Plex Mono',monospace;color:{{ vColor }}">{{ confirmLabel }}</div>
+</div>
+<div style="display:flex;gap:5px;margin-top:11px">
+<sc-for list="{{ vBars }}" as="vb" hint-placeholder-count="4">
+<div style="flex:1;height:5px;border-radius:3px;background:{{ vb.bg }};opacity:{{ vb.op }}"></div>
+</sc-for>
+</div>
+<div style="font:400 11.5px/1.5 'DM Sans',sans-serif;color:var(--ff-dim);margin-top:10px">{{ vBody }}</div>
+<div style="display:flex;align-items:center;gap:9px;margin-top:13px;padding-top:12px;border-top:1px solid {{ vRule }}">
+<div style="width:26px;height:26px;border-radius:9px;background:{{ vColor }};color:#fff;display:flex;align-items:center;justify-content:center;font:700 11px Archivo,sans-serif;flex:none">{{ finderInitial }}</div>
+<div style="flex:1">
+<div style="font:600 8.5px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:var(--ff-dim)">DISCOVERED BY</div>
+<div style="font:700 13px Archivo,sans-serif;letter-spacing:-.01em;margin-top:2px">{{ finderName }}</div>
+</div>
+<div style="font:600 9px 'IBM Plex Mono',monospace;color:var(--ff-dim);letter-spacing:.04em;text-align:right">PERMANENT<br>CREDIT</div>
+</div>
+</div>
+
+<div style="display:flex;align-items:center;gap:11px;background:var(--ff-surface);border:1px solid var(--ff-line);border-radius:14px;padding:13px 14px">
+<div style="width:30px;height:30px;flex:none;border-radius:10px;background:{{ condSoft }};color:{{ condColor }};display:flex;align-items:center;justify-content:center;font:700 11px 'IBM Plex Mono',monospace">{{ condGlyph }}</div>
+<div style="flex:1">
+<div style="font:600 8.5px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:var(--ff-dim)">CONDITION · LATEST REPORT</div>
+<div style="font:700 13.5px Archivo,sans-serif;letter-spacing:-.01em;margin-top:3px;color:{{ condColor }}">{{ condLabel }}</div>
+</div>
+<div style="font:600 8.5px 'IBM Plex Mono',monospace;color:var(--ff-dim);letter-spacing:.05em;text-align:right;max-width:5.5em">{{ condWhen }}</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:11px">
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.09em;color:var(--ff-dim)">SEASON</div>
+<div style="display:flex;gap:4px">
+<sc-for list="{{ months }}" as="m" hint-placeholder-count="12">
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px">
+<div style="width:100%;height:26px;border-radius:5px;background:{{ m.bg }}"></div>
+<div style="font:600 8px 'IBM Plex Mono',monospace;color:var(--ff-dim)">{{ m.label }}</div>
+</div>
+</sc-for>
+</div>
+<div style="font:500 12px 'DM Sans',sans-serif;color:{{ seasonNoteColor }}">{{ seasonNote }}</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.09em;color:var(--ff-dim)">ACCESS</div>
+<sc-for list="{{ access }}" as="a" hint-placeholder-count="3">
+<div style="display:flex;align-items:center;gap:10px;background:var(--ff-surface);border:1px solid var(--ff-line);border-radius:12px;padding:12px 13px">
+<div style="width:7px;height:7px;border-radius:50%;background:{{ a.color }}"></div>
+<div style="font:500 12.5px 'DM Sans',sans-serif">{{ a.text }}</div>
+</div>
+</sc-for>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:9px">
+<div onClick="{{ markViewed }}" style="text-align:center;background:{{ viewedBg }};color:{{ viewedFg }};border:1.5px solid {{ viewedBorder }};border-radius:14px;padding:15px;font:700 14px Archivo,sans-serif;cursor:pointer">{{ viewedLabel }}</div>
+<div style="text-align:center;font:400 11px/1.5 'DM Sans',sans-serif;color:var(--ff-dim)">{{ viewedHint }}</div>
+<div style="display:flex;gap:10px;margin-top:4px">
+<div onClick="{{ startWalk }}" style="flex:1;text-align:center;background:var(--ff-text);color:var(--ff-bg);border-radius:14px;padding:15px;font:700 14px Archivo,sans-serif;cursor:pointer">{{ walkLabel }}</div>
+<div onClick="{{ flagTree }}" style="width:52px;border:1px solid {{ flagBorder }};border-radius:14px;display:flex;align-items:center;justify-content:center;font:600 9px 'IBM Plex Mono',monospace;color:{{ flagFg }};cursor:pointer">{{ flagLabel }}</div>
+</div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isAdd }}">
+<div style="flex:1;min-height:0;display:flex;flex-direction:column;background:var(--ff-bg);overflow:hidden">
+<div style="padding:58px 18px 14px;display:flex;align-items:center;gap:12px">
+<div onClick="{{ goMap }}" style="font:700 15px Archivo,sans-serif;cursor:pointer">&times;</div>
+<div style="font:700 15px Archivo,sans-serif;letter-spacing:-.01em">{{ addTitle }}</div>
+<div style="margin-left:auto;font:600 10px 'IBM Plex Mono',monospace;color:var(--ff-dim)">{{ addStepLabel }}</div>
+</div>
+<div style="display:flex;gap:5px;padding:0 18px 14px">
+<div style="flex:1;height:3px;border-radius:2px;background:var(--ff-fuchsia)"></div>
+<div style="flex:1;height:3px;border-radius:2px;background:{{ bar2 }}"></div>
+<div style="flex:1;height:3px;border-radius:2px;background:{{ bar3 }}"></div>
+</div>
+
+<sc-if value="{{ addStep1 }}">
+<div style="flex:1;margin:0 18px 18px;border-radius:22px;background:#0B0F0C;position:relative;overflow:hidden">
+<div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,rgba(255,255,255,.05) 0 10px,transparent 10px 20px)"></div>
+<div style="position:absolute;top:16px;left:16px;right:16px;display:flex;gap:8px">
+<div style="display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.14);border-radius:9px;padding:7px 9px">
+<div style="width:7px;height:7px;border-radius:50%;background:#43C384"></div>
+<div style="font:600 9px 'IBM Plex Mono',monospace;color:#fff;letter-spacing:.05em">GPS LOCKED · 3 M</div>
+</div>
+<div style="margin-left:auto;font:600 9px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.7);background:rgba(255,255,255,.14);border-radius:9px;padding:7px 9px">45.4515, 9.1730</div>
+</div>
+<div style="position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:180px;height:180px;border:2px dashed rgba(255,255,255,.4);border-radius:20px;display:flex;align-items:center;justify-content:center;text-align:center;padding:16px">
+<div style="font:500 11.5px/1.6 'DM Sans',sans-serif;color:rgba(255,255,255,.8)">Frame the whole tree, standing at its trunk</div>
+</div>
+<div style="position:absolute;bottom:18px;left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:14px">
+<div style="font:400 11px 'DM Sans',sans-serif;color:rgba(255,255,255,.6)">Location is stamped into the photo</div>
+<div style="display:flex;align-items:center;gap:20px">
+<div onClick="{{ shootNoGeo }}" style="font:600 9px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.55);cursor:pointer">UPLOAD</div>
+<div onClick="{{ shoot }}" style="width:66px;height:66px;border-radius:50%;background:var(--ff-fuchsia);border:4px solid rgba(255,255,255,.9);cursor:pointer"></div>
+<div style="font:600 9px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.55)">FLASH</div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ addStep2 }}">
+<div class="ff-scroll" style="flex:1;min-height:0;overflow-y:auto;padding:0 18px 18px">
+<div style="height:150px;flex:none;border-radius:18px;background:repeating-linear-gradient(135deg,var(--ff-ph) 0 9px,transparent 9px 18px);background-color:var(--ff-surface2);display:flex;align-items:flex-end;padding:12px">
+<div style="font:600 9px 'IBM Plex Mono',monospace;color:var(--ff-dim)">YOUR PHOTO · 45.4515, 9.1730</div>
+</div>
+<div onClick="{{ useMatch }}" style="display:flex;align-items:center;gap:11px;background:var(--ff-fuchsia-soft);border:1.5px solid {{ matchBorder }};border-radius:14px;padding:14px;margin-top:14px;cursor:pointer">
+<div style="width:34px;height:34px;border-radius:10px;background:var(--ff-fuchsia);display:flex;align-items:center;justify-content:center;font:700 13px Archivo,sans-serif;color:#fff">F</div>
+<div>
+<div style="font:700 14px Archivo,sans-serif">Fig — 92% match</div>
+<div style="font:400 11px 'DM Sans',sans-serif;color:var(--ff-dim)">Rare · worth 30 points</div>
+</div>
+<div style="margin-left:auto;font:600 9.5px 'IBM Plex Mono',monospace;color:var(--ff-fuchsia)">{{ matchCta }}</div>
+</div>
+<div style="display:flex;gap:7px;margin-top:16px">
+<div onClick="{{ kindFruit }}" style="flex:1;text-align:center;border-radius:11px;padding:10px;cursor:pointer;background:{{ kFruitBg }};border:1.5px solid {{ kFruitBorder }};font:700 12.5px Archivo,sans-serif;color:{{ kFruitFg }}">Fruit tree</div>
+<div onClick="{{ kindHerb }}" style="flex:1;text-align:center;border-radius:11px;padding:10px;cursor:pointer;background:{{ kHerbBg }};border:1.5px solid {{ kHerbBorder }};font:700 12.5px Archivo,sans-serif;color:{{ kHerbFg }}">Herb or green</div>
+</div>
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.09em;color:var(--ff-dim);margin:18px 0 10px">{{ pickerLabel }}</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:9px">
+<sc-for list="{{ fruits }}" as="f" hint-placeholder-count="9">
+<div onClick="{{ f.pick }}" style="background:var(--ff-surface);border:1.5px solid {{ f.border }};border-radius:14px;padding:12px 10px;cursor:pointer">
+<div style="width:22px;height:22px;border-radius:50%;background:{{ f.color }}"></div>
+<div style="font:700 12.5px Archivo,sans-serif;margin-top:9px">{{ f.name }}</div>
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;color:var(--ff-dim);margin-top:2px">+{{ f.pts }}</div>
+</div>
+</sc-for>
+</div>
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.09em;color:var(--ff-dim);margin:20px 0 10px">NONE OF THESE?</div>
+<div style="display:flex;gap:8px;align-items:center;background:var(--ff-surface);border:1.5px solid var(--ff-line);border-radius:14px;padding:6px 6px 6px 14px">
+<input type="text" ref="{{ inputRef }}" value="{{ customName }}" onChange="{{ onCustomName }}" onInput="{{ onCustomName }}" placeholder="Type the name — e.g. medlar, wild mint" style="flex:1;min-width:0;border:none;outline:none;background:transparent;color:var(--ff-text);font:500 13px 'DM Sans',sans-serif;padding:9px 0">
+<div onClick="{{ useCustom }}" style="flex:none;background:{{ customBtnBg }};color:{{ customBtnFg }};border-radius:10px;padding:10px 13px;font:700 12px Archivo,sans-serif;cursor:pointer">Use</div>
+</div>
+<div style="font:400 11px/1.5 'DM Sans',sans-serif;color:var(--ff-dim);margin-top:8px">Unlisted species are worth 15 points; a botanist in the community sets the final rarity once it is verified.</div>
+</div>
+<div style="flex:none;padding:12px 18px 18px;background:linear-gradient(to top,var(--ff-bg) 68%,transparent);border-top:1px solid var(--ff-line)">
+<div onClick="{{ toStep3 }}" style="text-align:center;background:{{ speciesBg }};color:{{ speciesFg }};border-radius:14px;padding:16px;font:700 14px Archivo,sans-serif;cursor:pointer">{{ speciesLabel }}</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ addStep3 }}">
+<div style="flex:1;min-height:0;display:flex;flex-direction:column;padding:0 18px 18px">
+<div ref="{{ dropRef }}" onPointerDown="{{ pinDown }}" onPointerMove="{{ pinMove }}" onPointerUp="{{ pinUp }}" style="flex:1;min-height:120px;border-radius:20px;overflow:hidden;position:relative;background:var(--ff-land);border:1px solid var(--ff-line);touch-action:none">
+<div style="position:absolute;left:-10%;top:26%;width:130%;height:44px;background:var(--ff-road);transform:rotate(-6deg)"></div>
+<div style="position:absolute;left:34%;top:-10%;width:34px;height:130%;background:var(--ff-road);transform:rotate(5deg)"></div>
+<div style="position:absolute;left:44%;top:58%;width:110px;height:90px;border-radius:50% 40% 55% 45%;background:var(--ff-park)"></div>
+<div style="position:absolute;left:{{ pinLeft }};top:{{ pinTop }};transform:translate(-50%,-100%);transition:{{ pinEase }}">
+<div style="width:38px;height:38px;border-radius:50% 50% 50% 4px;transform:rotate(45deg) scale({{ pinScale }});background:var(--ff-fuchsia);border:3px solid var(--ff-surface);box-shadow:0 6px 16px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;cursor:grab"><div style="transform:rotate(-45deg);font:700 13px Archivo,sans-serif;color:#fff">{{ pickInitial }}</div></div>
+<div style="width:6px;height:6px;border-radius:50%;background:rgba(0,0,0,.35);margin:2px auto 0"></div>
+</div>
+<div style="position:absolute;bottom:12px;left:12px;right:12px;background:var(--ff-surface);border-radius:12px;padding:11px 12px">
+<div style="font:600 9px 'IBM Plex Mono',monospace;color:var(--ff-dim);letter-spacing:.05em">{{ pinKicker }}</div>
+<div style="font:500 12px 'DM Sans',sans-serif;margin-top:3px">{{ pinLine }}</div>
+</div>
+</div>
+<div style="flex:none;display:flex;flex-direction:column;gap:9px;margin-top:14px">
+<div style="display:flex;gap:9px">
+<div style="flex:1;background:var(--ff-surface);border:1px solid var(--ff-line);border-radius:12px;padding:11px 12px">
+<div style="font:600 8.5px 'IBM Plex Mono',monospace;color:var(--ff-dim)">{{ pickKindLabel }}</div>
+<div style="font:700 13px Archivo,sans-serif;margin-top:2px">{{ pickName }} · {{ pickRarity }}</div>
+</div>
+<div style="flex:1;background:var(--ff-surface);border:1px solid var(--ff-line);border-radius:12px;padding:11px 12px">
+<div style="font:600 8.5px 'IBM Plex Mono',monospace;color:var(--ff-dim)">YOU EARN</div>
+<div style="font:700 13px Archivo,sans-serif;margin-top:2px;color:var(--ff-fuchsia)">+{{ pickPts }} pts</div>
+</div>
+</div>
+<div onClick="{{ submitTree }}" style="text-align:center;background:var(--ff-fuchsia);color:#fff;border-radius:14px;padding:16px;font:700 14px Archivo,sans-serif;cursor:pointer">Share this tree</div>
+<div style="text-align:center;font:400 11px 'DM Sans',sans-serif;color:var(--ff-dim)">Points land as pending until 2 foragers confirm on site</div>
+</div>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ showNoGeo }}">
+<div style="position:absolute;left:0;right:0;top:0;bottom:0;z-index:70;background:rgba(6,10,7,.62);display:flex;align-items:center;padding:18px">
+<div style="width:100%;background:var(--ff-surface);border-radius:22px;padding:22px">
+<div style="width:40px;height:40px;border-radius:12px;background:var(--ff-fuchsia-soft);display:flex;align-items:center;justify-content:center;font:700 17px Archivo,sans-serif;color:var(--ff-fuchsia)">!</div>
+<div style="font:800 19px/1.25 Archivo,sans-serif;letter-spacing:-.02em;margin-top:14px">This photo has no location in it</div>
+<div style="font:400 12.5px/1.6 'DM Sans',sans-serif;color:var(--ff-dim);margin-top:8px">Free Fruits only accepts trees proven on site. Stand at the trunk and shoot in-app so the GPS gets stamped in.</div>
+<div style="display:flex;gap:9px;margin-top:18px">
+<div onClick="{{ closeOverlay }}" style="flex:1;text-align:center;background:var(--ff-text);color:var(--ff-bg);border-radius:13px;padding:14px;font:700 13.5px Archivo,sans-serif;cursor:pointer">Open camera</div>
+<div onClick="{{ goMap }}" style="flex:none;padding:14px 16px;text-align:center;border:1px solid var(--ff-line);border-radius:13px;font:700 13.5px Archivo,sans-serif;color:var(--ff-dim);cursor:pointer">Later</div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ showDup }}">
+<div style="position:absolute;left:0;right:0;top:0;bottom:0;z-index:70;background:rgba(6,10,7,.62);display:flex;align-items:center;padding:18px">
+<div style="width:100%;background:var(--ff-surface);border-radius:22px;padding:22px">
+<sc-if value="{{ dupStep1 }}" hint-placeholder-val="{{ true }}">
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.09em;color:var(--ff-dim)">POSSIBLE DUPLICATE</div>
+<div style="font:800 19px/1.25 Archivo,sans-serif;letter-spacing:-.02em;margin-top:9px">Something already exists 8 m away</div>
+<div style="display:flex;align-items:center;gap:11px;background:var(--ff-surface2);border-radius:14px;padding:12px;margin-top:14px">
+<div style="width:44px;height:44px;border-radius:10px;background:repeating-linear-gradient(135deg,var(--ff-ph) 0 6px,transparent 6px 12px);background-color:var(--ff-surface)"></div>
+<div>
+<div style="font:700 13.5px Archivo,sans-serif">Fig · Via Gola 14</div>
+<div style="font:400 11px 'DM Sans',sans-serif;color:var(--ff-dim)">Verified · added by anna_f in June</div>
+</div>
+</div>
+<div style="font:400 12.5px/1.6 'DM Sans',sans-serif;color:var(--ff-dim);margin-top:12px">Confirm the existing one and take 5 points, or log yours as a separate tree if it truly is one.</div>
+<div style="display:flex;gap:9px;margin-top:16px">
+<div onClick="{{ confirmDup }}" style="flex:1;text-align:center;background:var(--ff-green);color:#fff;border-radius:13px;padding:14px;font:700 13.5px Archivo,sans-serif;cursor:pointer">Same tree · +5</div>
+<div onClick="{{ logAsNew }}" style="flex:1;text-align:center;border:1px solid var(--ff-line);border-radius:13px;padding:14px;font:700 13.5px Archivo,sans-serif;cursor:pointer">It's a new one</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ dupStep2 }}">
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.09em;color:var(--ff-fuchsia)">SEPARATE TREE CLAIM</div>
+<div style="font:800 19px/1.25 Archivo,sans-serif;letter-spacing:-.02em;margin-top:9px">Tell us how it differs</div>
+<div style="font:400 12px/1.6 'DM Sans',sans-serif;color:var(--ff-dim);margin-top:7px">Two pins this close are the easiest way to farm points, so this one is held until other foragers settle it.</div>
+<div style="display:flex;flex-direction:column;gap:8px;margin-top:14px">
+<sc-for list="{{ dupReasons }}" as="dr" hint-placeholder-count="3">
+<div onClick="{{ dr.pick }}" style="display:flex;align-items:center;gap:11px;background:{{ dr.bg }};border:1.5px solid {{ dr.border }};border-radius:13px;padding:13px 14px;cursor:pointer">
+<div style="width:16px;height:16px;flex:none;border-radius:50%;border:2px solid {{ dr.dot }};background:{{ dr.fill }}"></div>
+<div style="font:500 12.5px 'DM Sans',sans-serif;flex:1">{{ dr.label }}</div>
+</div>
+</sc-for>
+</div>
+<div style="display:flex;align-items:center;gap:10px;background:var(--ff-surface2);border-radius:13px;padding:12px 13px;margin-top:12px">
+<div style="width:26px;height:26px;flex:none;border-radius:9px;background:var(--ff-gold);color:#fff;display:flex;align-items:center;justify-content:center;font:700 13px Archivo,sans-serif">!</div>
+<div style="font:400 11.5px/1.5 'DM Sans',sans-serif;color:var(--ff-dim)">anna_f, who logged the fig 8 m away, is asked to review. Your photo GPS is shown next to hers.</div>
+</div>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--ff-line);border-radius:13px;padding:11px 13px;margin-top:8px">
+<div style="font:400 11.5px/1.5 'DM Sans',sans-serif;color:var(--ff-dim)">A rejected claim costs nothing on its own. <span style="color:var(--ff-text);font-weight:600">Three rejected claims: −5 points.</span></div>
+<div style="flex:none;display:flex;gap:4px">
+<sc-for list="{{ strikeDots }}" as="sd" hint-placeholder-count="3">
+<div style="width:7px;height:7px;border-radius:50%;background:{{ sd.bg }}"></div>
+</sc-for>
+</div>
+</div>
+<div style="display:flex;gap:9px;margin-top:16px">
+<div onClick="{{ dupBack }}" style="flex:none;padding:14px 16px;text-align:center;border:1px solid var(--ff-line);border-radius:13px;font:600 10px 'IBM Plex Mono',monospace;color:var(--ff-dim);cursor:pointer">BACK</div>
+<div onClick="{{ submitNew }}" style="flex:1;text-align:center;background:{{ claimBg }};color:{{ claimFg }};border-radius:13px;padding:14px;font:700 13.5px Archivo,sans-serif;cursor:pointer">Submit for review</div>
+</div>
+</sc-if>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ showSuccess }}">
+<div style="position:absolute;left:0;right:0;top:0;bottom:0;z-index:75;background:var(--ff-fuchsia);display:flex;flex-direction:column;justify-content:center;padding:34px 26px">
+<div style="font:600 10px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:rgba(255,255,255,.75)">{{ successKicker }}</div>
+<div style="font:800 40px/1.02 Archivo,sans-serif;letter-spacing:-.035em;color:#fff;margin-top:14px;max-width:5.5em">{{ successLine }}</div>
+<div style="display:flex;align-items:baseline;gap:8px;margin-top:26px">
+<div style="font:700 54px 'IBM Plex Mono',monospace;color:#fff;line-height:1">+{{ earned }}</div>
+<div style="font:600 10px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.8);letter-spacing:.08em">STRAWBERRY POINTS</div>
+</div>
+<div style="height:1px;background:rgba(255,255,255,.3);margin:24px 0"></div>
+<div style="font:400 13px/1.65 'DM Sans',sans-serif;color:rgba(255,255,255,.9)">{{ successBody }}</div>
+<div style="display:flex;gap:9px;margin-top:24px">
+<div onClick="{{ goRewards }}" style="flex:1;text-align:center;background:#fff;color:var(--ff-fuchsia);border-radius:14px;padding:15px;font:700 14px Archivo,sans-serif;cursor:pointer">See my points</div>
+<div onClick="{{ goMap }}" style="flex:1;text-align:center;border:1.5px solid rgba(255,255,255,.6);color:#fff;border-radius:14px;padding:15px;font:700 14px Archivo,sans-serif;cursor:pointer">Back to map</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isRewards }}">
+<div class="ff-scroll" style="flex:1;min-height:0;overflow-y:auto;padding:58px 18px 28px">
+<div style="font:800 26px/1.1 Archivo,sans-serif;letter-spacing:-.03em">Strawberry points</div>
+<div style="background:var(--ff-text);border-radius:20px;padding:20px;margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px">
+<div style="font:700 44px 'IBM Plex Mono',monospace;color:var(--ff-bg);line-height:1">1,240</div>
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;color:var(--ff-dim);letter-spacing:.08em">EARNED · 34 TREES</div>
+</div>
+<div style="display:flex;align-items:center;gap:8px;margin-top:18px">
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;color:var(--ff-dim);letter-spacing:.06em">FORAGER</div>
+<div style="flex:1;height:6px;border-radius:4px;background:rgba(255,255,255,.16);overflow:hidden"><div style="width:62%;height:100%;background:var(--ff-fuchsia)"></div></div>
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;color:var(--ff-bg);letter-spacing:.06em">ORCHARDIST</div>
+</div>
+<div style="font:400 11.5px 'DM Sans',sans-serif;color:var(--ff-dim);margin-top:9px">760 points to Orchardist</div>
+</div>
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.09em;color:var(--ff-dim);margin:24px 0 11px">SPEND THEM</div>
+<div style="display:flex;flex-direction:column;gap:11px">
+<sc-for list="{{ rewards }}" as="r" hint-placeholder-count="3">
+<div style="background:var(--ff-surface);border:1px solid var(--ff-line);border-radius:18px;padding:16px">
+<div style="display:flex;align-items:flex-start;gap:10px">
+<div style="width:30px;height:30px;border-radius:9px;background:{{ r.color }}"></div>
+<div style="flex:1">
+<div style="font:700 15px Archivo,sans-serif;letter-spacing:-.01em">{{ r.title }}</div>
+<div style="font:400 11.5px/1.5 'DM Sans',sans-serif;color:var(--ff-dim);margin-top:3px">{{ r.body }}</div>
+</div>
+<div style="font:700 12px 'IBM Plex Mono',monospace;color:var(--ff-fuchsia)">{{ r.cost }}</div>
+</div>
+<div style="display:flex;align-items:center;gap:10px;margin-top:13px">
+<div style="flex:1;height:5px;border-radius:3px;background:var(--ff-surface2);overflow:hidden"><div style="width:{{ r.pct }}%;height:100%;background:{{ r.color }}"></div></div>
+<div style="font:600 12.5px Archivo,sans-serif;color:{{ r.ctaColor }};cursor:pointer">{{ r.cta }}</div>
+</div>
+</div>
+</sc-for>
+</div>
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.09em;color:var(--ff-dim);margin:24px 0 11px">TIERS</div>
+<div style="display:flex;gap:9px">
+<sc-for list="{{ tiers }}" as="ti" hint-placeholder-count="4">
+<div style="flex:1;background:var(--ff-surface);border:1px solid {{ ti.border }};border-radius:14px;padding:12px 10px;text-align:center">
+<div style="width:20px;height:20px;border-radius:50%;background:{{ ti.color }};margin:0 auto"></div>
+<div style="font:700 11px Archivo,sans-serif;margin-top:8px">{{ ti.name }}</div>
+<div style="font:600 8.5px 'IBM Plex Mono',monospace;color:var(--ff-dim);margin-top:2px">{{ ti.at }}</div>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isNotif }}">
+<div class="ff-scroll" style="flex:1;min-height:0;overflow-y:auto;padding:58px 18px 28px">
+<div style="display:flex;align-items:baseline;gap:9px">
+<div style="font:800 26px/1.1 Archivo,sans-serif;letter-spacing:-.03em">Alerts</div>
+<div style="margin-left:auto;font:600 10px 'IBM Plex Mono',monospace;color:var(--ff-dim);cursor:pointer">MARK ALL READ</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;margin-top:18px">
+<sc-for list="{{ alerts }}" as="n" hint-placeholder-count="5">
+<div onClick="{{ n.open }}" style="display:flex;gap:12px;background:{{ n.bg }};border:1px solid var(--ff-line);border-radius:16px;padding:14px;cursor:{{ n.cursor }}">
+<div style="width:9px;height:9px;border-radius:50%;background:{{ n.color }};margin-top:4px;flex:none"></div>
+<div style="flex:1">
+<div style="font:700 13.5px/1.35 Archivo,sans-serif;letter-spacing:-.01em">{{ n.title }}</div>
+<div style="font:400 11.5px/1.5 'DM Sans',sans-serif;color:var(--ff-dim);margin-top:4px">{{ n.body }}</div>
+</div>
+<div style="font:600 8.5px 'IBM Plex Mono',monospace;color:var(--ff-dim);flex:none">{{ n.when }}</div>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isSearch }}">
+<div class="ff-scroll" style="flex:1;min-height:0;overflow-y:auto;padding:58px 18px 28px">
+<div style="display:flex;align-items:center;gap:10px;background:var(--ff-surface);border:1px solid var(--ff-line);border-radius:14px;padding:13px 14px">
+<div style="width:12px;height:12px;border-radius:50%;border:2px solid var(--ff-dim)"></div>
+<div style="font:500 13px 'DM Sans',sans-serif;color:var(--ff-dim)">Search fruit, street or forager</div>
+</div>
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.09em;color:var(--ff-dim);margin:22px 0 10px">WHAT TO SHOW</div>
+<div style="display:flex;gap:8px">
+<sc-for list="{{ kindChips }}" as="k" hint-placeholder-count="2">
+<div onClick="{{ k.toggle }}" style="flex:1;text-align:center;border:1.5px solid {{ k.border }};background:{{ k.bg }};border-radius:11px;padding:11px 6px;cursor:pointer">
+<div style="font:700 12px Archivo,sans-serif;color:{{ k.fg }}">{{ k.name }}</div>
+<div style="font:600 8.5px 'IBM Plex Mono',monospace;color:{{ k.fg }};opacity:.7;margin-top:2px">{{ k.count }}</div>
+</div>
+</sc-for>
+</div>
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.09em;color:var(--ff-dim);margin:22px 0 10px">RARITY</div>
+<div style="display:flex;gap:8px">
+<sc-for list="{{ rarityChips }}" as="c" hint-placeholder-count="3">
+<div onClick="{{ c.toggle }}" style="flex:1;text-align:center;border:1.5px solid {{ c.border }};background:{{ c.bg }};border-radius:11px;padding:11px 6px;cursor:pointer">
+<div style="font:700 12px Archivo,sans-serif;color:{{ c.fg }}">{{ c.name }}</div>
+<div style="font:600 8.5px 'IBM Plex Mono',monospace;color:{{ c.fg }};opacity:.7;margin-top:2px">{{ c.count }}</div>
+</div>
+</sc-for>
+</div>
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.09em;color:var(--ff-dim);margin:22px 0 10px">DISTANCE · {{ radiusLabel }}</div>
+<div onClick="{{ bumpRadius }}" style="background:var(--ff-surface);border:1px solid var(--ff-line);border-radius:14px;padding:16px 14px;cursor:pointer">
+<div style="height:5px;border-radius:3px;background:var(--ff-surface2);position:relative">
+<div style="position:absolute;left:0;top:0;bottom:0;width:{{ radiusPct }}%;background:var(--ff-fuchsia);border-radius:3px"></div>
+<div style="position:absolute;left:{{ radiusPct }}%;top:50%;transform:translate(-50%,-50%);width:20px;height:20px;border-radius:50%;background:var(--ff-fuchsia);border:3px solid var(--ff-surface);box-shadow:0 2px 8px rgba(0,0,0,.2)"></div>
+</div>
+<div style="display:flex;justify-content:space-between;margin-top:12px">
+<div style="font:600 8.5px 'IBM Plex Mono',monospace;color:var(--ff-dim)">300 M</div>
+<div style="font:600 8.5px 'IBM Plex Mono',monospace;color:var(--ff-dim)">CITY-WIDE</div>
+</div>
+</div>
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.09em;color:var(--ff-dim);margin:22px 0 10px">ONLY SHOW</div>
+<div style="display:flex;flex-direction:column;gap:9px">
+<sc-for list="{{ toggles }}" as="tg" hint-placeholder-count="4">
+<div onClick="{{ tg.toggle }}" style="display:flex;align-items:center;gap:12px;background:var(--ff-surface);border:1px solid var(--ff-line);border-radius:13px;padding:13px 14px;cursor:pointer">
+<div style="font:500 13px 'DM Sans',sans-serif;flex:1">{{ tg.label }}</div>
+<div style="width:42px;height:24px;border-radius:14px;background:{{ tg.trackBg }};position:relative;transition:background .18s">
+<div style="position:absolute;top:3px;left:{{ tg.knob }}px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.25);transition:left .18s"></div>
+</div>
+</div>
+</sc-for>
+</div>
+<div onClick="{{ goMap }}" style="margin-top:20px;text-align:center;background:{{ filterBg }};color:{{ filterFg }};border-radius:14px;padding:16px;font:700 14px Archivo,sans-serif;cursor:pointer">{{ filterLabel }}</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isProfile }}">
+<div class="ff-scroll" style="flex:1;min-height:0;overflow-y:auto;padding:58px 18px 28px">
+<div style="display:flex;align-items:center;gap:14px">
+<div onClick="{{ openAvatar }}" style="width:60px;height:60px;flex:none;border-radius:20px;background:{{ avatarBg }};background-color:{{ avatarBgColor }};display:flex;align-items:center;justify-content:center;color:{{ avatarFg }};font:{{ avatarFont }};cursor:pointer;position:relative">
+<sc-if value="{{ avatarIsPreset }}">
+<div style="width:52px;height:52px"><svg viewBox="0 0 100 100" width="100%" height="100%" style="display:block;overflow:visible">
+<defs>
+<linearGradient id="ah-b" x1="0" y1="0" x2="0.9" y2="1"><stop offset="0" style="stop-color:{{ avc1 }}"></stop><stop offset="1" style="stop-color:{{ avc2 }}"></stop></linearGradient>
+<linearGradient id="ah-l" x1="0" y1="1" x2="1" y2="0"><stop offset="0" style="stop-color:{{ avlc1 }}"></stop><stop offset="1" style="stop-color:{{ avlc2 }}"></stop></linearGradient>
+<clipPath id="ah-c"><path d="{{ avbody }}"></path><path d="{{ avpart2 }}"></path><path d="{{ avpart3 }}"></path></clipPath>
+</defs>
+<path d="{{ avstem }}" stroke="{{ avlc2 }}" stroke-width="3" fill="none" stroke-linecap="round"></path>
+<path d="{{ avleafA }}" fill="url(#ah-l)"></path>
+<path d="{{ avleafB }}" fill="url(#ah-l)" opacity="0.85"></path>
+<path d="{{ avvein }}" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.9"></path>
+<path d="{{ avbody }}" fill="url(#ah-b)"></path>
+<path d="{{ avpart2 }}" fill="url(#ah-b)"></path>
+<path d="{{ avpart3 }}" fill="url(#ah-b)"></path>
+<g style="clip-path:url(#ah-c)">
+<path d="M0,56 C42,64 40,86 100,92 L100,110 L0,110 Z" fill="{{ avc2 }}" opacity="0.3"></path>
+<path d="{{ avswoosh }}" stroke="#fff" stroke-width="4.6" fill="none" stroke-linecap="round"></path>
+<path d="{{ avmark }}" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" opacity="0.75"></path>
+</g>
+</svg></div>
+</sc-if>
+<sc-if value="{{ avatarIsText }}" hint-placeholder-val="{{ true }}">
+<div>{{ avatarLabel }}</div>
+</sc-if>
+<div style="position:absolute;right:-3px;bottom:-3px;width:22px;height:22px;border-radius:50%;background:var(--ff-fuchsia);border:2px solid var(--ff-bg);display:flex;align-items:center;justify-content:center;font:600 10px Archivo,sans-serif;color:#fff">+</div>
+</div>
+<div style="flex:1;min-width:0">
+<sc-if value="{{ editingName }}">
+<div style="display:flex;align-items:center;gap:7px;background:var(--ff-surface);border:1.5px solid var(--ff-fuchsia);border-radius:12px;padding:5px 5px 5px 11px">
+<input type="text" value="{{ nameDraft }}" onInput="{{ onNameInput }}" onChange="{{ onNameInput }}" autoFocus="{{ true }}" placeholder="Your name" style="flex:1;min-width:0;border:none;outline:none;background:transparent;color:var(--ff-text);font:800 17px Archivo,sans-serif;letter-spacing:-.02em;padding:7px 0">
+<div onClick="{{ saveName }}" style="flex:none;background:var(--ff-fuchsia);color:#fff;border-radius:9px;padding:8px 11px;font:700 11.5px Archivo,sans-serif;cursor:pointer">Save</div>
+</div>
+</sc-if>
+<sc-if value="{{ notEditingName }}" hint-placeholder-val="{{ true }}">
+<div onClick="{{ startEditName }}" style="display:flex;align-items:baseline;gap:8px;cursor:pointer">
+<div style="font:800 20px Archivo,sans-serif;letter-spacing:-.02em">{{ displayName }}</div>
+<div style="font:600 8.5px 'IBM Plex Mono',monospace;color:var(--ff-fuchsia);letter-spacing:.06em">EDIT</div>
+</div>
+</sc-if>
+<div style="font:400 12px 'DM Sans',sans-serif;color:var(--ff-dim);margin-top:2px">{{ handleLine }}</div>
+</div>
+</div>
+<div style="background:var(--ff-surface);border:1px solid var(--ff-line);border-radius:18px;padding:16px;margin-top:18px">
+<div style="display:flex;align-items:baseline">
+<div style="font:700 13.5px Archivo,sans-serif">Forager</div>
+<div style="margin-left:auto;font:600 10px 'IBM Plex Mono',monospace;color:var(--ff-dim)">1,240 / 2,000</div>
+</div>
+<div style="height:8px;border-radius:5px;background:var(--ff-surface2);margin-top:11px;overflow:hidden"><div style="width:62%;height:100%;background:linear-gradient(90deg,var(--ff-green),var(--ff-fuchsia))"></div></div>
+<div style="display:flex;justify-content:space-between;margin-top:9px">
+<div style="font:600 8.5px 'IBM Plex Mono',monospace;color:var(--ff-dim)">SPROUT</div>
+<div style="font:600 8.5px 'IBM Plex Mono',monospace;color:var(--ff-fuchsia)">ORCHARDIST</div>
+</div>
+</div>
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.09em;color:var(--ff-dim);margin:22px 0 10px">MY TREES · 34</div>
+<div style="display:flex;flex-direction:column;gap:9px">
+<sc-for list="{{ myTrees }}" as="mt" hint-placeholder-count="4">
+<div onClick="{{ mt.open }}" style="display:flex;align-items:center;gap:12px;background:var(--ff-surface);border:1px solid var(--ff-line);border-radius:13px;padding:12px 13px;cursor:pointer">
+<div style="width:34px;height:34px;border-radius:9px;background:{{ mt.color }};display:flex;align-items:center;justify-content:center;font:700 12px Archivo,sans-serif;color:#fff">{{ mt.initial }}</div>
+<div style="flex:1">
+<div style="font:700 13px Archivo,sans-serif">{{ mt.name }}</div>
+<div style="font:400 11px 'DM Sans',sans-serif;color:var(--ff-dim);margin-top:2px">{{ mt.street }}</div>
+</div>
+<div style="text-align:right">
+<div style="font:600 9px 'IBM Plex Mono',monospace;color:{{ mt.statusColor }};letter-spacing:.04em">{{ mt.status }}</div>
+<div style="font:700 11px 'IBM Plex Mono',monospace;color:var(--ff-dim);margin-top:3px">{{ mt.pts }}</div>
+</div>
+</div>
+</sc-for>
+</div>
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.09em;color:var(--ff-dim);margin:22px 0 10px">SETTINGS</div>
+<div style="background:var(--ff-surface);border:1px solid var(--ff-line);border-radius:16px;overflow:hidden">
+<div onClick="{{ toggleTheme }}" style="display:flex;align-items:center;gap:12px;padding:15px 14px;border-bottom:1px solid var(--ff-line);cursor:pointer">
+<div style="font:500 13px 'DM Sans',sans-serif;flex:1">Dark mode</div>
+<div style="width:42px;height:24px;border-radius:14px;background:{{ darkTrack }};position:relative">
+<div style="position:absolute;top:3px;left:{{ darkKnob }}px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.25);transition:left .18s"></div>
+</div>
+</div>
+<div onClick="{{ openShare }}" style="display:flex;align-items:center;gap:12px;padding:15px 14px;border-bottom:1px solid var(--ff-line);cursor:pointer">
+<div style="flex:1">
+<div style="font:500 13px 'DM Sans',sans-serif">Invite a forager</div>
+<div style="font:400 11px 'DM Sans',sans-serif;color:var(--ff-dim);margin-top:2px">{{ inviteLink }} · +10 pts per friend who joins</div>
+</div>
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;color:var(--ff-fuchsia)">SHARE</div>
+</div>
+<div onClick="{{ toggleUnits }}" style="display:flex;align-items:center;gap:12px;padding:15px 14px;border-bottom:1px solid var(--ff-line);cursor:pointer">
+<div style="font:500 13px 'DM Sans',sans-serif;flex:1">Units</div>
+<div style="font:600 10px 'IBM Plex Mono',monospace;color:var(--ff-fuchsia)">{{ unitsLabel }}</div>
+</div>
+<div onClick="{{ goPrivacy }}" style="display:flex;align-items:center;gap:12px;padding:15px 14px;cursor:pointer">
+<div style="font:500 13px 'DM Sans',sans-serif;flex:1">Privacy &amp; my location history</div>
+<div style="font:600 13px Archivo,sans-serif;color:var(--ff-dim)">&rsaquo;</div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isPrivacy }}">
+<div class="ff-scroll" style="flex:1;min-height:0;overflow-y:auto;padding:58px 18px 28px">
+<div style="display:flex;align-items:center;gap:12px">
+<div onClick="{{ goProfile }}" style="width:38px;height:38px;flex:none;border-radius:12px;background:var(--ff-surface);border:1px solid var(--ff-line);display:flex;align-items:center;justify-content:center;font:700 15px Archivo,sans-serif;cursor:pointer">&larr;</div>
+<div style="font:800 22px/1.1 Archivo,sans-serif;letter-spacing:-.03em">Privacy &amp; location</div>
+</div>
+<div style="font:400 12.5px/1.65 'DM Sans',sans-serif;color:var(--ff-dim);margin-top:12px">A foraging map only works if the trees are real, so photos carry GPS. Everything about <em>you</em> is a choice.</div>
+
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.09em;color:var(--ff-dim);margin:22px 0 10px">WHAT WE STORE</div>
+<div style="display:flex;flex-direction:column;gap:9px">
+<sc-for list="{{ stored }}" as="d" hint-placeholder-count="3">
+<div style="background:var(--ff-surface);border:1px solid var(--ff-line);border-radius:14px;padding:13px 14px">
+<div style="display:flex;align-items:center;gap:9px">
+<div style="width:7px;height:7px;border-radius:50%;background:{{ d.color }};flex:none"></div>
+<div style="font:700 13px Archivo,sans-serif;letter-spacing:-.01em;flex:1">{{ d.title }}</div>
+<div style="font:600 8.5px 'IBM Plex Mono',monospace;color:var(--ff-dim);letter-spacing:.05em">{{ d.keep }}</div>
+</div>
+<div style="font:400 11.5px/1.5 'DM Sans',sans-serif;color:var(--ff-dim);margin-top:7px">{{ d.body }}</div>
+</div>
+</sc-for>
+</div>
+
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.09em;color:var(--ff-dim);margin:22px 0 10px">MY TREES ON THE PUBLIC MAP</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<sc-for list="{{ precisionOpts }}" as="po" hint-placeholder-count="3">
+<div onClick="{{ po.pick }}" style="display:flex;align-items:flex-start;gap:11px;background:{{ po.bg }};border:1.5px solid {{ po.border }};border-radius:14px;padding:13px 14px;cursor:pointer">
+<div style="width:16px;height:16px;border-radius:50%;border:2px solid {{ po.dot }};background:{{ po.fill }};margin-top:2px;flex:none"></div>
+<div style="flex:1">
+<div style="font:700 13px Archivo,sans-serif;letter-spacing:-.01em">{{ po.title }}</div>
+<div style="font:400 11.5px/1.5 'DM Sans',sans-serif;color:var(--ff-dim);margin-top:3px">{{ po.body }}</div>
+</div>
+</div>
+</sc-for>
+</div>
+
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.09em;color:var(--ff-dim);margin:22px 0 10px">TRACKING</div>
+<div style="display:flex;flex-direction:column;gap:9px">
+<sc-for list="{{ privacyToggles }}" as="pt" hint-placeholder-count="3">
+<div onClick="{{ pt.toggle }}" style="display:flex;align-items:center;gap:12px;background:var(--ff-surface);border:1px solid var(--ff-line);border-radius:13px;padding:13px 14px;cursor:pointer">
+<div style="flex:1">
+<div style="font:500 13px 'DM Sans',sans-serif">{{ pt.label }}</div>
+<div style="font:400 11px/1.45 'DM Sans',sans-serif;color:var(--ff-dim);margin-top:3px">{{ pt.body }}</div>
+</div>
+<div style="width:42px;height:24px;flex:none;border-radius:14px;background:{{ pt.trackBg }};position:relative;transition:background .18s">
+<div style="position:absolute;top:3px;left:{{ pt.knob }}px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.25);transition:left .18s"></div>
+</div>
+</div>
+</sc-for>
+</div>
+
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.09em;color:var(--ff-dim);margin:22px 0 10px">LOCATION HISTORY · {{ historyCount }}</div>
+<div style="background:var(--ff-surface);border:1px solid var(--ff-line);border-radius:16px;padding:15px">
+<div style="font:400 12px/1.6 'DM Sans',sans-serif;color:var(--ff-dim)">{{ historyBody }}</div>
+<div style="display:flex;gap:8px;margin-top:14px">
+<div onClick="{{ wipeHistory }}" style="flex:1;text-align:center;border:1.5px solid {{ wipeBorder }};color:{{ wipeFg }};background:{{ wipeBg }};border-radius:12px;padding:13px;font:700 13px Archivo,sans-serif;cursor:pointer">{{ wipeLabel }}</div>
+<div onClick="{{ exportData }}" style="flex:none;padding:13px 15px;text-align:center;border:1px solid var(--ff-line);border-radius:12px;font:600 10px 'IBM Plex Mono',monospace;color:var(--ff-dim);cursor:pointer">{{ exportLabel }}</div>
+</div>
+</div>
+<div style="font:400 11px/1.55 'DM Sans',sans-serif;color:var(--ff-dim);margin-top:10px">Wiping keeps your trees on the map — they belong to the city now — and only removes the trail of where you walked.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ showReport }}">
+<div onClick="{{ closeReport }}" style="position:absolute;left:0;right:0;top:0;bottom:0;z-index:80;background:rgba(8,14,8,.55)"></div>
+<div style="position:absolute;left:18px;right:18px;top:50%;transform:translateY(-50%);z-index:81;max-height:80%;overflow-y:auto;background:var(--ff-surface);border-radius:24px;padding:20px;box-shadow:0 18px 50px rgba(0,0,0,.32)">
+<div style="width:38px;height:4px;border-radius:3px;background:var(--ff-line);margin:0 auto 16px"></div>
+<div style="display:flex;align-items:center;gap:10px">
+<div style="flex:1">
+<div style="font:800 21px/1.15 Archivo,sans-serif;letter-spacing:-.02em">{{ reportTitle }}</div>
+<div style="font:400 12px/1.55 'DM Sans',sans-serif;color:var(--ff-dim);margin-top:6px">{{ reportSub }}</div>
+</div>
+<div style="flex:none;font:600 9px 'IBM Plex Mono',monospace;color:var(--ff-green);background:var(--ff-green-soft);border-radius:8px;padding:7px 9px;letter-spacing:.05em">GPS 4 M</div>
+</div>
+
+<sc-if value="{{ rStepKind }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;gap:10px;margin-top:18px">
+<div onClick="{{ pickGood }}" style="flex:1;background:var(--ff-green-soft);border:1.5px solid var(--ff-green);border-radius:16px;padding:16px 14px;cursor:pointer">
+<div style="width:26px;height:26px;border-radius:9px;background:var(--ff-green);color:#fff;display:flex;align-items:center;justify-content:center;font:700 11px 'IBM Plex Mono',monospace">OK</div>
+<div style="font:700 15px Archivo,sans-serif;margin-top:11px;color:var(--ff-green)">Good</div>
+<div style="font:400 11px/1.45 'DM Sans',sans-serif;color:var(--ff-dim);margin-top:3px">Healthy tree, still feeding people</div>
+</div>
+<div onClick="{{ pickBad }}" style="flex:1;background:var(--ff-gold-soft);border:1.5px solid var(--ff-gold);border-radius:16px;padding:16px 14px;cursor:pointer">
+<div style="width:26px;height:26px;border-radius:9px;background:var(--ff-gold);color:#fff;display:flex;align-items:center;justify-content:center;font:700 13px Archivo,sans-serif">!</div>
+<div style="font:700 15px Archivo,sans-serif;margin-top:11px;color:var(--ff-gold)">Bad</div>
+<div style="font:400 11px/1.45 'DM Sans',sans-serif;color:var(--ff-dim);margin-top:3px">Something is hurting it</div>
+</div>
+</div>
+<div style="font:400 11px/1.5 'DM Sans',sans-serif;color:var(--ff-dim);margin-top:14px">Either answer is worth the same points — a dying tree is as useful to know about as a full one.</div>
+</sc-if>
+
+<sc-if value="{{ rStepSub }}">
+<div style="display:flex;flex-direction:column;gap:8px;margin-top:16px">
+<sc-for list="{{ reportOpts }}" as="ro" hint-placeholder-count="3">
+<div onClick="{{ ro.pick }}" style="display:flex;align-items:center;gap:11px;background:{{ ro.bg }};border:1.5px solid {{ ro.border }};border-radius:13px;padding:13px 14px;cursor:pointer">
+<div style="width:16px;height:16px;flex:none;border-radius:50%;border:2px solid {{ ro.dot }};background:{{ ro.fill }}"></div>
+<div style="font:500 13px 'DM Sans',sans-serif;flex:1">{{ ro.label }}</div>
+<div style="font:600 8.5px 'IBM Plex Mono',monospace;color:var(--ff-dim);letter-spacing:.05em">{{ ro.short }}</div>
+</div>
+</sc-for>
+</div>
+<div style="display:flex;gap:9px;margin-top:16px">
+<div onClick="{{ reportBack }}" style="flex:none;padding:15px 16px;text-align:center;border:1px solid var(--ff-line);border-radius:14px;font:600 10px 'IBM Plex Mono',monospace;color:var(--ff-dim);cursor:pointer">BACK</div>
+<div onClick="{{ submitReport }}" style="flex:1;text-align:center;background:{{ submitBg }};color:{{ submitFg }};border-radius:14px;padding:15px;font:700 14px Archivo,sans-serif;cursor:pointer">{{ submitLabel }}</div>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ showAvatar }}">
+<div onClick="{{ closeOverlay }}" style="position:absolute;left:0;right:0;top:0;bottom:0;z-index:80;background:rgba(8,14,8,.5)"></div>
+<div style="position:absolute;left:18px;right:18px;top:50%;transform:translateY(-50%);z-index:81;max-height:80%;overflow-y:auto;background:var(--ff-surface);border-radius:24px;padding:20px;box-shadow:0 18px 50px rgba(0,0,0,.32)">
+<div style="width:38px;height:4px;border-radius:3px;background:var(--ff-line);margin:0 auto 16px"></div>
+<div style="font:800 21px/1.15 Archivo,sans-serif;letter-spacing:-.02em">Your avatar</div>
+<div style="font:400 12px/1.55 'DM Sans',sans-serif;color:var(--ff-dim);margin-top:6px">A photo if you want to be recognised at the market, or a plant if you would rather not.</div>
+<div style="display:flex;gap:9px;margin-top:16px">
+<div onClick="{{ pickPhoto }}" style="flex:1;display:flex;align-items:center;gap:11px;background:var(--ff-surface2);border:1.5px solid {{ photoBorder }};border-radius:14px;padding:12px;cursor:pointer">
+<div style="width:38px;height:38px;flex:none;border-radius:11px;background:repeating-linear-gradient(135deg,var(--ff-ph) 0 6px,transparent 6px 12px);background-color:var(--ff-surface)"></div>
+<div>
+<div style="font:700 13px Archivo,sans-serif">Use a photo</div>
+<div style="font:400 10.5px 'DM Sans',sans-serif;color:var(--ff-dim);margin-top:2px">Camera or library</div>
+</div>
+</div>
+<div onClick="{{ pickInitials }}" style="flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:var(--ff-surface2);border:1.5px solid {{ initialsBorder }};border-radius:14px;padding:12px 14px;cursor:pointer">
+<div style="width:30px;height:30px;border-radius:10px;background:var(--ff-green-soft);color:var(--ff-green);display:flex;align-items:center;justify-content:center;font:800 12px Archivo,sans-serif">{{ initials }}</div>
+<div style="font:600 8.5px 'IBM Plex Mono',monospace;color:var(--ff-dim);letter-spacing:.05em">INITIALS</div>
+</div>
+</div>
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.09em;color:var(--ff-dim);margin:18px 0 10px">OR PICK FROM NATURE</div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:9px">
+<sc-for list="{{ avatarPresets }}" as="ap" hint-placeholder-count="8">
+<div onClick="{{ ap.pick }}" style="background:var(--ff-surface);border:1.5px solid {{ ap.border }};border-radius:14px;padding:10px 6px;text-align:center;cursor:pointer">
+<div style="width:38px;height:38px;margin:0 auto"><svg viewBox="0 0 100 100" width="100%" height="100%" style="display:block;overflow:visible">
+<defs>
+<linearGradient id="ai-{{ ap.glyph }}-b" x1="0" y1="0" x2="0.9" y2="1"><stop offset="0" style="stop-color:{{ ap.c1 }}"></stop><stop offset="1" style="stop-color:{{ ap.c2 }}"></stop></linearGradient>
+<linearGradient id="ai-{{ ap.glyph }}-l" x1="0" y1="1" x2="1" y2="0"><stop offset="0" style="stop-color:{{ ap.lc1 }}"></stop><stop offset="1" style="stop-color:{{ ap.lc2 }}"></stop></linearGradient>
+<clipPath id="ai-{{ ap.glyph }}-c"><path d="{{ ap.body }}"></path><path d="{{ ap.part2 }}"></path><path d="{{ ap.part3 }}"></path></clipPath>
+</defs>
+<path d="{{ ap.stem }}" stroke="{{ ap.lc2 }}" stroke-width="3" fill="none" stroke-linecap="round"></path>
+<path d="{{ ap.leafA }}" fill="url(#ai-{{ ap.glyph }}-l)"></path>
+<path d="{{ ap.leafB }}" fill="url(#ai-{{ ap.glyph }}-l)" opacity="0.85"></path>
+<path d="{{ ap.vein }}" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.9"></path>
+<path d="{{ ap.body }}" fill="url(#ai-{{ ap.glyph }}-b)"></path>
+<path d="{{ ap.part2 }}" fill="url(#ai-{{ ap.glyph }}-b)"></path>
+<path d="{{ ap.part3 }}" fill="url(#ai-{{ ap.glyph }}-b)"></path>
+<g style="clip-path:url(#ai-{{ ap.glyph }}-c)">
+<path d="M0,56 C42,64 40,86 100,92 L100,110 L0,110 Z" fill="{{ ap.c2 }}" opacity="0.3"></path>
+<path d="{{ ap.swoosh }}" stroke="#fff" stroke-width="4.6" fill="none" stroke-linecap="round"></path>
+<path d="{{ ap.mark }}" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" opacity="0.75"></path>
+</g>
+</svg></div>
+<div style="font:600 8.5px 'IBM Plex Mono',monospace;color:var(--ff-dim);letter-spacing:.04em;margin-top:7px">{{ ap.label }}</div>
+</div>
+</sc-for>
+</div>
+<div onClick="{{ closeOverlay }}" style="margin-top:18px;text-align:center;background:var(--ff-text);color:var(--ff-bg);border-radius:14px;padding:15px;font:700 13.5px Archivo,sans-serif;cursor:pointer">Done</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ showShare }}">
+<div onClick="{{ closeOverlay }}" style="position:absolute;left:0;right:0;top:0;bottom:0;z-index:80;background:rgba(8,14,8,.5);display:flex;flex-direction:column;justify-content:flex-end"></div>
+<div style="position:absolute;left:18px;right:18px;top:50%;transform:translateY(-50%);z-index:81;max-height:80%;overflow-y:auto;background:var(--ff-surface);border-radius:24px;padding:20px;box-shadow:0 18px 50px rgba(0,0,0,.32)">
+<div style="width:38px;height:4px;border-radius:3px;background:var(--ff-line);margin:0 auto 16px"></div>
+<div style="font:800 21px/1.15 Archivo,sans-serif;letter-spacing:-.02em">Your invite link</div>
+<div style="font:400 12px/1.6 'DM Sans',sans-serif;color:var(--ff-dim);margin-top:6px">Built from your handle and this device, so we can credit the 10 points when someone joins.</div>
+
+<div style="display:flex;align-items:center;gap:7px;margin-top:16px;flex-wrap:wrap">
+<div style="font:600 10px 'IBM Plex Mono',monospace;color:var(--ff-dim);background:var(--ff-surface2);border-radius:8px;padding:7px 9px">freefruits.app</div>
+<div style="font:600 10px 'IBM Plex Mono',monospace;color:var(--ff-dim)">/</div>
+<div style="font:600 10px 'IBM Plex Mono',monospace;color:#fff;background:var(--ff-fuchsia);border-radius:8px;padding:7px 9px">{{ inviteCode }}</div>
+<div onClick="{{ regenCode }}" style="margin-left:auto;font:600 9px 'IBM Plex Mono',monospace;color:var(--ff-fuchsia);border:1px solid var(--ff-fuchsia);border-radius:8px;padding:7px 9px;cursor:pointer">NEW CODE</div>
+</div>
+<div style="display:flex;align-items:center;gap:10px;margin-top:12px;background:var(--ff-surface2);border:1px solid var(--ff-line);border-radius:14px;padding:13px 14px">
+<div style="flex:1;min-width:0;font:600 12.5px 'IBM Plex Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ inviteLink }}</div>
+<div onClick="{{ copyLink }}" style="flex:none;background:{{ copyBg }};color:{{ copyFg }};border-radius:10px;padding:9px 12px;font:700 11.5px Archivo,sans-serif;cursor:pointer">{{ copyLabel }}</div>
+</div>
+<div style="font:400 11px/1.5 'DM Sans',sans-serif;color:var(--ff-dim);margin-top:9px">{{ shareHint }}</div>
+
+<div style="display:flex;gap:9px;margin-top:18px">
+<sc-for list="{{ shareTargets }}" as="st" hint-placeholder-count="4">
+<div onClick="{{ st.pick }}" style="flex:1;text-align:center;background:var(--ff-surface2);border:1px solid {{ st.border }};border-radius:14px;padding:13px 6px;cursor:pointer">
+<div style="width:22px;height:22px;border-radius:{{ st.shape }};background:{{ st.color }};margin:0 auto"></div>
+<div style="font:600 8.5px 'IBM Plex Mono',monospace;color:var(--ff-dim);letter-spacing:.04em;margin-top:8px">{{ st.name }}</div>
+</div>
+</sc-for>
+</div>
+<div onClick="{{ closeOverlay }}" style="margin-top:16px;text-align:center;background:var(--ff-text);color:var(--ff-bg);border-radius:14px;padding:15px;font:700 13.5px Archivo,sans-serif;cursor:pointer">Done</div>
+</div>
+</sc-if>
+
+</div>
+</x-import>
+</div>
+
+<div class="dv-opt" id="1b">
+<div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Tree detail, alternative: photo-forward, proof stacked as evidence</div>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+<div data-ff="light" style="height:874px;display:flex;flex-direction:column;background:#F5F7F2;color:#10160F;font-family:'DM Sans',system-ui,sans-serif;position:relative">
+<div style="height:470px;position:relative;background:repeating-linear-gradient(135deg,rgba(16,22,15,.07) 0 10px,transparent 10px 20px);background-color:#EDF1E9">
+<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:600 10px 'IBM Plex Mono',monospace;color:#6C7A6E;letter-spacing:.06em">FULL-BLEED PHOTO FROM THE PIN</div>
+<div style="position:absolute;top:58px;left:16px;width:38px;height:38px;border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;font:700 15px Archivo,sans-serif">&larr;</div>
+<div style="position:absolute;top:58px;right:16px;display:flex;gap:7px">
+<div style="font:700 10px 'IBM Plex Mono',monospace;color:#fff;background:#A87400;border-radius:8px;padding:7px 9px;letter-spacing:.05em">LEGENDARY</div>
+</div>
+<div style="position:absolute;left:16px;bottom:16px;right:16px;display:flex;align-items:flex-end;gap:12px">
+<div>
+<div style="font:800 34px/1 Archivo,sans-serif;letter-spacing:-.035em;color:#10160F">Peach</div>
+<div style="font:500 12.5px 'DM Sans',sans-serif;color:#3E4A40;margin-top:6px">Via Ludovico il Moro 22 · 210 m · public verge</div>
+</div>
+<div style="margin-left:auto;background:#D4148B;border-radius:14px;padding:10px 12px;text-align:center">
+<div style="font:700 19px 'IBM Plex Mono',monospace;color:#fff;line-height:1">+50</div>
+<div style="font:600 7.5px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.8);letter-spacing:.07em;margin-top:3px">POINTS</div>
+</div>
+</div>
+</div>
+<div style="flex:1;padding:18px;display:flex;flex-direction:column;gap:11px">
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.09em;color:#6C7A6E">THE PROOF</div>
+<div style="display:flex;gap:9px">
+<div style="flex:1;background:#fff;border:1px solid rgba(16,22,15,.1);border-radius:14px;padding:13px">
+<div style="font:700 11px 'IBM Plex Mono',monospace;color:#12734A">GPS &plusmn;3 M</div>
+<div style="font:400 11px/1.45 'DM Sans',sans-serif;color:#6C7A6E;margin-top:5px">Photo metadata matches the pin</div>
+</div>
+<div style="flex:1;background:#fff;border:1px solid rgba(16,22,15,.1);border-radius:14px;padding:13px">
+<div style="font:700 11px 'IBM Plex Mono',monospace;color:#12734A">5 ON-SITE OKS</div>
+<div style="font:400 11px/1.45 'DM Sans',sans-serif;color:#6C7A6E;margin-top:5px">Last confirmed 2 Aug</div>
+</div>
+</div>
+<div style="display:flex;align-items:center;gap:11px;background:#FCE3F1;border-radius:14px;padding:13px 14px">
+<div style="font:700 13px/1.35 Archivo,sans-serif;flex:1">Ripe now — and nobody is picking it.</div>
+<div style="font:600 9.5px 'IBM Plex Mono',monospace;color:#D4148B">SEASON &rsaquo;</div>
+</div>
+<div style="margin-top:auto;display:flex;gap:10px;padding-bottom:22px">
+<div style="flex:1;text-align:center;background:#10160F;color:#F5F7F2;border-radius:14px;padding:15px;font:700 14px Archivo,sans-serif">Walk me there</div>
+<div style="width:52px;border:1px solid rgba(16,22,15,.12);border-radius:14px;display:flex;align-items:center;justify-content:center;font:600 9px 'IBM Plex Mono',monospace;color:#6C7A6E">SAVE</div>
+</div>
+</div>
+</div>
+</x-import>
+</div>
+
+</div>
+<p class="dv-next">Try next: "make the map cards a bottom sheet instead" · "use <a class="dv-oid" href="#1b">1b</a>'s proof cards inside <a class="dv-oid" href="#1a">1a</a>" · "design the local community chat" · "show the onboarding + first-run empty map"</p>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;fuchsia&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#D4148B&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#D4148B&quot;,&quot;#E8267F&quot;,&quot;#C21FA6&quot;,&quot;#FF3FA8&quot;],&quot;section&quot;:&quot;Brand&quot;},&quot;green&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#12734A&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#12734A&quot;,&quot;#0E6B57&quot;,&quot;#1E8A3B&quot;],&quot;section&quot;:&quot;Brand&quot;},&quot;showNearbyPrompt&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behaviour&quot;}}">
+const RC = { Common: 'var(--ff-green)', Rare: 'var(--ff-fuchsia)', Legendary: 'var(--ff-gold)' };
+const SPECIES = {
+  fruit: [['Fig','Rare',30],['Peach','Legendary',50],['Orange','Common',10],['Lemon','Common',15],['Mulberry','Legendary',45],['Loquat','Rare',35],['Plum','Rare',30],['Cherry','Legendary',50],['Apple','Common',15]],
+  herb: [['Basil','Common',10],['Wild mint','Common',10],['Rosemary','Common',15],['Parsley','Common',10],['Sage','Rare',25],['Thyme','Rare',25],['Oregano','Common',15],['Bay laurel','Rare',25],['Wild fennel','Legendary',40]],
+};
+const TREES = [
+  { name: 'Fig', initial: 'F', rarity: 'Rare', pts: 30, dist: '80 m', street: 'Via Gola 14', status: 'VERIFIED · 4 OKS', x: 33, y: 34, mine: true, visited: true, finder: { handle: 'michele-f', initial: 'M', date: '14 July' } },
+  { name: 'Peach', initial: 'P', rarity: 'Legendary', pts: 50, dist: '210 m', street: 'Via L. il Moro 22', status: 'VERIFIED · 5 OKS', x: 68, y: 26, fence: true, finder: { handle: 'giulia-p', initial: 'G', date: '3 May' } },
+  { name: 'Mulberry', initial: 'M', rarity: 'Legendary', pts: 45, dist: '340 m', street: 'Parco Solari', status: 'VERIFIED · 3 OKS', x: 47, y: 17, mine: true, visited: true, finder: { handle: 'michele-f', initial: 'M', date: '28 June' } },
+  { name: 'Loquat', initial: 'L', rarity: 'Rare', pts: 35, dist: '420 m', street: 'Via Savona 8', status: 'NEEDS 2 CHECKS', x: 16, y: 50, mine: true, pending: true, finder: { handle: 'michele-f', initial: 'M', date: '30 July' } },
+  { name: 'Orange', initial: 'O', rarity: 'Common', pts: 10, dist: '150 m', street: 'Via Vigevano', status: 'VERIFIED · 6 OKS', x: 80, y: 44, mine: true, fence: true, visited: true, finder: { handle: 'michele-f', initial: 'M', date: '9 April' } },
+  { name: 'Wild mint', initial: 'H', rarity: 'Common', pts: 10, dist: '60 m', street: 'Alzaia Naviglio 6', status: 'VERIFIED · 3 OKS', x: 40, y: 46, herb: true, visited: true, finder: { handle: 'sofia-r', initial: 'S', date: '21 May' } },
+  { name: 'Rosemary hedge', initial: 'H', rarity: 'Common', pts: 15, dist: '260 m', street: 'Parco Solari', status: 'VERIFIED · 4 OKS', x: 30, y: 24, herb: true, finder: { handle: 'dario-v', initial: 'D', date: '11 May' } },
+  { name: 'Pomegranate', initial: 'G', rarity: 'Rare', pts: 30, dist: '12 m', street: 'Alzaia Naviglio', status: 'NEEDS 2 CHECKS', x: 62, y: 56, pending: true, finder: { handle: 'dario-v', initial: 'D', date: '2 Aug' } },
+];
+
+const MONTH = 7;
+const MN = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const monthIn = (sn, m) => (sn[0] <= sn[1] ? (m >= sn[0] && m <= sn[1]) : (m >= sn[0] || m <= sn[1]));
+const SEASON = { 'Fig': [5,8], 'Peach': [6,7], 'Mulberry': [5,6], 'Loquat': [3,4], 'Orange': [10,2], 'Wild mint': [3,6], 'Rosemary hedge': [0,11], 'Pomegranate': [7,10] };
+const MYLAST = { 'Peach': 12, 'Wild mint': 45, 'Rosemary hedge': 34 };
+const LASTREP = {
+  'Fig': { kind: 'good', label: 'Fruit ready to pick', short: 'FRUITING', when: '3 days ago', by: 'sofia-r' },
+  'Peach': { kind: 'good', label: 'Fruit still ripening', short: 'RIPENING', when: '6 days ago', by: 'giulia-p' },
+  'Mulberry': { kind: 'good', label: 'Season over — nothing left', short: 'DONE', when: '11 days ago', by: 'dario-v' },
+  'Loquat': { kind: 'bad', label: 'Dry — needs water', short: 'DRY', when: '20 days ago', by: 'michele-f' },
+  'Orange': { kind: 'good', label: 'Fruit still ripening', short: 'RIPENING', when: 'a month ago', by: 'anna-f' },
+  'Wild mint': { kind: 'good', label: 'Season over — nothing left', short: 'DONE', when: '3 weeks ago', by: 'sofia-r' },
+  'Rosemary hedge': { kind: 'good', label: 'Ready to pick', short: 'READY', when: '4 days ago', by: 'dario-v' },
+  'Pomegranate': { kind: 'good', label: 'Fruit still ripening', short: 'RIPENING', when: '2 days ago', by: 'dario-v' },
+};
+TREES.forEach(t => { t.season = SEASON[t.name] || [5,8]; t.myLast = MYLAST[t.name] == null ? null : MYLAST[t.name]; t.lastReport = LASTREP[t.name]; });
+const BODY = {
+  round: 'M50,40 C65,40 77,53 77,68 C77,83 65,95 50,95 C35,95 23,83 23,68 C23,53 35,40 50,40 Z',
+  drop: 'M50,40 C59,49 75,57 75,73 C75,86 64,95 50,95 C36,95 25,86 25,73 C25,57 41,49 50,40 Z',
+  wide: 'M50,41 C68,43 80,55 80,68 C80,83 66,95 50,95 C34,95 20,83 20,68 C20,55 32,43 50,41 Z',
+  tall: 'M50,40 C63,40 71,54 71,69 C71,84 62,95 50,95 C38,95 29,84 29,69 C29,54 37,40 50,40 Z',
+};
+const LEAF = ['#5FA036', '#2E5E1C'];
+const P = { leafA: 'M50,40 C37,39 25,27 23,9 C42,7 53,21 50,40 Z', leafB: 'M53,40 C59,37 67,32 71,21 C60,18 51,27 53,40 Z', vein: 'M47,37 C40,28 33,20 26,13', stem: 'M50,36 C50,39 50,41 50,44' };
+const G = { lc1: '#5FA036', lc2: '#2E5E1C' };
+const BLANK = { body: '', part2: '', part3: '', leafA: '', leafB: '', vein: '', stem: '', mark: '', swoosh: '' };
+const AVATARS = [
+  { ...BLANK, ...P, ...G, label: 'FIG', glyph: 'F', c1: '#9B62B4', c2: '#5A2472',
+    body: 'M50,40 C58,49 74,57 74,73 C74,86 63,95 50,95 C37,95 26,86 26,73 C26,57 42,49 50,40 Z',
+    swoosh: 'M26,80 C38,70 60,86 78,64' },
+  { ...BLANK, ...P, ...G, label: 'LEMON', glyph: 'L', c1: '#F9DC55', c2: '#D08A04',
+    body: 'M12,67 C18,52 33,43 50,43 C67,43 82,52 88,67 C82,82 67,91 50,91 C33,91 18,82 12,67 Z',
+    part2: 'M88,63 C94,64 97,67 97,67 C97,67 94,70 88,71 Z',
+    swoosh: 'M18,74 C36,64 60,82 86,60' },
+  { ...BLANK, ...P, label: 'OLIVE', glyph: 'O', c1: '#B4C455', c2: '#4C6A1D', lc1: '#7FAF3F', lc2: '#33581A',
+    body: 'M50,42 C62,42 69,55 69,69 C69,84 60,94 50,94 C40,94 31,84 31,69 C31,55 38,42 50,42 Z',
+    swoosh: 'M33,78 C42,70 58,86 68,66' },
+  { ...BLANK, ...P, ...G, label: 'PEACH', glyph: 'P', c1: '#FBA96F', c2: '#DE4A2E',
+    body: 'M50,42 C64,42 78,53 78,68 C78,83 65,95 50,95 C35,95 22,83 22,68 C22,53 36,42 50,42 Z',
+    mark: 'M50,45 C44,58 46,76 54,93',
+    swoosh: 'M16,76 C34,66 58,84 84,60' },
+  { ...BLANK, label: 'MINT', glyph: 'M', c1: '#7BDCA6', c2: '#12805A', lc1: '#7BDCA6', lc2: '#12805A',
+    stem: 'M50,96 C50,80 50,64 50,48',
+    leafA: 'M49,90 C33,84 21,65 25,38 C47,43 57,65 49,90 Z',
+    leafB: 'M53,72 C66,68 77,53 77,32 C59,36 48,52 53,72 Z',
+    vein: 'M46,86 C38,72 32,56 29,44' },
+  { ...BLANK, label: 'CACTUS', glyph: 'K', c1: '#86D293', c2: '#25604A', lc1: '#86D293', lc2: '#25604A',
+    body: 'M41,96 L41,56 C41,47 45,42 50,42 C55,42 59,47 59,56 L59,96 Z',
+    part2: 'M41,78 L33,78 C27,78 25,72 25,65 L25,57 C25,52 27,50 30,50 C33,50 35,52 35,57 L35,68 L41,68 Z',
+    part3: 'M59,72 L67,72 C73,72 75,66 75,59 L75,53 C75,48 77,46 80,46 C83,46 85,48 85,53 L85,61 C85,73 76,82 59,82 Z',
+    swoosh: 'M50,52 C50,66 50,82 50,94' },
+  { ...BLANK, label: 'ROSEMARY', glyph: 'R', c1: '#8FB56A', c2: '#3E6B2E', lc1: '#8FB56A', lc2: '#3E6B2E',
+    stem: 'M50,96 C50,74 49,54 50,36',
+    leafA: 'M48.5,88 L31.5,77.5 L33.9,85.3 Z M51.5,82 L67.6,72.0 L65.4,79.4 Z M48.5,76 L33.3,66.5 L35.4,73.6 Z M51.5,70 L65.9,61.1 L63.9,67.7 Z M48.5,64 L35.0,55.6 L36.9,61.8 Z M51.5,58 L64.1,50.2 L62.4,56.0 Z M48.5,52 L36.8,44.7 L38.4,50.1 Z M51.5,46 L62.4,39.3 L60.9,44.3 Z M48.5,40 L38.5,33.8 L39.9,38.4 Z M50,40 C53,32 52,26 50,20 C48,26 47,32 50,40 Z' },
+  { ...BLANK, label: 'DANDELION', glyph: 'D', c1: '#F9DC55', c2: '#D08A04', lc1: '#7CB342', lc2: '#33581A',
+    stem: 'M50,95 C51,76 54,58 60,44',
+    leafA: 'M50,94 L34.0,95.1 L37.8,84.3 L27.6,82.0 L30.8,71.5 L21.2,68.8 L23.7,58.8 L14.8,55.6 L16.7,46.0 L20,44 L25.1,40.9 L28.9,47.2 L32.6,53.4 L36.4,59.7 L40.1,65.9 L43.9,72.2 L47.6,78.4 L51.4,84.7 Z',
+    leafB: 'M50,94 L62.6,95.8 L62.8,86.0 L71.6,84.2 L72.5,75.0 L80.7,72.7 L82.1,64.0 L80,62 L76.4,58.6 L71.4,63.9 L66.4,69.2 L61.4,74.6 L56.4,79.9 L51.4,85.2 Z',
+    body: 'M62,14 C72,14 80,21 80,30 C80,39 72,45 62,45 C52,45 44,39 44,30 C44,21 52,14 62,14 Z',
+    swoosh: 'M45,38 C54,30 66,44 80,26' },
+];
+const GOOD_OPTS = [['Fruit ready to pick','FRUITING'],['Fruit still ripening','RIPENING'],['Season over — nothing left','DONE']];
+const BAD_OPTS = [['Disease or pest','PEST'],['Dry — needs water','DRY'],['Burnt or scorched','BURNT'],['Cut back or removed','GONE'],['Fenced off — no access','NO ACCESS']];
+
+class Component extends DCLogic {
+  state = { dark: false, screen: 'map', selIdx: 0, prompt: true, addStep: 1, overlay: null, radius: 2, rarity: { Common: true, Rare: true, Legendary: true }, kinds: { fruit: true, herb: true }, tg: [true, true, false, false], kind: 'fruit', customName: '', pick: { name: 'Fig', rarity: 'Rare', pts: 30, kind: 'fruit' }, earned: 30, precision: 'exact', pv: [true, false], viewed: {}, flagged: {}, walkIdx: null, dupStep: 1, dupReason: null, claimHeld: false, claimed: false, name: 'Michele F.', nameDraft: 'Michele F.', editingName: false, avatar: { type: 'initials' }, reports: {}, rKind: null, rSub: null, wipeArmed: false, wiped: false, exported: false };
+
+  go = (screen) => this.setState({ screen, overlay: null, addStep: 1 });
+
+  dropRef = React.createRef();
+
+  movePin = (e) => {
+    const el = this.dropRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const x = Math.min(94, Math.max(6, ((e.clientX - r.left) / r.width) * 100));
+    const y = Math.min(88, Math.max(14, ((e.clientY - r.top) / r.height) * 100));
+    const dx = (x - 50) / 100 * 120, dy = (y - 50) / 100 * 120;
+    const dist = Math.round(Math.sqrt(dx * dx + dy * dy));
+    this.setState({ pinX: x, pinY: y, pinMoved: dist > 1, pinDist: dist });
+  };
+  choose = (name, rarity, pts, kind) => this.setState({ pick: { name, rarity, pts, kind }, picked: true });
+  inputRef = React.createRef();
+  pickTree = (i) => this.setState(p => ({ selIdx: i, screen: 'detail', from: p.screen === 'detail' ? p.from : p.screen }));
+
+  inviteCode() {
+    const n = this.state.codeSeed || 0;
+    const suffix = n === 0 ? '' : '-' + (n * 7 + 3).toString(36);
+    return 'm-f' + suffix;
+  }
+
+  renderVals() {
+    const s = this.state;
+    const dark = s.dark;
+    const tabColor = (screen) => (s.screen === screen ? 'var(--ff-fuchsia)' : 'var(--ff-dim)');
+    const sel = TREES[s.selIdx];
+    const code = this.inviteCode();
+    const finder = sel.finder;
+    const mine = !!sel.mine;
+    const season = sel.season;
+    const ripe = monthIn(season, MONTH);
+    const myRep = s.reports[s.selIdx];
+    const checkPts = (sel.myLast == null && !myRep) ? 5 : 3;
+    const lastDays = myRep ? 0 : sel.myLast;
+    const cooldown = lastDays == null ? 0 : Math.max(0, 30 - lastDays);
+    const canCheck = !mine && ripe && cooldown === 0;
+    const reopenAlerts = TREES.map((t, i) => ({ t, i }))
+      .filter(({ t, i }) => !t.mine && monthIn(t.season, MONTH) && t.myLast != null && t.myLast >= 30 && !s.reports[i])
+      .map(({ t, i }) => ({
+        title: 'Your check-in on the ' + t.name.toLowerCase() + ' is open again',
+        body: t.myLast + ' days since you last reported it, and it is still in season — +3 for a fresh one.',
+        when: 'NOW', color: 'var(--ff-green)', bg: 'var(--ff-green-soft)',
+        open: () => this.pickTree(i),
+      }));
+    const agoPhrase = lastDays === 0 ? 'just now' : (lastDays === 1 ? 'yesterday' : lastDays + ' days ago');
+    const rep = myRep
+      ? { kind: myRep.kind, label: myRep.sub, when: 'JUST NOW · YOU' }
+      : { kind: sel.lastReport.kind, label: sel.lastReport.label, when: (sel.lastReport.when + ' · ' + sel.lastReport.by).toUpperCase() };
+    const av = s.avatar;
+    const avPreset = av.type === 'preset' ? (AVATARS.filter(a => a.glyph === av.glyph)[0] || null) : null;
+    const avShape = avPreset || { ...BLANK, c1: 'transparent', c2: 'transparent', lc1: 'transparent', lc2: 'transparent' };
+    const initials = s.name.trim().split(/\s+/).slice(0, 2).map(w => w.charAt(0).toUpperCase()).join('') || 'FF';
+    const baseConfirms = sel.pending ? 1 : 4;
+    const confirms = baseConfirms + (myRep && myRep.kind === 'good' ? 1 : 0);
+    const verified = confirms >= 2;
+    const walkMin = Math.max(1, Math.round(parseFloat(sel.dist) * (sel.dist.indexOf('km') > -1 ? 1000 : 1) / 80));
+    const months = ['J','F','M','A','M','J','J','A','S','O','N','D'].map((label, i) => ({
+      label,
+      bg: monthIn(season, i)
+        ? (i === MONTH ? 'var(--ff-fuchsia)' : 'var(--ff-fuchsia-soft)')
+        : 'var(--ff-surface2)',
+    }));
+    const chip = (name, count) => {
+      const on = s.rarity[name];
+      return { name, count: count + ' NEARBY',
+        border: on ? RC[name] : 'var(--ff-line)',
+        bg: on ? RC[name] : 'var(--ff-surface)',
+        fg: on ? '#fff' : 'var(--ff-dim)',
+        toggle: () => this.setState(p => ({ rarity: { ...p.rarity, [name]: !p.rarity[name] } })) };
+    };
+    const tgl = (label, i) => ({ label,
+      trackBg: s.tg[i] ? 'var(--ff-fuchsia)' : 'var(--ff-surface2)',
+      knob: s.tg[i] ? 21 : 3,
+      toggle: () => this.setState(p => { const t = p.tg.slice(); t[i] = !t[i]; return { tg: t }; }) });
+    const radii = ['300 M', '600 M', '2 KM', '5 KM', 'CITY-WIDE'];
+    const radiiM = [300, 600, 2000, 5000, Infinity];
+    const maxM = radiiM[s.radius];
+    const anyRarity = Object.values(s.rarity).some(Boolean);
+    const anyKind = Object.values(s.kinds).some(Boolean);
+    const passes = (t) => {
+      if (anyRarity && !s.rarity[t.rarity]) return false;
+      if (anyKind && !s.kinds[t.herb ? 'herb' : 'fruit']) return false;
+      if (parseInt(t.dist, 10) > maxM) return false;
+      if (s.tg[0] && t.pending) return false;
+      if (s.tg[1] && !monthIn(SEASON[t.name] || [0, 11], MONTH)) return false;
+      if (s.tg[2] && t.fence) return false;
+      if (s.tg[3] && t.visited) return false;
+      return true;
+    };
+    const keep = TREES.map((t, i) => ({ t, i })).filter(o => passes(o.t));
+    const countBy = (fn) => TREES.filter(fn).length;
+
+    return {
+      theme: dark ? 'dark' : 'light',
+      isDark: dark,
+      themeLabel: dark ? 'LIGHT' : 'DARK',
+      fuchsia: this.props.fuchsia ?? '#D4148B',
+      green: this.props.green ?? '#12734A',
+      toggleTheme: () => this.setState(p => ({ dark: !p.dark })),
+      darkTrack: dark ? 'var(--ff-fuchsia)' : 'var(--ff-surface2)',
+      darkKnob: dark ? 21 : 3,
+
+      isMap: s.screen === 'map', isDetail: s.screen === 'detail', isAdd: s.screen === 'add',
+      isRewards: s.screen === 'rewards', isProfile: s.screen === 'profile',
+      isSearch: s.screen === 'search', isNotif: s.screen === 'notifications',
+
+      goMap: () => this.go('map'),
+      goBack: () => this.go(s.from || 'map'), goRewards: () => this.go('rewards'),
+      goSearch: () => this.go('search'),
+      goAdd: () => this.setState({ screen: 'add', addStep: 1, overlay: null }),
+
+      showPrompt: s.screen === 'map' && s.prompt && (this.props.showNearbyPrompt ?? true),
+      dismissPrompt: () => this.setState({ prompt: false }),
+      confirmTree: () => this.setState({ prompt: false, selIdx: 7, screen: 'detail', from: 'map', overlay: 'report', rKind: null, rSub: null }),
+
+      pins: keep.map(({ t, i }) => ({ ...t, color: RC[t.rarity], open: () => this.pickTree(i) })),
+      nearby: keep.map(o => o.i).slice(0, 5).map((idx) => { const t = TREES[idx]; const r = s.reports[idx]; const k = r ? r.kind : t.lastReport.kind;
+        return { ...t, color: RC[t.rarity],
+        repShort: r ? 'JUST NOW' : t.lastReport.short,
+        repColor: k === 'good' ? 'var(--ff-green)' : 'var(--ff-gold)',
+        statusColor: t.pending ? 'var(--ff-fuchsia)' : 'var(--ff-green)', open: () => this.pickTree(idx) }; }),
+      nearbyCount: keep.length,
+      nearbyLabel: keep.length === 1 ? '1 tree' : keep.length + ' trees',
+      noneVisible: keep.length === 0,
+
+      sel: { ...sel, color: RC[sel.rarity] },
+      months,
+      access: [
+        { text: 'Public pavement — no fence, no permission needed', color: 'var(--ff-green)' },
+        { text: 'Low branches reachable by hand', color: 'var(--ff-green)' },
+        { text: 'Busy road — mind the traffic side', color: 'var(--ff-fuchsia)' },
+      ],
+
+      addStep1: s.addStep === 1, addStep2: s.addStep === 2, addStep3: s.addStep === 3,
+      addTitle: s.addStep === 1 ? 'Prove it on site' : (s.addStep === 2 ? 'What is it?' : 'Where exactly?'),
+      addStepLabel: 'STEP ' + s.addStep + ' OF 3',
+      bar2: s.addStep >= 2 ? 'var(--ff-fuchsia)' : 'var(--ff-surface2)',
+      bar3: s.addStep >= 3 ? 'var(--ff-fuchsia)' : 'var(--ff-surface2)',
+      shoot: () => this.setState({ addStep: 2 }),
+      shootNoGeo: () => this.setState({ overlay: 'nogeo' }),
+      toStep3: () => { if (s.picked) this.setState({ addStep: 3 }); },
+      speciesLabel: s.picked ? 'Confirm ' + s.pick.name + ' · +' + s.pick.pts : 'Pick a species first',
+      speciesBg: s.picked ? 'var(--ff-text)' : 'var(--ff-surface2)',
+      speciesFg: s.picked ? 'var(--ff-bg)' : 'var(--ff-dim)',
+      useMatch: () => this.choose('Fig', 'Rare', 30, 'fruit'),
+      matchBorder: s.picked && s.pick.name === 'Fig' ? 'var(--ff-fuchsia)' : 'transparent',
+      matchCta: s.picked && s.pick.name === 'Fig' ? 'SELECTED' : 'USE',
+      dropRef: this.dropRef,
+      pinLeft: (s.pinX ?? 50) + '%',
+      pinTop: (s.pinY ?? 50) + '%',
+      pinScale: s.pinDrag ? 1.12 : 1,
+      pinEase: s.pinDrag ? 'none' : 'left .18s ease, top .18s ease',
+      pinKicker: s.pinMoved ? 'PIN ADJUSTED BY HAND' : 'PIN FROM PHOTO METADATA',
+      pinLine: s.pinMoved
+        ? 'Moved ' + s.pinDist + ' m from the photo location — drop it on the trunk'
+        : 'Via Gola 14 — drag the pin if the trunk sits elsewhere',
+      pinDown: (e) => { e.currentTarget.setPointerCapture?.(e.pointerId); this.setState({ pinDrag: true }); this.movePin(e); },
+      pinMove: (e) => { if (this.state.pinDrag) this.movePin(e); },
+      pinUp: () => this.setState({ pinDrag: false }),
+      submitTree: () => this.setState({ overlay: 'dup' }),
+      confirmDup: () => this.setState({ overlay: 'success', earned: 5, claimHeld: false }),
+      dupStep1: s.dupStep !== 2,
+      dupStep2: s.dupStep === 2,
+      dupBack: () => this.setState({ dupStep: 1 }),
+      dupReasons: [
+        'Different species from the one already pinned',
+        'Same species, but a second trunk 8 m away',
+        'The existing pin sits on the wrong tree',
+      ].map(label => ({ label,
+        bg: s.dupReason === label ? 'var(--ff-fuchsia-soft)' : 'var(--ff-surface)',
+        border: s.dupReason === label ? 'var(--ff-fuchsia)' : 'var(--ff-line)',
+        dot: s.dupReason === label ? 'var(--ff-fuchsia)' : 'var(--ff-line)',
+        fill: s.dupReason === label ? 'var(--ff-fuchsia)' : 'transparent',
+        pick: () => this.setState({ dupReason: label }) })),
+      strikeDots: [0, 1, 2].map(i => ({ bg: i < (s.strikes ?? 1) ? 'var(--ff-fuchsia)' : 'var(--ff-line)' })),
+      claimBg: s.dupReason ? 'var(--ff-fuchsia)' : 'var(--ff-surface2)',
+      claimFg: s.dupReason ? '#fff' : 'var(--ff-dim)',
+      submitNew: () => { if (s.dupReason) this.setState({ overlay: 'success', earned: 0, claimHeld: true, claimed: true, dupStep: 1 }); },
+      successKicker: s.claimHeld ? 'POINTS HELD · DUPLICATE REVIEW' : 'PENDING COMMUNITY CHECK',
+      successBody: s.claimHeld
+        ? s.pick.pts + ' points are held until 2 foragers confirm on site that this is a separate tree. If they say it is the same one, the pin merges and you keep 5 for the check-in — no penalty, unless you reach three rejected claims.'
+        : (1240 + s.earned).toLocaleString('en-US') + ' total · ' + Math.max(0, 1500 - (1240 + s.earned)) + ' to go before you can fund a real sapling.',
+      closeOverlay: () => this.setState({ overlay: null, addStep: 1, copied: false, shareTarget: null, dupStep: 1 }),
+
+      walkLabel: s.walkIdx === s.selIdx ? 'Walking · ' + walkMin + ' min · ' + sel.dist : 'Walk me there',
+      startWalk: () => this.setState(p => ({ walkIdx: p.walkIdx === p.selIdx ? null : p.selIdx })),
+      confirmCount: confirms,
+      confirmLabel: verified ? confirms + ' on-site OKs' : confirms + ' / 2 needed',
+      vHeading: verified ? 'VERIFIED BY COMMUNITY' : 'NEEDS ' + (2 - confirms) + (2 - confirms === 1 ? ' MORE CHECK' : ' MORE CHECKS'),
+      vColor: verified ? 'var(--ff-green)' : 'var(--ff-fuchsia)',
+      vBlockBg: verified ? 'var(--ff-green-soft)' : 'var(--ff-fuchsia-soft)',
+      vRule: verified ? 'rgba(18,115,74,.22)' : 'rgba(212,20,139,.22)',
+      vBars: [0, 1, 2, 3].map(i => ({
+        bg: verified ? 'var(--ff-green)' : 'var(--ff-fuchsia)',
+        op: i < confirms ? 1 : 0.25,
+      })),
+      vBody: verified
+        ? 'Photo carried GPS matching the pin within 3 m. Confirmed on site by ' + confirms + ' foragers, last on 2 Aug.'
+        : 'Photo carried GPS matching the pin within 3 m. ' + (confirms === 0 ? 'Nobody has stood at this trunk yet' : confirms + ' forager has confirmed it on site') + ' — 2 checks make it public.',
+      finderName: (mine ? 'you (' + finder.handle + ')' : finder.handle) + ' · ' + finder.date,
+      finderInitial: finder.initial,
+      viewedLabel: mine
+        ? 'Your discovery · credit is yours'
+        : (!ripe
+          ? 'Out of season · opens in ' + MN[season[0]]
+          : (cooldown > 0
+            ? 'Reported · opens in ' + cooldown + (cooldown === 1 ? ' day' : ' days')
+            : "I'm at the tree · +" + checkPts)),
+      viewedBg: canCheck ? 'var(--ff-green)' : (ripe && cooldown > 0 ? 'var(--ff-green-soft)' : 'var(--ff-surface2)'),
+      viewedFg: canCheck ? '#fff' : (ripe && cooldown > 0 ? 'var(--ff-green)' : 'var(--ff-dim)'),
+      viewedBorder: canCheck ? 'var(--ff-green)' : (ripe && cooldown > 0 ? 'var(--ff-green)' : 'var(--ff-line)'),
+      viewedHint: mine
+        ? 'You logged this one, so check-ins here are for other foragers to bank.'
+        : (!ripe
+          ? 'Season runs ' + MN[season[0]] + '–' + MN[season[1]] + '. Check-ins only score while the tree can bear.'
+          : (cooldown > 0
+            ? 'You reported it ' + agoPhrase + ' — one scoring check-in per tree every 30 days, season permitting.'
+            : (checkPts === 5
+              ? 'Unlocks within 25 m of the pin. +5 for your first report on this tree.'
+              : 'Unlocks within 25 m. Repeat reports are worth +3 — ' + finder.handle + ' keeps the discovery credit.'))),
+      markViewed: () => { if (canCheck) this.setState({ overlay: 'report', rKind: null, rSub: null }); },
+
+      showReport: s.overlay === 'report',
+      rStepKind: !s.rKind,
+      rStepSub: !!s.rKind,
+      reportTitle: !s.rKind ? 'How is the tree doing?' : (s.rKind === 'good' ? 'Good — what did you find?' : "What's wrong with it?"),
+      reportSub: !s.rKind
+        ? 'GPS matched the pin within 4 m. The report is what earns the points.'
+        : 'Pick the closest one — it shows on the pin for everyone.',
+      pickGood: () => this.setState({ rKind: 'good', rSub: null }),
+      pickBad: () => this.setState({ rKind: 'bad', rSub: null }),
+      reportBack: () => this.setState({ rKind: null, rSub: null }),
+      reportOpts: (s.rKind === 'bad' ? BAD_OPTS : GOOD_OPTS).map(([label, short]) => {
+        const on = s.rSub === label;
+        const c = s.rKind === 'bad' ? 'var(--ff-gold)' : 'var(--ff-green)';
+        return { label, short,
+          bg: on ? (s.rKind === 'bad' ? 'var(--ff-gold-soft)' : 'var(--ff-green-soft)') : 'var(--ff-surface)',
+          border: on ? c : 'var(--ff-line)',
+          dot: on ? c : 'var(--ff-line)',
+          fill: on ? c : 'transparent',
+          pick: () => this.setState({ rSub: label }) };
+      }),
+      submitLabel: 'Submit report · +' + checkPts,
+      submitBg: s.rSub ? 'var(--ff-green)' : 'var(--ff-surface2)',
+      submitFg: s.rSub ? '#fff' : 'var(--ff-dim)',
+      submitReport: () => {
+        if (!s.rSub) return;
+        this.setState(p => ({ reports: { ...p.reports, [p.selIdx]: { kind: s.rKind, sub: s.rSub } }, earned: p.earned + checkPts, overlay: null, rKind: null, rSub: null }));
+      },
+      closeReport: () => this.setState({ overlay: null, rKind: null, rSub: null }),
+
+      condLabel: rep.label,
+      condWhen: rep.when,
+      condColor: rep.kind === 'good' ? 'var(--ff-green)' : 'var(--ff-gold)',
+      condSoft: rep.kind === 'good' ? 'var(--ff-green-soft)' : 'var(--ff-gold-soft)',
+      condGlyph: rep.kind === 'good' ? 'OK' : '!',
+      seasonNote: ripe
+        ? (rep.kind === 'good' && rep.label.indexOf('ripening') > -1 ? 'In season — ripening now, worth a second look next week.' : 'In season right now — pick before the birds do.')
+        : 'Out of season — the next window opens in ' + MN[season[0]] + '.',
+      seasonNoteColor: ripe ? 'var(--ff-green)' : 'var(--ff-dim)',
+      flagLabel: s.flagged[s.selIdx] ? 'SENT' : 'FLAG',
+      flagBorder: s.flagged[s.selIdx] ? 'var(--ff-fuchsia)' : 'var(--ff-line)',
+      flagFg: s.flagged[s.selIdx] ? 'var(--ff-fuchsia)' : 'var(--ff-dim)',
+      flagTree: () => this.setState(p => ({ flagged: { ...p.flagged, [p.selIdx]: true } })),
+
+      displayName: s.name,
+      initials: initials,
+      handleLine: 'Forager · Milan · since 2025',
+      editingName: s.editingName,
+      notEditingName: !s.editingName,
+      nameDraft: s.nameDraft,
+      startEditName: () => this.setState(p => ({ editingName: true, nameDraft: p.name })),
+      onNameInput: (e) => this.setState({ nameDraft: e.target.value }),
+      saveName: () => this.setState(p => ({ name: p.nameDraft.trim() || p.name, editingName: false })),
+
+      openAvatar: () => this.setState({ overlay: 'avatar' }),
+      showAvatar: s.overlay === 'avatar',
+      avatarBg: av.type === 'photo' ? 'repeating-linear-gradient(135deg,var(--ff-ph) 0 7px,transparent 7px 14px)' : 'none',
+      avatarBgColor: av.type === 'photo' ? 'var(--ff-surface2)' : (avPreset ? 'var(--ff-surface2)' : 'var(--ff-green-soft)'),
+      avatarFg: av.type === 'photo' ? 'var(--ff-dim)' : 'var(--ff-green)',
+      avatarFont: av.type === 'photo' ? "600 8px 'IBM Plex Mono',monospace" : '800 20px Archivo,sans-serif',
+      avatarLabel: av.type === 'photo' ? 'PHOTO' : initials,
+      avatarIsPreset: !!avPreset,
+      avatarIsText: !avPreset,
+      avc1: avShape.c1, avc2: avShape.c2, avlc1: avShape.lc1, avlc2: avShape.lc2,
+      avbody: avShape.body, avpart2: avShape.part2, avpart3: avShape.part3,
+      avleafA: avShape.leafA, avleafB: avShape.leafB, avvein: avShape.vein,
+      avstem: avShape.stem, avmark: avShape.mark, avswoosh: avShape.swoosh,
+      photoBorder: av.type === 'photo' ? 'var(--ff-fuchsia)' : 'var(--ff-line)',
+      initialsBorder: av.type === 'initials' ? 'var(--ff-fuchsia)' : 'var(--ff-line)',
+      pickPhoto: () => this.setState({ avatar: { type: 'photo' } }),
+      pickInitials: () => this.setState({ avatar: { type: 'initials' } }),
+      avatarPresets: AVATARS.map(a => ({ ...a,
+        border: av.type === 'preset' && av.glyph === a.glyph ? 'var(--ff-fuchsia)' : 'var(--ff-line)',
+        pick: () => this.setState({ avatar: { type: 'preset', glyph: a.glyph, label: a.label } }) })),
+
+      isPrivacy: s.screen === 'privacy',
+      goPrivacy: () => this.go('privacy'),
+      stored: [
+        { title: 'GPS inside your tree photos', keep: 'KEPT', color: 'var(--ff-fuchsia)',
+          body: 'The coordinate stamped at the trunk. This is the proof the tree exists, so it stays with the pin.' },
+        { title: 'Pins you opened', keep: '30 DAYS', color: 'var(--ff-green)',
+          body: 'Used to rank what is near you and to stop the same tree being suggested twice.' },
+        { title: 'Your live position', keep: 'NEVER STORED', color: 'var(--ff-dim)',
+          body: 'Read on device to draw the map around you. It never leaves the phone.' },
+      ],
+      precisionOpts: [
+        { id: 'exact', title: 'Exact pin', body: 'Anyone can walk straight to it. Best for street trees.' },
+        { id: 'blur', title: 'Blurred to 100 m', body: 'Shown as a circle. Good for a tree by your own front door.' },
+        { id: 'private', title: 'Only me', body: 'Kept off the public map. No points until you publish it.' },
+      ].map(o => ({ ...o,
+        bg: s.precision === o.id ? 'var(--ff-fuchsia-soft)' : 'var(--ff-surface)',
+        border: s.precision === o.id ? 'var(--ff-fuchsia)' : 'var(--ff-line)',
+        dot: s.precision === o.id ? 'var(--ff-fuchsia)' : 'var(--ff-line)',
+        fill: s.precision === o.id ? 'var(--ff-fuchsia)' : 'transparent',
+        pick: () => this.setState({ precision: o.id }) })),
+      privacyToggles: [
+        ['Keep a trail of my walks', 'Lets the app tell you which trees you passed and missed.'],
+        ['Share anonymised harvest counts', 'Helps the city see which trees actually feed people.'],
+      ].map(([label, body], i) => ({ label, body,
+        trackBg: s.pv[i] ? 'var(--ff-fuchsia)' : 'var(--ff-surface2)',
+        knob: s.pv[i] ? 21 : 3,
+        toggle: () => this.setState(p => { const v = p.pv.slice(); v[i] = !v[i]; return { pv: v }; }) })),
+      historyCount: s.wiped ? 'EMPTY' : '148 POINTS · 62 DAYS',
+      historyBody: s.wiped
+        ? 'Your trail is gone. New walks will only be recorded if the trail toggle above is on.'
+        : 'A trail of where you walked while the app was open, oldest entry 62 days ago.',
+      wipeLabel: s.wiped ? 'History wiped' : (s.wipeArmed ? 'Tap again to confirm' : 'Wipe my location history'),
+      wipeBg: s.wipeArmed && !s.wiped ? 'var(--ff-fuchsia)' : 'transparent',
+      wipeFg: s.wiped ? 'var(--ff-green)' : (s.wipeArmed ? '#fff' : 'var(--ff-fuchsia)'),
+      wipeBorder: s.wiped ? 'var(--ff-green)' : 'var(--ff-fuchsia)',
+      wipeHistory: () => {
+        if (s.wiped) return;
+        if (s.wipeArmed) this.setState({ wiped: true, wipeArmed: false });
+        else this.setState({ wipeArmed: true });
+      },
+      exportLabel: s.exported ? 'SENT' : 'EXPORT',
+      exportData: () => this.setState({ exported: true }),
+
+      unitsLabel: s.imperial ? 'IMPERIAL' : 'METRIC',
+      toggleUnits: () => this.setState(p => ({ imperial: !p.imperial })),
+
+      openShare: () => this.setState({ overlay: 'share', copied: false }),
+      showShare: s.overlay === 'share',
+      inviteCode: code,
+      inviteLink: 'freefruits.app/' + code,
+      regenCode: () => this.setState({ codeSeed: (s.codeSeed || 0) + 1, copied: false }),
+      copyLink: () => {
+        const link = 'https://freefruits.app/' + code;
+        if (navigator.clipboard) navigator.clipboard.writeText(link).catch(() => {});
+        this.setState({ copied: true });
+      },
+      copyLabel: s.copied ? 'Copied' : 'Copy',
+      copyBg: s.copied ? 'var(--ff-green)' : 'var(--ff-fuchsia)',
+      copyFg: '#fff',
+      shareHint: s.shareTarget
+        ? 'Opening ' + s.shareTarget + ' with the link and a photo of your last tree.'
+        : 'Old links keep working for 30 days after you make a new one.',
+      shareTargets: [
+        { name: 'MESSAGES', color: 'var(--ff-green)', shape: '7px' },
+        { name: 'WHATSAPP', color: '#43C384', shape: '50%' },
+        { name: 'MAIL', color: 'var(--ff-dim)', shape: '5px' },
+        { name: 'MORE', color: 'var(--ff-fuchsia)', shape: '50%' },
+      ].map(t => ({ ...t,
+        border: s.shareTarget === t.name ? 'var(--ff-fuchsia)' : 'var(--ff-line)',
+        pick: () => this.setState({ shareTarget: t.name }) })),
+      showNoGeo: s.overlay === 'nogeo', showDup: s.overlay === 'dup', showSuccess: s.overlay === 'success',
+
+      fruits: SPECIES[s.kind].map(([name, rar, pts]) => ({
+        name, pts, color: RC[rar],
+        border: s.picked && s.pick.name === name ? 'var(--ff-fuchsia)' : 'var(--ff-line)',
+        pick: () => this.choose(name, rar, pts, s.kind),
+      })),
+      pickerLabel: s.kind === 'fruit' ? 'OR PICK THE FRUIT' : 'OR PICK THE HERB',
+      kindFruit: () => this.setState({ kind: 'fruit' }),
+      kindHerb: () => this.setState({ kind: 'herb' }),
+      kFruitBg: s.kind === 'fruit' ? 'var(--ff-text)' : 'var(--ff-surface)',
+      kFruitFg: s.kind === 'fruit' ? 'var(--ff-bg)' : 'var(--ff-dim)',
+      kFruitBorder: s.kind === 'fruit' ? 'var(--ff-text)' : 'var(--ff-line)',
+      kHerbBg: s.kind === 'herb' ? 'var(--ff-text)' : 'var(--ff-surface)',
+      kHerbFg: s.kind === 'herb' ? 'var(--ff-bg)' : 'var(--ff-dim)',
+      kHerbBorder: s.kind === 'herb' ? 'var(--ff-text)' : 'var(--ff-line)',
+      customName: s.customName,
+      onCustomName: (e) => this.setState({ customName: e.target.value }),
+      customBtnBg: s.customName.trim() ? 'var(--ff-fuchsia)' : 'var(--ff-surface2)',
+      customBtnFg: s.customName.trim() ? '#fff' : 'var(--ff-dim)',
+      inputRef: this.inputRef,
+      useCustom: () => { const n = ((this.inputRef.current && this.inputRef.current.value) || s.customName).trim(); if (n) this.choose(n, 'Unrated', 15, s.kind); },
+      pickName: s.pick.name,
+      pickRarity: s.pick.rarity,
+      pickPts: s.pick.pts,
+      pickInitial: s.pick.name.charAt(0).toUpperCase(),
+      pickKindLabel: s.pick.kind === 'herb' ? 'HERB' : 'FRUIT',
+      earned: s.earned,
+      totalPts: (1240 + s.earned).toLocaleString('en-US'),
+      toSapling: Math.max(0, 1500 - (1240 + s.earned)),
+      successLine: s.claimHeld
+        ? 'Under review — two foragers decide.'
+        : (s.earned === 5 ? 'One more pair of eyes on the map.' : 'One more harvest saved from rotting.'),
+      logAsNew: () => this.setState({ dupStep: 2 }),
+
+      rewards: [
+        { title: 'Fund a real sapling', body: 'We plant it with a local orchard group and put your name on the map.', cost: '500 pts', pct: 100, color: 'var(--ff-green)', cta: 'Redeem', ctaColor: 'var(--ff-green)' },
+        { title: 'Rare-fruit map layer', body: 'See legendary trees others hid, plus ripeness alerts by species.', cost: '300 pts', pct: 100, color: 'var(--ff-fuchsia)', cta: 'Unlock', ctaColor: 'var(--ff-fuchsia)' },
+        { title: 'Orchardist tier', body: 'Your verifications start counting double. 760 points to go.', cost: '2,000 pts', pct: 62, color: 'var(--ff-gold)', cta: 'Locked', ctaColor: 'var(--ff-dim)' },
+      ],
+      tiers: [
+        { name: 'Sprout', at: '0', color: 'var(--ff-green-soft)', border: 'var(--ff-line)' },
+        { name: 'Picker', at: '250', color: 'var(--ff-green)', border: 'var(--ff-line)' },
+        { name: 'Forager', at: '1K', color: 'var(--ff-fuchsia)', border: 'var(--ff-fuchsia)' },
+        { name: 'Orchardist', at: '2K', color: 'var(--ff-gold)', border: 'var(--ff-line)' },
+      ],
+
+      alerts: reopenAlerts.map(a => ({ ...a, cursor: 'pointer' })).concat(s.claimed ? [{
+        title: 'Your separate-tree claim is with two foragers',
+        body: s.pick.name + ' · Via Gola 14 · ' + s.pick.pts + ' points held. anna_f was asked to review it first.',
+        when: 'NOW', color: 'var(--ff-gold)', bg: 'var(--ff-gold-soft)', cursor: 'default', open: null,
+      }] : []).concat([
+        { title: "A pomegranate 12 m from you needs a second pair of eyes", body: 'Confirm it on site and take 5 points.', when: 'NOW', color: 'var(--ff-fuchsia)', bg: 'var(--ff-fuchsia-soft)', open: () => this.pickTree(7) },
+        { title: 'Your fig on Via Gola is now verified', body: '30 points cleared from pending.', when: '2H', color: 'var(--ff-green)', bg: 'var(--ff-surface)', open: () => this.pickTree(0) },
+        { title: 'Peaches are peaking this week', body: '3 legendary trees ripe within 500 m.', when: '1D', color: 'var(--ff-gold)', bg: 'var(--ff-surface)', open: () => this.pickTree(1) },
+        { title: 'giulia_r joined from your invite', body: '+10 strawberry points.', when: '2D', color: 'var(--ff-fuchsia)', bg: 'var(--ff-surface)', open: null },
+        { title: '48 kg of fruit rescued in Navigli last month', body: 'Your logs account for 6 kg of it.', when: '5D', color: 'var(--ff-green)', bg: 'var(--ff-surface)', open: () => this.go('rewards') },
+      ].map(a => ({ ...a, cursor: a.open ? 'pointer' : 'default' }))),
+
+      rarityChips: ['Common', 'Rare', 'Legendary'].map(r => chip(r, countBy(t => t.rarity === r))),
+      kindChips: ['fruit', 'herb'].map((k) => {
+        const on = s.kinds[k];
+        return { name: k === 'fruit' ? 'Fruit trees' : 'Herbs & greens', count: countBy(x => !!x.herb === (k === 'herb')) + ' NEARBY',
+          border: on ? 'var(--ff-text)' : 'var(--ff-line)', bg: on ? 'var(--ff-text)' : 'var(--ff-surface)',
+          fg: on ? 'var(--ff-bg)' : 'var(--ff-dim)',
+          toggle: () => this.setState(p => ({ kinds: { ...p.kinds, [k]: !p.kinds[k] } })) };
+      }),
+      toggles: [tgl('Verified trees only', 0), tgl('In season right now', 1), tgl('Reachable without a fence', 2), tgl('Trees I have not visited', 3)],
+      radiusLabel: radii[s.radius],
+      radiusPct: (s.radius / (radii.length - 1)) * 100,
+      bumpRadius: () => this.setState(p => ({ radius: (p.radius + 1) % radii.length })),
+      filterCount: keep.length,
+      filterLabel: keep.length === 0
+        ? 'Nothing matches — loosen a filter'
+        : (keep.length === 1 ? 'Show 1 result'
+          : 'Show ' + (!anyRarity && !anyKind && s.radius === radii.length - 1 && !s.tg.some(Boolean) ? 'all ' : '') + keep.length + ' results'),
+      filterBg: keep.length === 0 ? 'var(--ff-surface2)' : 'var(--ff-text)',
+      filterFg: keep.length === 0 ? 'var(--ff-dim)' : 'var(--ff-bg)',
+
+      myTrees: TREES.map((t, i) => ({ t, i })).filter(o => o.t.mine).map(({ t, i }) => ({
+        name: t.name, initial: t.initial, street: t.street,
+        status: t.pending ? 'PENDING 1/2' : 'VERIFIED',
+        statusColor: t.pending ? 'var(--ff-fuchsia)' : 'var(--ff-green)',
+        pts: '+' + t.pts, color: RC[t.rarity], open: () => this.pickTree(i),
+      })),
+
+      goNotif: () => this.go('notifications'),
+      goProfile: () => this.go('profile'),
+      cMap: tabColor('map'), cPts: tabColor('rewards'),
+      cAlerts: tabColor('notifications'), cYou: tabColor('profile'),
+    };
+  }
+}
+</script>
+</body>
+</html>
