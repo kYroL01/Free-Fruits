@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "map": "Mapa",
+    "points": "Puntos",
+    "alerts": "Alertas",
+    "you": "Tú",
+    "addTree": "Añadir un árbol"
+  },
+  "common": {
+    "back": "Atrás",
+    "close": "Cerrar",
+    "done": "Hecho",
+    "cancel": "Cancelar",
+    "retry": "Reintentar",
+    "sent": "Enviado"
+  },
+  "onboarding": {
+    "kicker": "Free Fruits · {{city}}",
+    "headline": "Nada maduro debería pudrirse.",
+    "intro": "Hay árboles frutales públicos y gratuitos por toda la ciudad. Free Fruits los localiza, los verifica y recompensa a quien los encuentra.",
+    "rule1Title": "Encuéntralo",
+    "rule1Body": "Abre el mapa y descubre qué hay comestible cerca, ordenado por rareza y distancia.",
+    "rule2Title": "Demuéstralo",
+    "rule2Body": "Fotografíalo in situ — el sello GPS es lo que hace fiable el punto en el mapa.",
+    "rule3Title": "Gánatelo",
+    "rule3Body": "Dos forrajeros lo confirman, y los puntos son tuyos, para siempre.",
+    "startForaging": "Empezar a forrajear",
+    "alreadyHaveAccount": "Ya tengo una cuenta",
+    "locationTitle": "El mapa necesita saber dónde estás",
+    "locationBody": "La ubicación calcula distancias, el radio de 25 m para registrar visitas, y el aviso cuando pasas cerca de un árbol sin verificar.",
+    "allowLocation": "Permitir ubicación",
+    "notNow": "Ahora no",
+    "cameraTitle": "Un árbol solo cuenta si lo fotografías",
+    "cameraBody": "El GPS se guarda en la foto en el momento de tomarla — ese sello es la prueba de que alguien estuvo allí.",
+    "allowCamera": "Permitir cámara",
+    "later": "Lo haré más tarde",
+    "notificationsTitle": "Entérate cuando la fruta esté lista",
+    "notificationsBody": "Un aviso breve cuando un árbol cercano se verifique, o cuando algo entre en temporada a menos de 500 m.",
+    "turnOnAlerts": "Activar alertas",
+    "noAlertsThanks": "Sin alertas, gracias",
+    "locationRefusedKicker": "Ubicación rechazada",
+    "locationRefusedTitle": "Aún puedes leer el mapa",
+    "openSettings": "Abrir ajustes del sistema",
+    "browseWithoutIt": "Explorar sin ella"
+  },
+  "map": {
+    "nearestCityAuto": "Ciudad más cercana · auto",
+    "locatingNoFix": "Localizando · sin señal aún",
+    "locationOffCityCentre": "Ubicación desactivada · centro de la ciudad",
+    "findingYou": "Buscándote…",
+    "filter": "Filtrar",
+    "seeAll": "Ver todo",
+    "treesWithin": "{{count}} árboles en {{radius}}",
+    "nothingMappedTitle": "Nada registrado aquí todavía",
+    "nothingMappedBody": "Sé el primero en esta calle",
+    "addFirstTree": "Añadir el primer árbol",
+    "nothingMatchesFilters": "Nada coincide con estos filtros",
+    "loosenThem": "Ampliarlos"
+  },
+  "points": {
+    "title": "Puntos fresa",
+    "earnedTrees": "Ganados · {{count}} árboles",
+    "spendThem": "Gástalos",
+    "tiers": "Niveles"
+  },
+  "alerts": {
+    "title": "Alertas",
+    "markAllRead": "Marcar todo leído",
+    "quietForNow": "Todo tranquilo por ahora",
+    "logTreeToStart": "Registra un árbol para empezar"
+  }
+}

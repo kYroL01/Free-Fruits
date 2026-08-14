@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "map": "Map",
+    "points": "Points",
+    "alerts": "Alerts",
+    "you": "You",
+    "addTree": "Add a tree"
+  },
+  "common": {
+    "back": "Back",
+    "close": "Close",
+    "done": "Done",
+    "cancel": "Cancel",
+    "retry": "Retry",
+    "sent": "Sent"
+  },
+  "onboarding": {
+    "kicker": "Free Fruits · {{city}}",
+    "headline": "Nothing ripe should rot.",
+    "intro": "Free, public, edible trees exist all over this city. Free Fruits maps them, proves them, and rewards the people who find them.",
+    "rule1Title": "Find it",
+    "rule1Body": "Open the map and see what is edible nearby, ranked by rarity and distance.",
+    "rule2Title": "Prove it",
+    "rule2Body": "Photograph it on site — the GPS stamp is what makes the pin trustworthy.",
+    "rule3Title": "Earn it",
+    "rule3Body": "Two foragers confirm it, and the points are yours, permanently.",
+    "startForaging": "Start foraging",
+    "alreadyHaveAccount": "I already have an account",
+    "locationTitle": "The map needs to know where you stand",
+    "locationBody": "Location powers distances, the 25 m check-in radius, and the nudge when you pass an unverified tree.",
+    "allowLocation": "Allow location",
+    "notNow": "Not now",
+    "cameraTitle": "A tree only counts if you photograph it",
+    "cameraBody": "GPS is written into the photo the moment you take it — that stamp is the proof a forager was really standing there.",
+    "allowCamera": "Allow camera",
+    "later": "I will do it later",
+    "notificationsTitle": "Get told when the fruit is ready",
+    "notificationsBody": "A short nudge when a pin near you clears pending, or when something within 500 m comes into season.",
+    "turnOnAlerts": "Turn on alerts",
+    "noAlertsThanks": "No alerts, thanks",
+    "locationRefusedKicker": "Location refused",
+    "locationRefusedTitle": "You can still read the map",
+    "openSettings": "Open system settings",
+    "browseWithoutIt": "Browse without it"
+  },
+  "map": {
+    "nearestCityAuto": "Nearest city · auto",
+    "locatingNoFix": "Locating · no fix yet",
+    "locationOffCityCentre": "Location off · city centre",
+    "findingYou": "Finding you…",
+    "filter": "Filter",
+    "seeAll": "See all",
+    "treesWithin": "{{count}} trees within {{radius}}",
+    "nothingMappedTitle": "Nothing mapped here yet",
+    "nothingMappedBody": "Be the first on this street",
+    "addFirstTree": "Add the first tree",
+    "nothingMatchesFilters": "Nothing matches these filters",
+    "loosenThem": "Loosen them"
+  },
+  "points": {
+    "title": "Strawberry points",
+    "earnedTrees": "Earned · {{count}} trees",
+    "spendThem": "Spend them",
+    "tiers": "Tiers"
+  },
+  "alerts": {
+    "title": "Alerts",
+    "markAllRead": "Mark all read",
+    "quietForNow": "Quiet for now",
+    "logTreeToStart": "Log a tree to start the clock"
+  }
+}
