@@ -3,6 +3,7 @@ import type { ExpoConfig } from 'expo/config';
 const config: ExpoConfig = {
   name: 'Free Fruits',
   slug: 'free-fruits',
+  owner: 'kyrol86',
   version: '1.0.0',
   scheme: 'freefruits',
   orientation: 'portrait',
@@ -90,7 +91,7 @@ const config: ExpoConfig = {
   },
   extra: {
     eas: {
-      projectId: '',
+      projectId: '094c68cc-d3e7-4c52-8295-2f0f4dbf09bc',
     },
   },
 };
