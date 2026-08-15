@@ -6,6 +6,12 @@ jobs:
     params:
       platform: android
       profile: production
+  submit_android:
+    needs: [build_android] # only runs after build_android succeeds
+    type: submit # uploads the build to the Google Play Store via EAS Submit
+    params:
+      build_id: ${{ needs.build_android.outputs.build_id }}
+      profile: production
   #build_ios:
    # type: build # This job type creates a production build for iOS
    # params:
