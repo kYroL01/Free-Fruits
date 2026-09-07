@@ -346,5 +346,27 @@
     "cactus": "Cactus",
     "rosemary": "Romero",
     "dandelion": "Diente de león"
+  },
+  "months": {
+    "january": "enero",
+    "february": "febrero",
+    "march": "marzo",
+    "april": "abril",
+    "may": "mayo",
+    "june": "junio",
+    "july": "julio",
+    "august": "agosto",
+    "september": "septiembre",
+    "october": "octubre",
+    "november": "noviembre",
+    "december": "diciembre"
+  },
+  "checkin": {
+    "locationUnavailable": "Activa la ubicación para confirmar",
+    "ownTree": "Tu descubrimiento · el mérito es tuyo",
+    "tooFar": "Acércate a menos de 25 m para confirmar",
+    "onCooldown": "Ya informado · abre en {{count}} días",
+    "outOfSeason": "Fuera de temporada · abre en {{month}}",
+    "ok": "Estoy en el árbol"
   }
 }

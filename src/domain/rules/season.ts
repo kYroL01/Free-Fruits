@@ -1,20 +1,20 @@
-const MONTH_NAMES = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
+import { t } from '@/i18n';
+
+const MONTH_KEYS = [
+  'months.january',
+  'months.february',
+  'months.march',
+  'months.april',
+  'months.may',
+  'months.june',
+  'months.july',
+  'months.august',
+  'months.september',
+  'months.october',
+  'months.november',
+  'months.december',
 ];
 
-/** Season windows are inclusive month-index ranges [start, end], 0 = January, and wrap when
- * end < start (e.g. Orange 10-2 spans Nov -> Mar). */
 export function isInSeason(seasonWindow: [number, number], date: Date): boolean {
   const month = date.getMonth();
   const [start, end] = seasonWindow;
@@ -25,6 +25,6 @@ export function isInSeason(seasonWindow: [number, number], date: Date): boolean 
 /** The month name a species next comes into season, for "Out of season · opens in {Month}" copy. */
 export function nextSeasonMonthName(seasonWindow: [number, number], date: Date): string {
   const [start] = seasonWindow;
-  if (isInSeason(seasonWindow, date)) return MONTH_NAMES[date.getMonth()];
-  return MONTH_NAMES[start];
+  if (isInSeason(seasonWindow, date)) return t(MONTH_KEYS[date.getMonth()]);
+  return t(MONTH_KEYS[start]);
 }

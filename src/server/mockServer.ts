@@ -100,7 +100,8 @@ export type CheckinParams = {
   reason: ConditionReason;
   isOwnTree: boolean;
   withinCheckinRadius: boolean;
-  lastReportAt: string | null;
+  /** The current user's last report on this tree — the cooldown is per person. */
+  myLastReportAt: string | null;
   seasonWindow: [number, number];
   locationPermission: PermissionStatus;
   isFirstCheckinForUser: boolean;
@@ -117,7 +118,7 @@ export async function checkIn(params: CheckinParams): Promise<CheckinResult> {
   const decision = canCheckIn({
     isOwnTree: params.isOwnTree,
     withinCheckinRadius: params.withinCheckinRadius,
-    lastReportAt: params.lastReportAt,
+    myLastReportAt: params.myLastReportAt,
     seasonWindow: params.seasonWindow,
     locationPermission: params.locationPermission,
     now: params.now ?? new Date(),

@@ -1,6 +1,7 @@
 import { cooldownStatus } from './cooldown';
 import { isInSeason, nextSeasonMonthName } from './season';
 import type { PermissionStatus } from '../types';
+import { t } from '@/i18n';
 
 export type CheckinDecision =
   | { allowed: false; reasonCode: 'location_unavailable' }
@@ -13,7 +14,8 @@ export type CheckinDecision =
 export type CheckinInput = {
   isOwnTree: boolean;
   withinCheckinRadius: boolean;
-  lastReportAt: string | null;
+  /** The *current user's* last report on this tree — the cooldown is per person, not per tree. */
+  myLastReportAt: string | null;
   seasonWindow: [number, number];
   locationPermission: PermissionStatus;
   now: Date;
@@ -33,7 +35,7 @@ export function canCheckIn(input: CheckinInput): CheckinDecision {
     return { allowed: false, reasonCode: 'too_far' };
   }
 
-  const cooldown = cooldownStatus(input.lastReportAt, input.now);
+  const cooldown = cooldownStatus(input.myLastReportAt, input.now);
   if (cooldown.onCooldown) {
     return { allowed: false, reasonCode: 'on_cooldown', opensInDays: cooldown.opensInDays };
   }
@@ -52,16 +54,16 @@ export function canCheckIn(input: CheckinInput): CheckinDecision {
 export function checkinDecisionCopy(decision: CheckinDecision): string {
   switch (decision.reasonCode) {
     case 'location_unavailable':
-      return 'Turn on location to check in';
+      return t('checkin.locationUnavailable');
     case 'own_tree':
-      return 'Your discovery · credit is yours';
+      return t('checkin.ownTree');
     case 'too_far':
-      return 'Get within 25 m to check in';
+      return t('checkin.tooFar');
     case 'on_cooldown':
-      return `Reported · opens in ${decision.opensInDays} days`;
+      return t('checkin.onCooldown', { count: decision.opensInDays });
     case 'out_of_season':
-      return `Out of season · opens in ${decision.opensInMonth}`;
+      return t('checkin.outOfSeason', { month: decision.opensInMonth });
     case 'ok':
-      return 'Check in';
+      return t('checkin.ok');
   }
 }

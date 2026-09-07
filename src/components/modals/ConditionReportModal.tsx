@@ -48,7 +48,7 @@ export function ConditionReportModal({ treeId }: { treeId: string }) {
     const decision = canCheckIn({
       isOwnTree: tree.finderId === userId,
       withinCheckinRadius,
-      lastReportAt: tree.latestReport?.at ?? null,
+      myLastReportAt: myReports[treeId]?.at ?? null,
       seasonWindow,
       locationPermission: permissions.location,
       now: new Date(),
@@ -66,7 +66,7 @@ export function ConditionReportModal({ treeId }: { treeId: string }) {
       reason,
       isOwnTree: tree.finderId === userId,
       withinCheckinRadius,
-      lastReportAt: tree.latestReport?.at ?? null,
+      myLastReportAt: myReports[treeId]?.at ?? null,
       seasonWindow,
       locationPermission: permissions.location,
       isFirstCheckinForUser,

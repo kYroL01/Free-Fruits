@@ -1,6 +1,7 @@
 import type { StateCreator } from 'zustand';
 
 import type { ConditionReason, ConditionKind, MyReport } from '@/domain/types';
+import { buildSeedMyReports } from '@/server/seedData/myReports';
 
 export type ReportsSlice = {
   myReports: Record<string, MyReport>;
@@ -8,7 +9,7 @@ export type ReportsSlice = {
 };
 
 export const createReportsSlice: StateCreator<ReportsSlice, [], [], ReportsSlice> = (set) => ({
-  myReports: {},
+  myReports: buildSeedMyReports(),
   recordReport: (treeId, kind, reason, at) =>
     set((s) => ({ myReports: { ...s.myReports, [treeId]: { treeId, kind, reason, at } } })),
 });

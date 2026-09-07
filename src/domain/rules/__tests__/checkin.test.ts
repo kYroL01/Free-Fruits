@@ -3,7 +3,7 @@ import { canCheckIn } from '../checkin';
 const BASE = {
   isOwnTree: false,
   withinCheckinRadius: true,
-  lastReportAt: null as string | null,
+  myLastReportAt: null as string | null,
   seasonWindow: [0, 11] as [number, number],
   locationPermission: 'granted' as const,
   now: new Date(2026, 5, 15),
@@ -37,8 +37,8 @@ describe('canCheckIn', () => {
   });
 
   it('blocks on cooldown and reports days remaining', () => {
-    const lastReportAt = new Date(2026, 5, 10).toISOString(); // 5 days before `now`
-    const decision = canCheckIn({ ...BASE, lastReportAt });
+    const myLastReportAt = new Date(2026, 5, 10).toISOString(); // 5 days before `now`
+    const decision = canCheckIn({ ...BASE, myLastReportAt });
     expect(decision).toEqual({ allowed: false, reasonCode: 'on_cooldown', opensInDays: 25 });
   });
 
