@@ -220,6 +220,7 @@
   "profile": {
     "changeAvatar": "Cambiar avatar",
     "darkMode": "Modo oscuro",
+    "defaultDisplayName": "Recolectora",
     "handleLine": "@{{handle}} · {{city}} · desde {{year}}",
     "imperial": "Imperial",
     "inviteAForager": "Invitar a un recolector",
@@ -337,10 +338,10 @@
     "duplicateBody": "Al llegar al servidor cayó cerca de un árbol ya registrado — ábrelo para confirmarlo o reclamarlo como aparte."
   },
   "avatars": {
-    "fig": "Higuera",
-    "lemon": "Limonero",
-    "olive": "Olivo",
-    "peach": "Melocotonero",
+    "fig": "Higo",
+    "lemon": "Limón",
+    "olive": "Aceituna",
+    "peach": "Melocotón",
     "mint": "Menta",
     "cactus": "Cactus",
     "rosemary": "Romero",

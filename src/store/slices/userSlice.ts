@@ -25,7 +25,8 @@ function randomInviteCode(): string {
 
 export const createUserSlice: StateCreator<UserSlice, [], [], UserSlice> = (set) => ({
   userId: 'me',
-  displayName: 'Forager',
+  /** Empty means the user has not chosen one; the UI falls back to a localised default. */
+  displayName: '',
   handle: 'you_in_valencia',
   points: 1240,
   treeCount: 2,

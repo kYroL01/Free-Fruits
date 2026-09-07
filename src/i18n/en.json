@@ -220,6 +220,7 @@
   "profile": {
     "changeAvatar": "Change avatar",
     "darkMode": "Dark mode",
+    "defaultDisplayName": "Forager",
     "handleLine": "@{{handle}} · {{city}} · since {{year}}",
     "imperial": "Imperial",
     "inviteAForager": "Invite a forager",
