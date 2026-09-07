@@ -10,6 +10,7 @@ import { filterTrees } from '@/domain/rules';
 import { findSpecies } from '@/server/seedData/species';
 import { AppText, Button, Chip, Kicker, Switch } from '@/components/ui';
 import { DistanceStepper } from './DistanceStepper';
+import { t } from '@/i18n';
 
 export function FiltersScreen() {
   const { tokens } = useTheme();
@@ -44,7 +45,7 @@ export function FiltersScreen() {
 
   const footerLabel =
     filteredCount === 0
-      ? 'Nothing matches — loosen a filter'
+      ? t('filters.nothingMatches')
       : filteredCount === allTrees.length
         ? `Show all ${filteredCount} results`
         : `Show ${filteredCount} results`;
@@ -53,12 +54,12 @@ export function FiltersScreen() {
     <View style={{ flex: 1, backgroundColor: tokens.bg }}>
       <ScrollView contentContainerStyle={{ padding: spacing.screenH, paddingTop: spacing.screenTop, gap: 20, paddingBottom: 100 }}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Pressable accessibilityRole="button" accessibilityLabel="Close" hitSlop={10} onPress={() => router.back()}>
+          <Pressable accessibilityRole="button" accessibilityLabel={t('common.close')} hitSlop={10} onPress={() => router.back()}>
             <AppText variant="cardTitle">×</AppText>
           </Pressable>
           <Pressable accessibilityRole="button" onPress={resetFilters}>
             <AppText variant="microLabel" color={tokens.fuchsia}>
-              RESET
+              {t('filters.reset')}
             </AppText>
           </Pressable>
         </View>
@@ -75,21 +76,21 @@ export function FiltersScreen() {
           }}
         >
           <AppText variant="body" dim>
-            Search fruit, street, or forager
+            {t('filters.searchPlaceholder')}
           </AppText>
         </Pressable>
 
         <View style={{ gap: 10 }}>
-          <Kicker>What to show</Kicker>
+          <Kicker>{t('filters.whatToShow')}</Kicker>
           <View style={{ flexDirection: 'row', gap: 8 }}>
             <Chip
-              label="Fruit trees"
+              label={t('filters.fruitTrees')}
               count={fruitCount}
               active={filters.kinds.fruit}
               onPress={() => setFilters({ kinds: { ...filters.kinds, fruit: !filters.kinds.fruit } })}
             />
             <Chip
-              label="Herbs & greens"
+              label={t('filters.herbsAndGreens')}
               count={herbCount}
               active={filters.kinds.herb}
               onPress={() => setFilters({ kinds: { ...filters.kinds, herb: !filters.kinds.herb } })}
@@ -98,22 +99,22 @@ export function FiltersScreen() {
         </View>
 
         <View style={{ gap: 10 }}>
-          <Kicker>Rarity</Kicker>
+          <Kicker>{t('filters.rarity')}</Kicker>
           <View style={{ flexDirection: 'row', gap: 8 }}>
             <Chip
-              label="Common"
+              label={t('filters.rarityCommon')}
               activeColor={tokens.green}
               active={filters.rarity.common}
               onPress={() => setFilters({ rarity: { ...filters.rarity, common: !filters.rarity.common } })}
             />
             <Chip
-              label="Rare"
+              label={t('filters.rarityRare')}
               activeColor={tokens.fuchsia}
               active={filters.rarity.rare}
               onPress={() => setFilters({ rarity: { ...filters.rarity, rare: !filters.rarity.rare } })}
             />
             <Chip
-              label="Legendary"
+              label={t('filters.rarityLegendary')}
               activeColor={tokens.gold}
               active={filters.rarity.legendary}
               onPress={() => setFilters({ rarity: { ...filters.rarity, legendary: !filters.rarity.legendary } })}
@@ -124,7 +125,7 @@ export function FiltersScreen() {
         <DistanceStepper step={filters.radiusStep} onChange={(radiusStep) => setFilters({ radiusStep })} />
 
         <View style={{ gap: 14 }}>
-          <Kicker>Only show</Kicker>
+          <Kicker>{t('filters.onlyShow')}</Kicker>
           {(
             [
               ['verifiedOnly', 'Verified trees only'],

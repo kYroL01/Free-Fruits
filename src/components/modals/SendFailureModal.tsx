@@ -2,6 +2,7 @@ import { View } from 'react-native';
 
 import { useTheme } from '@/theme/ThemeProvider';
 import { useAppStore } from '@/store';
+import { t } from '@/i18n';
 import { AppText, Button, Card, IconTile, Kicker } from '@/components/ui';
 
 export function SendFailureModal({ onRetry, onLater }: { onRetry: () => void; onLater: () => void }) {
@@ -15,19 +16,18 @@ export function SendFailureModal({ onRetry, onLater }: { onRetry: () => void; on
           !
         </AppText>
       </IconTile>
-      <Kicker>Couldn&apos;t reach the map</Kicker>
-      <AppText variant="sheetTitle">The tree is safe on your phone</AppText>
+      <Kicker>{t('sendFailure.kicker')}</Kicker>
+      <AppText variant="sheetTitle">{t('sendFailure.title')}</AppText>
       <AppText variant="body" dim>
-        The photo, GPS stamp, and species are held on your device and will upload the moment you
-        have signal again.
+        {t('sendFailure.intro')}
       </AppText>
       <Card tint={tokens.surface2} elevated={false} style={{ padding: 12 }}>
         <AppText variant="body" dim>
-          Points stay pending either way — two on-site confirmations still decide.
+          {t('sendFailure.body')}
         </AppText>
       </Card>
       <Button
-        label="Try again now"
+        label={t('sendFailure.tryAgainNow')}
         variant="dark"
         onPress={() => {
           closeModal();
@@ -35,7 +35,7 @@ export function SendFailureModal({ onRetry, onLater }: { onRetry: () => void; on
         }}
       />
       <Button
-        label="Upload it later"
+        label={t('sendFailure.uploadItLater')}
         variant="ghost"
         onPress={() => {
           closeModal();

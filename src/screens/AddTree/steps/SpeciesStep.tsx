@@ -7,6 +7,7 @@ import { radii } from '@/theme/spacing';
 import { SPECIES } from '@/server/seedData/species';
 import type { LatLng, Species, SpeciesKind } from '@/domain/types';
 import { AppText, Button, Card } from '@/components/ui';
+import { t } from '@/i18n';
 
 export type SpeciesPick = { species: Species | null; unlistedName: string | null };
 
@@ -44,7 +45,7 @@ export function SpeciesStep({ photoUri, location, onConfirm }: SpeciesStepProps)
     ? `Confirm ${selected.name} · +${selected.points}`
     : freeTextUsed
       ? `Confirm ${freeText.trim()} · +15`
-      : 'Pick a species first';
+      : t('addTree.pickASpeciesFirst');
 
   return (
     <View style={{ flex: 1 }}>
@@ -78,7 +79,7 @@ export function SpeciesStep({ photoUri, location, onConfirm }: SpeciesStepProps)
             }}
           >
             <AppText variant="microLabel" color="#FFFFFF">
-              {autoUsed && selected?.id === AUTO_MATCH.id ? 'SELECTED' : 'USE'}
+              {autoUsed && selected?.id === AUTO_MATCH.id ? t('addTree.selected') : t('common.use')}
             </AppText>
           </Pressable>
         </Card>
@@ -97,7 +98,7 @@ export function SpeciesStep({ photoUri, location, onConfirm }: SpeciesStepProps)
                 backgroundColor: kind === k ? tokens.surface : 'transparent',
               }}
             >
-              <AppText variant="rowLabel">{k === 'fruit' ? 'Fruit tree' : 'Herb or green'}</AppText>
+              <AppText variant="rowLabel">{k === 'fruit' ? t('addTree.fruitTree') : t('addTree.herbOrGreen')}</AppText>
             </Pressable>
           ))}
         </View>
@@ -134,7 +135,7 @@ export function SpeciesStep({ photoUri, location, onConfirm }: SpeciesStepProps)
         </View>
 
         <View style={{ gap: 8 }}>
-          <AppText variant="sectionKicker">None of these?</AppText>
+          <AppText variant="sectionKicker">{t('addTree.noneOfThese')}</AppText>
           <View style={{ flexDirection: 'row', gap: 8 }}>
             <TextInput
               value={freeText}
@@ -142,7 +143,7 @@ export function SpeciesStep({ photoUri, location, onConfirm }: SpeciesStepProps)
                 setFreeText(t);
                 setFreeTextUsed(false);
               }}
-              placeholder="Type the species"
+              placeholder={t('addTree.typeTheSpecies')}
               placeholderTextColor={tokens.dim}
               style={{
                 flex: 1,
@@ -164,7 +165,7 @@ export function SpeciesStep({ photoUri, location, onConfirm }: SpeciesStepProps)
                 backgroundColor: tokens.surface2,
               }}
             >
-              <AppText variant="rowLabel">Use</AppText>
+              <AppText variant="rowLabel">{t('common.use')}</AppText>
             </Pressable>
           </View>
         </View>

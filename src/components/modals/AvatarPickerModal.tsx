@@ -3,6 +3,7 @@ import { Pressable, View } from 'react-native';
 import { useTheme } from '@/theme/ThemeProvider';
 import { useAppStore } from '@/store';
 import { AVATARS } from '@/domain/avatars';
+import { t } from '@/i18n';
 import { AppText, AvatarGlyph, Button, Kicker } from '@/components/ui';
 
 export function AvatarPickerModal() {
@@ -13,7 +14,7 @@ export function AvatarPickerModal() {
 
   return (
     <View style={{ gap: 16 }}>
-      <AppText variant="sheetTitle">Choose an avatar</AppText>
+      <AppText variant="sheetTitle">{t('avatar.chooseAnAvatar')}</AppText>
 
       <View style={{ flexDirection: 'row', gap: 10 }}>
         <View
@@ -26,7 +27,7 @@ export function AvatarPickerModal() {
             alignItems: 'center',
           }}
         >
-          <AppText variant="rowLabel">Use a photo</AppText>
+          <AppText variant="rowLabel">{t('avatar.useAPhoto')}</AppText>
         </View>
         <View
           style={{
@@ -38,11 +39,11 @@ export function AvatarPickerModal() {
             alignItems: 'center',
           }}
         >
-          <AppText variant="rowLabel">Initials</AppText>
+          <AppText variant="rowLabel">{t('avatar.initials')}</AppText>
         </View>
       </View>
 
-      <Kicker>Or pick from nature</Kicker>
+      <Kicker>{t('avatar.orPickFromNature')}</Kicker>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
         {AVATARS.map((a) => {
           const selected = a.id === avatarId;
@@ -51,7 +52,7 @@ export function AvatarPickerModal() {
               key={a.id}
               accessibilityRole="button"
               accessibilityState={{ selected }}
-              accessibilityLabel={a.label}
+              accessibilityLabel={t(`avatars.${a.id}`)}
               onPress={() => setAvatarId(a.id)}
               style={{
                 width: '22%',
@@ -67,14 +68,14 @@ export function AvatarPickerModal() {
             >
               <AvatarGlyph avatar={a} size={38} />
               <AppText variant="microLabel" dim>
-                {a.label}
+                {t(`avatars.${a.id}`)}
               </AppText>
             </Pressable>
           );
         })}
       </View>
 
-      <Button label="Done" onPress={closeModal} />
+      <Button label={t('common.done')} onPress={closeModal} />
     </View>
   );
 }

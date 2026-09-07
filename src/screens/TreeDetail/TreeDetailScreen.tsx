@@ -17,6 +17,7 @@ import { VerificationBlock } from './VerificationBlock';
 import { ConditionCard } from './ConditionCard';
 import { SeasonStrip } from './SeasonStrip';
 import { AccessList } from './AccessList';
+import { t } from '@/i18n';
 
 const PHOTO_HEIGHT = 300;
 const WALK_SPEED_M_PER_MIN = 80;
@@ -46,7 +47,7 @@ export function TreeDetailScreen({ id, openReport }: { id: string; openReport?: 
     return (
       <View style={{ flex: 1, backgroundColor: tokens.bg, alignItems: 'center', justifyContent: 'center' }}>
         <AppText variant="body" dim>
-          Tree not found.
+          {t('treeDetail.notFound')}
         </AppText>
       </View>
     );
@@ -81,7 +82,7 @@ export function TreeDetailScreen({ id, openReport }: { id: string; openReport?: 
           <HatchedPlaceholder width="100%" height={PHOTO_HEIGHT} />
           <Pressable
             accessibilityRole="button"
-            accessibilityLabel="Back"
+            accessibilityLabel={t('common.back')}
             onPress={() => router.back()}
             hitSlop={6}
             style={{
@@ -129,7 +130,7 @@ export function TreeDetailScreen({ id, openReport }: { id: string; openReport?: 
                 +{tree.points}
               </AppText>
               <AppText variant="microLabel" dim>
-                STRAWBERRY PTS
+                {t('treeDetail.strawberryPts')}
               </AppText>
             </View>
           </View>
@@ -152,7 +153,7 @@ export function TreeDetailScreen({ id, openReport }: { id: string; openReport?: 
                   label={
                     walking && walkingMinutes && distanceM
                       ? `Walking · ${walkingMinutes} min · ${formatDistance(distanceM)}`
-                      : 'Walk me there'
+                      : t('treeDetail.walkMeThere')
                   }
                   variant="dark"
                   onPress={() => setWalking(true)}
@@ -160,7 +161,7 @@ export function TreeDetailScreen({ id, openReport }: { id: string; openReport?: 
               </View>
               <Pressable
                 accessibilityRole="button"
-                accessibilityLabel="Flag this tree"
+                accessibilityLabel={t('treeDetail.flagThisTree')}
                 onPress={onFlag}
                 disabled={flagState !== 'idle'}
                 style={{
@@ -174,7 +175,7 @@ export function TreeDetailScreen({ id, openReport }: { id: string; openReport?: 
                 }}
               >
                 <AppText variant="microLabel" dim>
-                  {flagState === 'sent' ? 'SENT' : 'FLAG'}
+                  {flagState === 'sent' ? t('common.sent') : t('treeDetail.flag')}
                 </AppText>
               </Pressable>
             </View>

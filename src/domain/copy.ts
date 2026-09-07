@@ -1,28 +1,40 @@
 import type { ConditionReason } from './types';
+import { t } from '@/i18n';
 
 /** Short, all-caps condition labels for tree cards/detail — colour follows kind (good=green,
  * bad=gold), and the label is always shown as text too, never colour alone. */
-export const CONDITION_SHORT_LABEL: Record<ConditionReason, string> = {
-  fruit_ready: 'FRUITING',
-  fruit_ripening: 'RIPENING',
-  season_over: 'SEASON OVER',
-  disease_pest: 'PEST',
-  dry: 'DRY',
-  burnt: 'BURNT',
-  removed: 'REMOVED',
-  fenced_off: 'FENCED',
+/** Short, all-caps condition labels for tree cards/detail — colour follows kind (good=green,
+ * bad=gold), and the label is always shown as text too, never colour alone. Uppercasing is done
+ * by the type scale, so the catalogue holds sentence case. */
+const SHORT_LABEL_KEY: Record<ConditionReason, string> = {
+  fruit_ready: 'condition.shortFruitReady',
+  fruit_ripening: 'condition.shortFruitRipening',
+  season_over: 'condition.shortSeasonOver',
+  disease_pest: 'condition.shortDiseasePest',
+  dry: 'condition.shortDry',
+  burnt: 'condition.shortBurnt',
+  removed: 'condition.shortRemoved',
+  fenced_off: 'condition.shortFencedOff',
 };
 
-export const CONDITION_LABEL: Record<ConditionReason, string> = {
-  fruit_ready: 'Fruit ready to pick',
-  fruit_ripening: 'Fruit still ripening',
-  season_over: 'Season over',
-  disease_pest: 'Disease or pest',
-  dry: 'Dry',
-  burnt: 'Burnt',
-  removed: 'Cut back or removed',
-  fenced_off: 'Fenced off',
+const LABEL_KEY: Record<ConditionReason, string> = {
+  fruit_ready: 'condition.fruitReady',
+  fruit_ripening: 'condition.fruitRipening',
+  season_over: 'condition.seasonOver',
+  disease_pest: 'condition.diseasePest',
+  dry: 'condition.dry',
+  burnt: 'condition.burnt',
+  removed: 'condition.removed',
+  fenced_off: 'condition.fencedOff',
 };
+
+export function conditionShortLabel(reason: ConditionReason): string {
+  return t(SHORT_LABEL_KEY[reason]);
+}
+
+export function conditionLabel(reason: ConditionReason): string {
+  return t(LABEL_KEY[reason]);
+}
 
 const GOOD_REASONS = new Set(['fruit_ready', 'fruit_ripening', 'season_over']);
 

@@ -3,6 +3,7 @@ import { useRouter } from 'expo-router';
 
 import { useTheme } from '@/theme/ThemeProvider';
 import { useAppStore } from '@/store';
+import { t } from '@/i18n';
 import { AppText, Button, IconTile } from '@/components/ui';
 
 export function NoLocationModal() {
@@ -17,14 +18,13 @@ export function NoLocationModal() {
           !
         </AppText>
       </IconTile>
-      <AppText variant="sheetTitle">This photo has no location in it</AppText>
+      <AppText variant="sheetTitle">{t('noLocation.title')}</AppText>
       <AppText variant="body" dim>
-        A tree only counts as proof when its photo carries a GPS stamp. Take a new photo on
-        site instead of picking one from your library.
+        {t('noLocation.body')}
       </AppText>
-      <Button label="Open camera" variant="dark" onPress={closeModal} />
+      <Button label={t('noLocation.openCamera')} variant="dark" onPress={closeModal} />
       <Button
-        label="Later"
+        label={t('noLocation.later')}
         variant="ghost"
         onPress={() => {
           closeModal();

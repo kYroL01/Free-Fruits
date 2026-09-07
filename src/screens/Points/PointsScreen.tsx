@@ -9,12 +9,13 @@ import { AppText, BarProgress, Card, Kicker } from '@/components/ui';
 import { RewardCard } from './RewardCard';
 import { TiersRow } from './TiersRow';
 import { REWARDS } from './rewards';
+import { t } from '@/i18n';
 
-const TIER_LABEL: Record<string, string> = {
-  sprout: 'Sprout',
-  picker: 'Picker',
-  forager: 'Forager',
-  orchardist: 'Orchardist',
+const TIER_LABEL_KEY: Record<string, string> = {
+  sprout: 'points.tierSprout',
+  picker: 'points.tierPicker',
+  forager: 'points.tierForager',
+  orchardist: 'points.tierOrchardist',
 };
 
 export function PointsScreen() {
@@ -39,14 +40,14 @@ export function PointsScreen() {
       style={{ flex: 1, backgroundColor: tokens.bg }}
       contentContainerStyle={{ padding: spacing.screenH, paddingTop: spacing.screenTop, gap: 20 }}
     >
-      <AppText variant="screenTitle">Strawberry points</AppText>
+      <AppText variant="screenTitle">{t('points.title')}</AppText>
 
       <Card tint="#10160F" style={{ gap: 12 }}>
         <AppText variant="pointsBig" color="#FFFFFF">
           {points.toLocaleString()}
         </AppText>
         <AppText variant="microLabel" color="rgba(255,255,255,0.7)">
-          {`EARNED · ${treeCount} TREES`}
+          {t('points.earnedTrees', { count: treeCount })}
         </AppText>
         <BarProgress
           progress={progress.progress}
@@ -55,13 +56,16 @@ export function PointsScreen() {
         />
         <AppText variant="body" color="rgba(255,255,255,0.7)">
           {progress.nextTier
-            ? `${progress.pointsToNext} points to ${TIER_LABEL[progress.nextTier]}`
-            : 'Top tier reached'}
+            ? t('points.pointsToNext', {
+                count: progress.pointsToNext,
+                tier: t(TIER_LABEL_KEY[progress.nextTier]),
+              })
+            : t('points.topTierReached')}
         </AppText>
       </Card>
 
       <View style={{ gap: 12 }}>
-        <Kicker>Spend them</Kicker>
+        <Kicker>{t('points.spendThem')}</Kicker>
         {REWARDS.map((reward) => (
           <RewardCard
             key={reward.id}
@@ -74,7 +78,7 @@ export function PointsScreen() {
       </View>
 
       <View style={{ gap: 12 }}>
-        <Kicker>Tiers</Kicker>
+        <Kicker>{t('points.tiers')}</Kicker>
         <TiersRow currentTier={progress.tier} />
       </View>
     </ScrollView>

@@ -5,6 +5,7 @@ import * as Clipboard from 'expo-clipboard';
 import { useTheme } from '@/theme/ThemeProvider';
 import { radii } from '@/theme/spacing';
 import { useAppStore } from '@/store';
+import { t } from '@/i18n';
 import { AppText, Button, Kicker } from '@/components/ui';
 
 const SHARE_TARGETS = ['Messages', 'WhatsApp', 'Mail', 'More'];
@@ -31,7 +32,7 @@ export function InviteLinkModal() {
 
   return (
     <View style={{ gap: 16 }}>
-      <AppText variant="sheetTitle">Invite a forager</AppText>
+      <AppText variant="sheetTitle">{t('invite.title')}</AppText>
 
       <View style={{ flexDirection: 'row', gap: 8 }}>
         <View style={{ paddingHorizontal: 12, paddingVertical: 8, borderRadius: radii.chip, backgroundColor: tokens.surface2 }}>
@@ -48,7 +49,7 @@ export function InviteLinkModal() {
           style={{ paddingHorizontal: 12, paddingVertical: 8, borderRadius: radii.chip, borderWidth: 1, borderColor: tokens.line }}
         >
           <AppText variant="microLabel" dim>
-            NEW CODE
+            {t('invite.newCode')}
           </AppText>
         </Pressable>
       </View>
@@ -67,7 +68,7 @@ export function InviteLinkModal() {
         <AppText variant="body">{link}</AppText>
         <Pressable accessibilityRole="button" onPress={copy}>
           <AppText variant="microLabel" color={copied ? tokens.green : tokens.fuchsia}>
-            {copied ? 'Copied' : 'Copy'}
+            {copied ? t('invite.copied') : t('invite.copy')}
           </AppText>
         </Pressable>
       </View>
@@ -77,7 +78,7 @@ export function InviteLinkModal() {
         when they join.
       </AppText>
 
-      <Kicker>Share via</Kicker>
+      <Kicker>{t('invite.shareVia')}</Kicker>
       <View style={{ flexDirection: 'row', gap: 10 }}>
         {SHARE_TARGETS.map((target) => (
           <Pressable
@@ -99,7 +100,7 @@ export function InviteLinkModal() {
         ))}
       </View>
 
-      <Button label="Done" onPress={closeModal} />
+      <Button label={t('common.done')} onPress={closeModal} />
     </View>
   );
 }

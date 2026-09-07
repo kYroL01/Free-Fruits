@@ -10,6 +10,7 @@ import { submitNewTree } from '@/server/mockServer';
 import type { LatLng, Species } from '@/domain/types';
 import { AppText, Button, Card, Kicker } from '@/components/ui';
 import { DraggablePinMap } from './DraggablePinMap';
+import { t } from '@/i18n';
 
 type PinStepProps = {
   photoUri: string;
@@ -71,7 +72,7 @@ export function PinStep({ photoUri, exifGps, takenAt, species, unlistedName, onD
       exifGps,
       finderId: userId,
       finderHandle,
-      street: 'Nearby street', // no reverse-geocode wired up in this mock build yet
+      street: t('addTree.nearbyStreet'), // no reverse-geocode wired up in this mock build yet
       existingTrees: Object.values(trees),
     });
     setSubmitting(false);
@@ -87,7 +88,7 @@ export function PinStep({ photoUri, exifGps, takenAt, species, unlistedName, onD
         pin,
         speciesId: species?.id ?? 'unlisted',
         photoUri,
-        street: 'Nearby street',
+        street: t('addTree.nearbyStreet'),
         takenAt,
         candidateTreeId: result.candidate.id,
       });
@@ -113,18 +114,18 @@ export function PinStep({ photoUri, exifGps, takenAt, species, unlistedName, onD
       />
 
       <View style={{ gap: 4 }}>
-        <Kicker>{movedMeters > 1 ? 'Pin adjusted by hand' : 'Pin from photo metadata'}</Kicker>
+        <Kicker>{movedMeters > 1 ? t('addTree.pinAdjusted') : t('addTree.pinFromMetadata')}</Kicker>
         <AppText variant="body" dim>
           {movedMeters > 1
             ? `Moved ${Math.round(movedMeters)} m from the photo location`
-            : 'Drag the pin if the trunk sits elsewhere'}
+            : t('addTree.dragThePin')}
         </AppText>
       </View>
 
       <View style={{ flexDirection: 'row', gap: 10 }}>
         <Card style={{ flex: 1, gap: 4 }}>
           <AppText variant="microLabel" dim>
-            SPECIES
+            {t('addTree.species')}
           </AppText>
           <AppText variant="cardTitle">{label}</AppText>
           <AppText variant="body" dim>
@@ -133,7 +134,7 @@ export function PinStep({ photoUri, exifGps, takenAt, species, unlistedName, onD
         </Card>
         <Card style={{ flex: 1, gap: 4 }}>
           <AppText variant="microLabel" dim>
-            POINTS EARNED
+            {t('addTree.pointsEarned')}
           </AppText>
           <AppText variant="pointsInline" color={tokens.fuchsia} style={{ fontSize: 22 }}>
             +{points}
@@ -143,9 +144,9 @@ export function PinStep({ photoUri, exifGps, takenAt, species, unlistedName, onD
 
       <View style={{ flex: 1 }} />
 
-      <Button label="Share this tree" loading={submitting} onPress={submit} />
+      <Button label={t('addTree.shareThisTree')} loading={submitting} onPress={submit} />
       <AppText variant="body" dim style={{ textAlign: 'center' }}>
-        Points land as pending until 2 foragers confirm on site
+        {t('addTree.pendingUntilConfirmed')}
       </AppText>
     </View>
   );

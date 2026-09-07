@@ -11,6 +11,7 @@ import { AppText, SegmentedProgress } from '@/components/ui';
 import { CameraStep } from './steps/CameraStep';
 import { SpeciesStep, type SpeciesPick } from './steps/SpeciesStep';
 import { PinStep } from './steps/PinStep';
+import { t } from '@/i18n';
 
 type Draft = {
   photoUri: string | null;
@@ -39,7 +40,7 @@ export function AddTreeFlow() {
     <View style={{ flex: 1, backgroundColor: tokens.bg, paddingTop: insets.top + 12 }}>
       <View style={{ paddingHorizontal: spacing.screenH, gap: 12 }}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Pressable accessibilityRole="button" accessibilityLabel="Close" hitSlop={10} onPress={() => router.back()}>
+          <Pressable accessibilityRole="button" accessibilityLabel={t('common.close')} hitSlop={10} onPress={() => router.back()}>
             <AppText variant="cardTitle">×</AppText>
           </Pressable>
           <AppText variant="microLabel" dim>

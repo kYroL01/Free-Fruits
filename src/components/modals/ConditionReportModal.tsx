@@ -3,10 +3,11 @@ import { Pressable, View } from 'react-native';
 
 import { useTheme } from '@/theme/ThemeProvider';
 import { useAppStore } from '@/store';
+import { t } from '@/i18n';
 import { useLocation } from '@/hooks/useLocation';
 import { checkIn } from '@/server/mockServer';
 import { canCheckIn, isWithinCheckinRadius } from '@/domain/rules';
-import { CONDITION_LABEL } from '@/domain/copy';
+import { conditionLabel } from '@/domain/copy';
 import { findSpecies } from '@/server/seedData/species';
 import type { ConditionKind, ConditionReason } from '@/domain/types';
 import { AppText, Button, Card, Kicker, RadioRow } from '@/components/ui';
@@ -87,7 +88,7 @@ export function ConditionReportModal({ treeId }: { treeId: string }) {
   return (
     <View style={{ gap: 16 }}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Kicker>Condition report</Kicker>
+        <Kicker>{t('condition.title')}</Kicker>
         <AppText variant="microLabel" dim>
           {accuracyM ? `GPS ${Math.round(accuracyM)} M` : 'GPS —'}
         </AppText>
@@ -95,7 +96,7 @@ export function ConditionReportModal({ treeId }: { treeId: string }) {
 
       {step === 1 ? (
         <>
-          <AppText variant="sheetTitle">How is it right now?</AppText>
+          <AppText variant="sheetTitle">{t('condition.howIsItNow')}</AppText>
           <View style={{ flexDirection: 'row', gap: 12 }}>
             <Pressable
               accessibilityRole="radio"
@@ -109,7 +110,7 @@ export function ConditionReportModal({ treeId }: { treeId: string }) {
             >
               <Card tint={tokens.greenSoft} elevated={false} style={{ alignItems: 'center', paddingVertical: 20 }}>
                 <AppText variant="cardTitle" color={tokens.green}>
-                  Good
+                  {t('common.good')}
                 </AppText>
               </Card>
             </Pressable>
@@ -125,7 +126,7 @@ export function ConditionReportModal({ treeId }: { treeId: string }) {
             >
               <Card tint={tokens.goldSoft} elevated={false} style={{ alignItems: 'center', paddingVertical: 20 }}>
                 <AppText variant="cardTitle" color={tokens.gold}>
-                  Bad
+                  {t('common.bad')}
                 </AppText>
               </Card>
             </Pressable>
@@ -137,12 +138,12 @@ export function ConditionReportModal({ treeId }: { treeId: string }) {
         </>
       ) : (
         <>
-          <AppText variant="sheetTitle">Tell us more</AppText>
+          <AppText variant="sheetTitle">{t('condition.tellUsMore')}</AppText>
           <View>
             {(kind === 'good' ? GOOD_REASONS : BAD_REASONS).map((r) => (
               <RadioRow
                 key={r}
-                label={CONDITION_LABEL[r]}
+                label={conditionLabel(r)}
                 selected={reason === r}
                 onPress={() => setReason(r)}
               />
@@ -150,7 +151,7 @@ export function ConditionReportModal({ treeId }: { treeId: string }) {
           </View>
           <View style={{ flexDirection: 'row', gap: 10 }}>
             <View style={{ flex: 1 }}>
-              <Button label="Back" variant="ghost" onPress={() => setStep(1)} />
+              <Button label={t('common.back')} variant="ghost" onPress={() => setStep(1)} />
             </View>
             <View style={{ flex: 2 }}>
               <Button

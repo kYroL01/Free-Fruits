@@ -20,9 +20,9 @@ const LOCATION_CONFIG: PermissionStepConfig = {
   title: t('onboarding.locationTitle'),
   body: t('onboarding.locationBody'),
   facts: [
-    { title: 'Only while the app is open', body: 'We never track you in the background.' },
-    { title: 'Your live position is never stored', body: 'Only the trees you log or confirm are.' },
-    { title: 'You can turn it off any time', body: 'The map still works — you just cannot log or check in.' },
+    { title: t('onboarding.locationRow1Title'), body: t('onboarding.locationRow1Body') },
+    { title: t('onboarding.locationRow2Title'), body: t('onboarding.locationRow2Body') },
+    { title: t('onboarding.locationRow3Title'), body: t('onboarding.locationRow3Body') },
   ],
   ctaLabel: t('onboarding.allowLocation'),
   skipLabel: t('onboarding.notNow'),
@@ -35,9 +35,9 @@ const CAMERA_CONFIG: PermissionStepConfig = {
   title: t('onboarding.cameraTitle'),
   body: t('onboarding.cameraBody'),
   facts: [
-    { title: 'Live capture only', body: 'Library uploads cannot prove a location.' },
-    { title: 'Photos are yours', body: 'Only the tree pin and status are shared with the community.' },
-    { title: 'You can still browse without it', body: 'You just cannot log new trees.' },
+    { title: t('onboarding.cameraRow1Title'), body: t('onboarding.cameraRow1Body') },
+    { title: t('onboarding.cameraRow2Title'), body: t('onboarding.cameraRow2Body') },
+    { title: t('onboarding.cameraRow3Title'), body: t('onboarding.cameraRow3Body') },
   ],
   ctaLabel: t('onboarding.allowCamera'),
   skipLabel: t('onboarding.later'),
@@ -50,13 +50,13 @@ const NOTIFICATIONS_CONFIG: PermissionStepConfig = {
   title: t('onboarding.notificationsTitle'),
   body: t('onboarding.notificationsBody'),
   facts: [
-    { title: 'Never spammy', body: 'Only nearby, actionable trees trigger an alert.' },
-    { title: 'Your own trees included', body: "We'll tell you when yours gets verified." },
-    { title: 'Change your mind later', body: 'Turn it off any time from Settings.' },
+    { title: t('onboarding.alertsRow1Title'), body: t('onboarding.alertsRow1Body') },
+    { title: t('onboarding.alertsRow2Title'), body: t('onboarding.alertsRow2Body') },
+    { title: t('onboarding.alertsRow3Title'), body: t('onboarding.alertsRow3Body') },
   ],
   ctaLabel: t('onboarding.turnOnAlerts'),
   skipLabel: t('onboarding.noAlertsThanks'),
-  footnote: 'You can always change this later in your device Settings.',
+  footnote: t('onboarding.permissionFootnote'),
 };
 
 export function OnboardingFlow() {

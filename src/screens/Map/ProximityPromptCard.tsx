@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { radii } from '@/theme/spacing';
 import { shadows } from '@/theme/shadows';
 import { AppText, Button, Kicker } from '@/components/ui';
+import { t } from '@/i18n';
 
 type ProximityPromptCardProps = {
   distanceM: number;
@@ -31,10 +32,10 @@ export function ProximityPromptCard({ distanceM, speciesName, onConfirm, onDismi
       </AppText>
       <View style={{ flexDirection: 'row', gap: 10 }}>
         <View style={{ flex: 1 }}>
-          <Button label="Yes, it's there" variant="onFuchsia" onPress={onConfirm} />
+          <Button label={t('map.proximityYes')} variant="onFuchsia" onPress={onConfirm} />
         </View>
         <View style={{ flex: 1 }}>
-          <Button label="Not there" variant="ghostOnFuchsia" onPress={onDismiss} />
+          <Button label={t('map.proximityNo')} variant="ghostOnFuchsia" onPress={onDismiss} />
         </View>
       </View>
     </View>

@@ -96,7 +96,7 @@ export function TabBar() {
 
       <Pressable
         accessibilityRole="button"
-        accessibilityLabel="Add a tree"
+        accessibilityLabel={t('nav.addTree')}
         onPress={() => router.push('/add-tree')}
         style={{
           position: 'absolute',

@@ -12,6 +12,7 @@ import { CITY_LABEL } from '@/domain/constants';
 import { AppText, AvatarGlyph, BarProgress, Card, Kicker, Switch } from '@/components/ui';
 import { MyTreeRow } from './MyTreeRow';
 import { WaitingToUploadRow } from './WaitingToUploadRow';
+import { t as tr } from '@/i18n';
 
 export function ProfileScreen() {
   const { tokens } = useTheme();
@@ -50,7 +51,7 @@ export function ProfileScreen() {
       <View style={{ flexDirection: 'row', gap: 14, alignItems: 'center' }}>
         <Pressable
           accessibilityRole="button"
-          accessibilityLabel="Change avatar"
+          accessibilityLabel={tr('profile.changeAvatar')}
           onPress={() => openModal({ type: 'avatar_picker' })}
           style={{
             width: 60,
@@ -108,7 +109,7 @@ export function ProfileScreen() {
                 }}
               >
                 <AppText variant="microLabel" color={tokens.fuchsia}>
-                  SAVE
+                  {tr('common.save')}
                 </AppText>
               </Pressable>
             </View>
@@ -127,7 +128,7 @@ export function ProfileScreen() {
 
       <Card style={{ gap: 10 }}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <AppText variant="cardTitle">{progress.tier[0].toUpperCase() + progress.tier.slice(1)}</AppText>
+          <AppText variant="cardTitle">{tr(`points.tier${progress.tier[0].toUpperCase()}${progress.tier.slice(1)}`)}</AppText>
           <AppText variant="body" dim>
             {points.toLocaleString()}
             {progress.nextTier ? ` / ${TIER_THRESHOLDS[progress.nextTier].toLocaleString()}` : ''}
@@ -136,17 +137,17 @@ export function ProfileScreen() {
         <BarProgress progress={progress.progress} gradientColors={[tokens.green, tokens.fuchsia]} />
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <AppText variant="microLabel" dim>
-            SPROUT
+            {tr('points.tierSprout')}
           </AppText>
           <AppText variant="microLabel" dim>
-            ORCHARDIST
+            {tr('points.tierOrchardist')}
           </AppText>
         </View>
       </Card>
 
       {queue.length > 0 && (
         <View style={{ gap: 10 }}>
-          <Kicker>{`Waiting to upload · ${queue.length}`}</Kicker>
+          <Kicker>{tr('profile.waitingToUpload', { count: queue.length })}</Kicker>
           {queue.map((item) => (
             <WaitingToUploadRow key={item.id} item={item} />
           ))}
@@ -154,12 +155,11 @@ export function ProfileScreen() {
       )}
 
       <View style={{ gap: 10 }}>
-        <Kicker>{`My trees · ${myTrees.length}`}</Kicker>
+        <Kicker>{tr('profile.myTrees', { count: myTrees.length })}</Kicker>
         {myTrees.length === 0 ? (
           <Card style={{ borderWidth: 1, borderColor: tokens.line, borderStyle: 'dashed' }} elevated={false}>
             <AppText variant="body" dim>
-              No trees yet. Discovery credit is permanent and yours forever — log your first
-              tree.
+              {tr('profile.noTreesYet')}
             </AppText>
           </Card>
         ) : (
@@ -167,7 +167,7 @@ export function ProfileScreen() {
             <MyTreeRow
               key={t.id}
               tree={t}
-              speciesName={findSpecies(t.speciesId)?.name ?? 'Unlisted'}
+              speciesName={findSpecies(t.speciesId)?.name ?? tr('filters.rarityUnrated')}
               onPress={() => router.push(`/tree/${t.id}`)}
             />
           ))
@@ -175,11 +175,11 @@ export function ProfileScreen() {
       </View>
 
       <View style={{ gap: 4 }}>
-        <Kicker>Settings</Kicker>
+        <Kicker>{tr('profile.settings')}</Kicker>
         <Card style={{ gap: 0, padding: 0, overflow: 'hidden' }}>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 14 }}>
-            <AppText variant="rowLabel">Dark mode</AppText>
-            <Switch value={darkMode} onValueChange={toggleDarkMode} accessibilityLabel="Dark mode" />
+            <AppText variant="rowLabel">{tr('profile.darkMode')}</AppText>
+            <Switch value={darkMode} onValueChange={toggleDarkMode} accessibilityLabel={tr('profile.darkMode')} />
           </View>
           <View style={{ height: 1, backgroundColor: tokens.line }} />
           <Pressable
@@ -187,14 +187,14 @@ export function ProfileScreen() {
             onPress={() => openModal({ type: 'invite_link' })}
             style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 14 }}
           >
-            <AppText variant="rowLabel">Invite a forager</AppText>
+            <AppText variant="rowLabel">{tr('profile.inviteAForager')}</AppText>
             <AppText variant="microLabel" dim>
               ›
             </AppText>
           </Pressable>
           <View style={{ height: 1, backgroundColor: tokens.line }} />
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 14 }}>
-            <AppText variant="rowLabel">Units</AppText>
+            <AppText variant="rowLabel">{tr('profile.units')}</AppText>
             <View style={{ flexDirection: 'row', backgroundColor: tokens.surface2, borderRadius: radii.pill, padding: 3 }}>
               {(['metric', 'imperial'] as const).map((u) => (
                 <Pressable
@@ -208,7 +208,7 @@ export function ProfileScreen() {
                     backgroundColor: units === u ? tokens.surface : 'transparent',
                   }}
                 >
-                  <AppText variant="microLabel">{u === 'metric' ? 'METRIC' : 'IMPERIAL'}</AppText>
+                  <AppText variant="microLabel">{u === 'metric' ? tr('profile.metric') : tr('profile.imperial')}</AppText>
                 </Pressable>
               ))}
             </View>
@@ -219,7 +219,7 @@ export function ProfileScreen() {
             onPress={() => router.push('/privacy')}
             style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 14 }}
           >
-            <AppText variant="rowLabel">Privacy & my location history</AppText>
+            <AppText variant="rowLabel">{tr('profile.privacyAndHistory')}</AppText>
             <AppText variant="microLabel" dim>
               ›
             </AppText>
