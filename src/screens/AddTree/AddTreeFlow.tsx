@@ -20,7 +20,7 @@ type Draft = {
   speciesPick: SpeciesPick | null;
 };
 
-const STEP_TITLES = ['Prove it on site', "What's growing here?", 'Where exactly?'];
+const STEP_TITLE_KEYS = ['addTree.stepProveIt', 'addTree.stepWhatsGrowing', 'addTree.stepWhereExactly'];
 
 export function AddTreeFlow() {
   const { tokens } = useTheme();
@@ -47,7 +47,7 @@ export function AddTreeFlow() {
             STEP {step} OF 3
           </AppText>
         </View>
-        <AppText variant="sheetTitle">{STEP_TITLES[step - 1]}</AppText>
+        <AppText variant="sheetTitle">{t(STEP_TITLE_KEYS[step - 1])}</AppText>
         <SegmentedProgress segments={3} filled={step} />
       </View>
 

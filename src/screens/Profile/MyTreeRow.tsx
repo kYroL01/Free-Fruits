@@ -3,6 +3,7 @@ import { Pressable, View } from 'react-native';
 import { useTheme } from '@/theme/ThemeProvider';
 import type { Tree } from '@/domain/types';
 import { AppText } from '@/components/ui';
+import { t } from '@/i18n';
 
 export function MyTreeRow({ tree, speciesName, onPress }: { tree: Tree; speciesName: string; onPress: () => void }) {
   const { tokens } = useTheme();
@@ -33,7 +34,12 @@ export function MyTreeRow({ tree, speciesName, onPress }: { tree: Tree; speciesN
       </View>
       <View style={{ alignItems: 'flex-end', gap: 2 }}>
         <AppText variant="microLabel" color={tree.pending ? tokens.fuchsia : tokens.green}>
-          {tree.pending ? `PENDING ${tree.confirmations}/${tree.confirmationsNeeded}` : 'VERIFIED'}
+          {tree.pending
+            ? t('profile.pendingCount', {
+                have: tree.confirmations,
+                need: tree.confirmationsNeeded,
+              })
+            : t('search.verified')}
         </AppText>
         <AppText variant="microLabel" dim>
           +{tree.points}

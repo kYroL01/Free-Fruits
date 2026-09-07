@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { useTheme } from '@/theme/ThemeProvider';
 import { AppText, BarProgress, Button, Card } from '@/components/ui';
 import type { Reward } from './rewards';
+import { t } from '@/i18n';
 
 type RewardCardProps = {
   reward: Reward;
@@ -17,12 +18,12 @@ export function RewardCard({ reward, points, redeemed, onRedeem }: RewardCardPro
   const canAfford = points >= reward.cost;
 
   const ctaLabel = reward.locked
-    ? 'Locked'
+    ? t('points.rewardLocked')
     : redeemed
-      ? 'Redeemed'
+      ? t('points.rewardRedeemed')
       : canAfford
-        ? `Redeem · ${reward.cost}`
-        : `Need ${reward.cost - points} more`;
+        ? t('points.rewardRedeem', { cost: reward.cost })
+        : t('points.rewardNeedMore', { count: reward.cost - points });
 
   return (
     <Card style={{ gap: 10 }}>

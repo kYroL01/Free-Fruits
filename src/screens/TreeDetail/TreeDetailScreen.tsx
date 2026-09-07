@@ -54,7 +54,7 @@ export function TreeDetailScreen({ id, openReport }: { id: string; openReport?: 
   }
 
   const species = findSpecies(tree.speciesId);
-  const speciesName = species?.name ?? 'Unlisted tree';
+  const speciesName = species?.name ?? t('addTree.unlistedTree');
   const distanceM = coords ? distanceMeters(coords, tree.location) : null;
   const isOwnTree = tree.finderId === userId;
 
@@ -122,7 +122,7 @@ export function TreeDetailScreen({ id, openReport }: { id: string; openReport?: 
               <AppText variant="detailTitle">{speciesName}</AppText>
               <AppText variant="body" dim>
                 {tree.street}
-                {distanceM !== null ? ` · ${formatDistance(distanceM)} away` : ''}
+                {distanceM !== null ? ` · ${t('treeDetail.distanceAway', { distance: formatDistance(distanceM) })}` : ''}
               </AppText>
             </View>
             <View style={{ alignItems: 'flex-end' }}>
@@ -152,7 +152,10 @@ export function TreeDetailScreen({ id, openReport }: { id: string; openReport?: 
                 <Button
                   label={
                     walking && walkingMinutes && distanceM
-                      ? `Walking · ${walkingMinutes} min · ${formatDistance(distanceM)}`
+                      ? t('treeDetail.walking', {
+                          minutes: walkingMinutes,
+                          distance: formatDistance(distanceM),
+                        })
                       : t('treeDetail.walkMeThere')
                   }
                   variant="dark"

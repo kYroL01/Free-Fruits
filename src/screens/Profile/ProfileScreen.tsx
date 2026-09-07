@@ -121,7 +121,7 @@ export function ProfileScreen() {
             </Pressable>
           )}
           <AppText variant="body" dim>
-            @{handle} · {CITY_LABEL} · since 2025
+            {tr('profile.handleLine', { handle, city: CITY_LABEL, year: 2025 })}
           </AppText>
         </View>
       </View>
