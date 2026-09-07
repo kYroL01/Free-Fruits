@@ -11,11 +11,12 @@ import { t } from '@/i18n';
 
 type TabKey = 'map' | 'points' | 'alerts' | 'you';
 
-const TABS: { key: TabKey; label: string; path: '/map' | '/points' | '/alerts' | '/you' }[] = [
-  { key: 'map', label: t('nav.map'), path: '/map' },
-  { key: 'points', label: t('nav.points'), path: '/points' },
-  { key: 'alerts', label: t('nav.alerts'), path: '/alerts' },
-  { key: 'you', label: t('nav.you'), path: '/you' },
+/** Keys, not strings: resolving them here would freeze the copy at import time. */
+const TABS: { key: TabKey; labelKey: string; path: '/map' | '/points' | '/alerts' | '/you' }[] = [
+  { key: 'map', labelKey: 'nav.map', path: '/map' },
+  { key: 'points', labelKey: 'nav.points', path: '/points' },
+  { key: 'alerts', labelKey: 'nav.alerts', path: '/alerts' },
+  { key: 'you', labelKey: 'nav.you', path: '/you' },
 ];
 
 function TabIcon({ tab, color }: { tab: TabKey; color: string }) {
@@ -131,18 +132,19 @@ function TabBarButton({
 }) {
   const { tokens } = useTheme();
   const color = active ? tokens.fuchsia : tokens.dim;
+  const label = t(tab.labelKey);
 
   return (
     <Pressable
       accessibilityRole="tab"
       accessibilityState={{ selected: active }}
-      accessibilityLabel={tab.label}
+      accessibilityLabel={label}
       onPress={onPress}
       style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 4, minHeight: 44 }}
     >
       <TabIcon tab={tab.key} color={color} />
       <AppText variant="microLabel" color={color}>
-        {tab.label}
+        {label}
       </AppText>
     </Pressable>
   );

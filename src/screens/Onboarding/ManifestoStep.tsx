@@ -5,10 +5,11 @@ import { CITY_LABEL } from '@/domain/constants';
 import { t } from '@/i18n';
 import { AppText, Button, Kicker } from '@/components/ui';
 
+/** Keys, not strings: resolving them here would freeze the copy at import time. */
 const RULES = [
-  { index: '01', title: t('onboarding.rule1Title'), body: t('onboarding.rule1Body') },
-  { index: '02', title: t('onboarding.rule2Title'), body: t('onboarding.rule2Body') },
-  { index: '03', title: t('onboarding.rule3Title'), body: t('onboarding.rule3Body') },
+  { index: '01', titleKey: 'onboarding.rule1Title', bodyKey: 'onboarding.rule1Body' },
+  { index: '02', titleKey: 'onboarding.rule2Title', bodyKey: 'onboarding.rule2Body' },
+  { index: '03', titleKey: 'onboarding.rule3Title', bodyKey: 'onboarding.rule3Body' },
 ];
 
 type ManifestoStepProps = {
@@ -46,10 +47,10 @@ export function ManifestoStep({ onStart, onAlreadyHaveAccount }: ManifestoStepPr
             </AppText>
             <View style={{ flex: 1, gap: 2 }}>
               <AppText variant="cardTitle" color="#FFFFFF" style={{ fontSize: 14 }}>
-                {rule.title}
+                {t(rule.titleKey)}
               </AppText>
               <AppText variant="body" color="rgba(255,255,255,0.75)">
-                {rule.body}
+                {t(rule.bodyKey)}
               </AppText>
             </View>
           </View>
