@@ -39,7 +39,7 @@ export function PinStep({ photoUri, exifGps, takenAt, species, unlistedName, onD
   const [submitting, setSubmitting] = useState(false);
 
   const points = computeNewTreePoints(species);
-  const label = species?.name ?? unlistedName ?? 'Unlisted tree';
+  const label = species?.name ?? unlistedName ?? t('addTree.unlistedTree');
   const rarity = species?.rarity ?? 'unrated';
 
   const queueForLater = () => {
@@ -117,7 +117,7 @@ export function PinStep({ photoUri, exifGps, takenAt, species, unlistedName, onD
         <Kicker>{movedMeters > 1 ? t('addTree.pinAdjusted') : t('addTree.pinFromMetadata')}</Kicker>
         <AppText variant="body" dim>
           {movedMeters > 1
-            ? `Moved ${Math.round(movedMeters)} m from the photo location`
+            ? t('addTree.pinMovedMeters', { meters: Math.round(movedMeters) })
             : t('addTree.dragThePin')}
         </AppText>
       </View>

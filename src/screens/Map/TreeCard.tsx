@@ -7,6 +7,7 @@ import { shadows } from '@/theme/shadows';
 import { conditionShortLabel, isGoodReason } from '@/domain/copy';
 import type { Tree } from '@/domain/types';
 import { AppText, HatchedPlaceholder, StatusDot } from '@/components/ui';
+import { t } from '@/i18n';
 
 const CARD_WIDTH = 212;
 
@@ -76,7 +77,7 @@ export function TreeCard({ tree, speciesName, distanceLabel, onPress }: TreeCard
         >
           <StatusDot color={tree.pending ? tokens.fuchsia : tokens.green} />
           <AppText variant="microLabel" dim>
-            {tree.pending ? 'PENDING' : 'VERIFIED'}
+            {tree.pending ? t('search.pending') : t('search.verified')}
           </AppText>
           {tree.latestReport && (
             <AppText variant="microLabel" color={isGoodReason(tree.latestReport.reason) ? tokens.green : tokens.gold}>

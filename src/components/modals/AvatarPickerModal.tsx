@@ -44,7 +44,7 @@ export function AvatarPickerModal() {
       </View>
 
       <Kicker>{t('avatar.orPickFromNature')}</Kicker>
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'stretch', gap: 10 }}>
         {AVATARS.map((a) => {
           const selected = a.id === avatarId;
           return (
@@ -55,9 +55,12 @@ export function AvatarPickerModal() {
               accessibilityLabel={t(`avatars.${a.id}`)}
               onPress={() => setAvatarId(a.id)}
               style={{
+                // 4 across: four 22% tiles plus three 10px gaps, with slack for a wrapped label
                 width: '22%',
                 borderRadius: 14,
                 paddingVertical: 10,
+                paddingHorizontal: 4,
+                overflow: 'hidden',
                 backgroundColor: tokens.surface,
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -67,7 +70,7 @@ export function AvatarPickerModal() {
               }}
             >
               <AvatarGlyph avatar={a} size={38} />
-              <AppText variant="microLabel" dim>
+              <AppText variant="microLabel" dim numberOfLines={2} style={{ textAlign: 'center' }}>
                 {t(`avatars.${a.id}`)}
               </AppText>
             </Pressable>

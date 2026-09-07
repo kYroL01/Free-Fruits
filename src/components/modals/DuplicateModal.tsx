@@ -15,10 +15,10 @@ import type { ActiveModal } from '@/store/slices/uiSlice';
 
 type DuplicatePayload = Extract<ActiveModal, { type: 'duplicate' }>;
 
-const REASON_LABEL: Record<DuplicateClaimReason, string> = {
-  different_species: 'Different species',
-  second_trunk: 'Second trunk, 8 m away',
-  wrong_tree: 'Existing pin is on the wrong tree',
+const REASON_LABEL_KEY: Record<DuplicateClaimReason, string> = {
+  different_species: 'duplicate.reasonDifferentSpecies',
+  second_trunk: 'duplicate.reasonSecondTrunk',
+  wrong_tree: 'duplicate.reasonWrongTree',
 };
 
 export function DuplicateModal(props: DuplicatePayload) {
@@ -102,8 +102,8 @@ export function DuplicateModal(props: DuplicatePayload) {
         <>
           <AppText variant="sheetTitle">{t('duplicate.tellUsHowItDiffers')}</AppText>
           <View>
-            {(Object.keys(REASON_LABEL) as DuplicateClaimReason[]).map((r) => (
-              <RadioRow key={r} label={REASON_LABEL[r]} selected={reason === r} onPress={() => setReason(r)} />
+            {(Object.keys(REASON_LABEL_KEY) as DuplicateClaimReason[]).map((r) => (
+              <RadioRow key={r} label={t(REASON_LABEL_KEY[r])} selected={reason === r} onPress={() => setReason(r)} />
             ))}
           </View>
           <Card tint={tokens.goldSoft} elevated={false}>

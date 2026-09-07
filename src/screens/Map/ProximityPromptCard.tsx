@@ -26,9 +26,9 @@ export function ProximityPromptCard({ distanceM, speciesName, onConfirm, onDismi
         shadows.proximityCard,
       ]}
     >
-      <Kicker color="#FFFFFF">{`You're ${Math.round(distanceM)} m away`}</Kicker>
+      <Kicker color="#FFFFFF">{t('map.proximityDistance', { meters: Math.round(distanceM) })}</Kicker>
       <AppText variant="cardTitle" color="#FFFFFF">
-        Someone logged a {speciesName.toLowerCase()} here. Is it real?
+        {t('map.proximityQuestion', { species: speciesName.toLowerCase() })}
       </AppText>
       <View style={{ flexDirection: 'row', gap: 10 }}>
         <View style={{ flex: 1 }}>

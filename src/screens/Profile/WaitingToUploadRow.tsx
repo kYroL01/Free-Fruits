@@ -6,6 +6,7 @@ import { radii } from '@/theme/spacing';
 import type { QueueItem } from '@/domain/types';
 import { findSpecies } from '@/server/seedData/species';
 import { AppText } from '@/components/ui';
+import { t } from '@/i18n';
 
 function minutesAgo(iso: string): number {
   return Math.max(0, Math.round((Date.now() - new Date(iso).getTime()) / 60000));
@@ -14,7 +15,7 @@ function minutesAgo(iso: string): number {
 export function WaitingToUploadRow({ item }: { item: QueueItem }) {
   const { tokens } = useTheme();
   const [retried, setRetried] = useState(false);
-  const speciesName = findSpecies(item.speciesId)?.name ?? 'Unlisted tree';
+  const speciesName = findSpecies(item.speciesId)?.name ?? t('addTree.unlistedTree');
 
   return (
     <View
@@ -37,7 +38,7 @@ export function WaitingToUploadRow({ item }: { item: QueueItem }) {
       </View>
       <Pressable accessibilityRole="button" onPress={() => setRetried(true)} hitSlop={8}>
         <AppText variant="microLabel" color={tokens.gold}>
-          {retried ? 'SENT' : 'RETRY'}
+          {retried ? t('common.sent') : t('common.retry')}
         </AppText>
       </Pressable>
     </View>

@@ -10,7 +10,8 @@ import { findSpecies, SPECIES } from '@/server/seedData/species';
 import { AppText, Card, Kicker } from '@/components/ui';
 import { t as tr } from '@/i18n';
 
-const RECENT_SEED = ['fig', 'Via Gola', 'michele-f', 'mulberry'];
+/** Valencia, matching the seed data — these were still Milan strings from the first build. */
+const RECENT_SEED = ['fig', 'Carrer de Quart', 'ana_p', 'mulberry'];
 
 export function SearchScreen() {
   const { tokens } = useTheme();

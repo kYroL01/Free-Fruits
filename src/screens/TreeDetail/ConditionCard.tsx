@@ -9,11 +9,13 @@ import { t } from '@/i18n';
 function relativeTime(iso: string): string {
   const ms = Date.now() - new Date(iso).getTime();
   const days = Math.floor(ms / (1000 * 60 * 60 * 24));
-  if (days <= 0) return 'today';
-  if (days === 1) return '1 day ago';
-  if (days < 30) return `${days} days ago`;
+  if (days <= 0) return t('treeDetail.reportToday');
+  if (days === 1) return t('treeDetail.reportOneDayAgo');
+  if (days < 30) return t('treeDetail.reportDaysAgo', { count: days });
   const months = Math.floor(days / 30);
-  return months === 1 ? '1 month ago' : `${months} months ago`;
+  return months === 1
+    ? t('treeDetail.reportOneMonthAgo')
+    : t('treeDetail.reportMonthsAgo', { count: months });
 }
 
 export function ConditionCard({ report }: { report: ConditionReport | null }) {

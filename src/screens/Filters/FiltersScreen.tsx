@@ -47,8 +47,8 @@ export function FiltersScreen() {
     filteredCount === 0
       ? t('filters.nothingMatches')
       : filteredCount === allTrees.length
-        ? `Show all ${filteredCount} results`
-        : `Show ${filteredCount} results`;
+        ? t('filters.showAllResults', { count: filteredCount })
+        : t('filters.showResults', { count: filteredCount });
 
   return (
     <View style={{ flex: 1, backgroundColor: tokens.bg }}>
@@ -128,10 +128,10 @@ export function FiltersScreen() {
           <Kicker>{t('filters.onlyShow')}</Kicker>
           {(
             [
-              ['verifiedOnly', 'Verified trees only'],
-              ['inSeasonOnly', 'In season right now'],
-              ['noFenceOnly', 'Reachable without a fence'],
-              ['notVisitedOnly', 'Trees I have not visited'],
+              ['verifiedOnly', t('filters.verifiedOnly')],
+              ['inSeasonOnly', t('filters.inSeasonOnly')],
+              ['noFenceOnly', t('filters.noFenceOnly')],
+              ['notVisitedOnly', t('filters.notVisitedOnly')],
             ] as const
           ).map(([key, label]) => (
             <View key={key} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>

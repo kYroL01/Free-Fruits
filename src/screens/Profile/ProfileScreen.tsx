@@ -32,8 +32,10 @@ export function ProfileScreen() {
   const openModal = useAppStore((s) => s.openModal);
   const queue = useAppStore((s) => s.queue);
 
+  const shownName = displayName || tr('profile.defaultDisplayName');
+
   const [editingName, setEditingName] = useState(false);
-  const [nameDraft, setNameDraft] = useState(displayName);
+  const [nameDraft, setNameDraft] = useState(shownName);
 
   const avatar = findAvatar(avatarId);
   const progress = tierProgress(points);
@@ -104,7 +106,7 @@ export function ProfileScreen() {
               <Pressable
                 accessibilityRole="button"
                 onPress={() => {
-                  setDisplayName(nameDraft.trim() || displayName);
+                  setDisplayName(nameDraft.trim() || shownName);
                   setEditingName(false);
                 }}
               >
@@ -116,12 +118,12 @@ export function ProfileScreen() {
           ) : (
             <Pressable accessibilityRole="button" onPress={() => setEditingName(true)}>
               <AppText variant="screenTitle" style={{ fontSize: 20 }}>
-                {displayName}
+                {shownName}
               </AppText>
             </Pressable>
           )}
           <AppText variant="body" dim>
-            @{handle} · {CITY_LABEL} · since 2025
+            {tr('profile.handleLine', { handle, city: CITY_LABEL, year: 2025 })}
           </AppText>
         </View>
       </View>

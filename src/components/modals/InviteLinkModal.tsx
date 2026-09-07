@@ -8,7 +8,8 @@ import { useAppStore } from '@/store';
 import { t } from '@/i18n';
 import { AppText, Button, Kicker } from '@/components/ui';
 
-const SHARE_TARGETS = ['Messages', 'WhatsApp', 'Mail', 'More'];
+/** Product names stay as they are; the two generic ones are translated. */
+const SHARE_TARGETS = ['Messages', 'WhatsApp', 'invite.shareMail', 'invite.shareMore'];
 
 export function InviteLinkModal() {
   const { tokens } = useTheme();
@@ -80,9 +81,9 @@ export function InviteLinkModal() {
 
       <Kicker>{t('invite.shareVia')}</Kicker>
       <View style={{ flexDirection: 'row', gap: 10 }}>
-        {SHARE_TARGETS.map((target) => (
+        {SHARE_TARGETS.map((key) => (
           <Pressable
-            key={target}
+            key={key}
             accessibilityRole="button"
             onPress={share}
             style={{
@@ -94,7 +95,7 @@ export function InviteLinkModal() {
             }}
           >
             <AppText variant="microLabel" dim>
-              {target.toUpperCase()}
+              {(key.includes('.') ? t(key) : key).toUpperCase()}
             </AppText>
           </Pressable>
         ))}

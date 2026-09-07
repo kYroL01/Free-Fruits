@@ -3,8 +3,9 @@ import { Pressable, View } from 'react-native';
 import { useTheme } from '@/theme/ThemeProvider';
 import { radii } from '@/theme/spacing';
 import { AppText, Kicker } from '@/components/ui';
+import { t } from '@/i18n';
 
-const STEP_LABELS = ['300 M', '600 M', '2 KM', '5 KM', 'CITY-WIDE'];
+const STEP_LABELS = ['300 M', '600 M', '2 KM', '5 KM', null];
 
 type DistanceStepperProps = {
   step: 0 | 1 | 2 | 3 | 4;
@@ -16,9 +17,10 @@ export function DistanceStepper({ step, onChange }: DistanceStepperProps) {
 
   return (
     <View style={{ gap: 10 }}>
-      <Kicker>{`Distance · ${STEP_LABELS[step]}`}</Kicker>
+      <Kicker>{t('filters.distance', { label: STEP_LABELS[step] ?? t('filters.cityWide') })}</Kicker>
       <View style={{ flexDirection: 'row', gap: 6 }}>
-        {STEP_LABELS.map((label, i) => {
+        {STEP_LABELS.map((rawLabel, i) => {
+          const label = rawLabel ?? t('filters.cityWide');
           const active = i === step;
           return (
             <Pressable

@@ -22,6 +22,7 @@ import { EmptyMapCard } from './EmptyMapCard';
 import { LocationOffBanner } from './LocationOffBanner';
 import { OfflineBanner } from './OfflineBanner';
 import { SkeletonCarousel } from './SkeletonCarousel';
+import { t as tr } from '@/i18n';
 
 const PROXIMITY_RADIUS_M = 12;
 
@@ -81,7 +82,7 @@ export function MapScreen() {
         location: t.location,
         rarity: t.rarity,
         initial: speciesInitial(t.speciesId),
-        label: findSpecies(t.speciesId)?.name ?? 'Unlisted tree',
+        label: findSpecies(t.speciesId)?.name ?? tr('addTree.unlistedTree'),
       })),
     [filtered]
   );
@@ -177,7 +178,7 @@ export function MapScreen() {
           <ResultsCarousel
             trees={sorted}
             radiusLabel={radiusLabel(filters.radiusStep)}
-            speciesName={(id) => findSpecies(id)?.name ?? 'Unlisted'}
+            speciesName={(id) => findSpecies(id)?.name ?? tr('filters.rarityUnrated')}
             distanceLabel={(t) => (coords ? formatDistance(distanceMeters(coords, t.location), units) : '—')}
             onSeeAll={() => router.push('/filters')}
             onTreePress={(id) => router.push(`/tree/${id}`)}

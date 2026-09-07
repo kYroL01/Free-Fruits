@@ -74,7 +74,7 @@ export function MapHeader({ cityLabel, state, onFilterPress, dark, onToggleTheme
 
       <Pressable
         accessibilityRole="button"
-        accessibilityLabel={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+        accessibilityLabel={dark ? t('map.switchToLight') : t('map.switchToDark')}
         onPress={onToggleTheme}
         style={[
           {
