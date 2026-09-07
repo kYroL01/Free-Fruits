@@ -346,5 +346,27 @@
     "cactus": "Cactus",
     "rosemary": "Rosemary",
     "dandelion": "Dandelion"
+  },
+  "months": {
+    "january": "January",
+    "february": "February",
+    "march": "March",
+    "april": "April",
+    "may": "May",
+    "june": "June",
+    "july": "July",
+    "august": "August",
+    "september": "September",
+    "october": "October",
+    "november": "November",
+    "december": "December"
+  },
+  "checkin": {
+    "locationUnavailable": "Turn on location to check in",
+    "ownTree": "Your discovery · credit is yours",
+    "tooFar": "Get within 25 m to check in",
+    "onCooldown": "Reported · opens in {{count}} days",
+    "outOfSeason": "Out of season · opens in {{month}}",
+    "ok": "Check in"
   }
 }

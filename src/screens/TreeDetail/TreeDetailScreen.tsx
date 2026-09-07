@@ -29,6 +29,7 @@ export function TreeDetailScreen({ id, openReport }: { id: string; openReport?: 
   const tree = useAppStore((s) => s.trees[id]);
   const userId = useAppStore((s) => s.userId);
   const permissions = useAppStore((s) => s.permissions);
+  const myReports = useAppStore((s) => s.myReports);
   const openModal = useAppStore((s) => s.openModal);
   const { coords } = useLocation();
 
@@ -61,7 +62,7 @@ export function TreeDetailScreen({ id, openReport }: { id: string; openReport?: 
   const checkinDecision = canCheckIn({
     isOwnTree,
     withinCheckinRadius: !!coords && isWithinCheckinRadius(coords, tree.location),
-    lastReportAt: tree.latestReport?.at ?? null,
+    myLastReportAt: myReports[tree.id]?.at ?? null,
     seasonWindow: species?.seasonWindow ?? [0, 11],
     locationPermission: permissions.location,
     now: new Date(),
