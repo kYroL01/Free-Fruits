@@ -10,3 +10,4 @@ export { Switch } from './Switch';
 export { StatusDot } from './StatusDot';
 export { RadioRow } from './RadioRow';
 export { HatchedPlaceholder } from './HatchedPlaceholder';
+export { AvatarGlyph } from './AvatarGlyph';

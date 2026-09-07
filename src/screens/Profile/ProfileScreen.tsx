@@ -9,7 +9,7 @@ import { TIER_THRESHOLDS, tierProgress } from '@/domain/rules';
 import { findAvatar } from '@/domain/avatars';
 import { findSpecies } from '@/server/seedData/species';
 import { CITY_LABEL } from '@/domain/constants';
-import { AppText, BarProgress, Card, Kicker, Switch } from '@/components/ui';
+import { AppText, AvatarGlyph, BarProgress, Card, Kicker, Switch } from '@/components/ui';
 import { MyTreeRow } from './MyTreeRow';
 import { WaitingToUploadRow } from './WaitingToUploadRow';
 
@@ -56,12 +56,12 @@ export function ProfileScreen() {
             width: 60,
             height: 60,
             borderRadius: 20,
-            backgroundColor: avatar.tint,
+            backgroundColor: tokens.surface2,
             alignItems: 'center',
             justifyContent: 'center',
           }}
         >
-          <AppText style={{ fontSize: 28 }}>{avatar.emoji}</AppText>
+          <AvatarGlyph avatar={avatar} size={52} />
           <View
             style={{
               position: 'absolute',
