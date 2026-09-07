@@ -3,7 +3,7 @@ import { Pressable, View } from 'react-native';
 import { useTheme } from '@/theme/ThemeProvider';
 import { useAppStore } from '@/store';
 import { AVATARS } from '@/domain/avatars';
-import { AppText, Button, Kicker } from '@/components/ui';
+import { AppText, AvatarGlyph, Button, Kicker } from '@/components/ui';
 
 export function AvatarPickerModal() {
   const { tokens } = useTheme();
@@ -51,19 +51,24 @@ export function AvatarPickerModal() {
               key={a.id}
               accessibilityRole="button"
               accessibilityState={{ selected }}
+              accessibilityLabel={a.label}
               onPress={() => setAvatarId(a.id)}
               style={{
                 width: '22%',
-                aspectRatio: 1,
-                borderRadius: 16,
-                backgroundColor: a.tint,
+                borderRadius: 14,
+                paddingVertical: 10,
+                backgroundColor: tokens.surface,
                 alignItems: 'center',
                 justifyContent: 'center',
-                borderWidth: selected ? 1.5 : 0,
-                borderColor: tokens.fuchsia,
+                gap: 7,
+                borderWidth: 1.5,
+                borderColor: selected ? tokens.fuchsia : tokens.line,
               }}
             >
-              <AppText style={{ fontSize: 24 }}>{a.emoji}</AppText>
+              <AvatarGlyph avatar={a} size={38} />
+              <AppText variant="microLabel" dim>
+                {a.label}
+              </AppText>
             </Pressable>
           );
         })}
