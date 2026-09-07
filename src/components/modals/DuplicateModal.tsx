@@ -5,6 +5,7 @@ import * as Crypto from 'expo-crypto';
 
 import { useTheme } from '@/theme/ThemeProvider';
 import { useAppStore } from '@/store';
+import { t } from '@/i18n';
 import { computeNewTreePoints } from '@/domain/rules';
 import { confirmSameTree, submitDuplicateClaim, type DuplicateClaimReason } from '@/server/mockServer';
 import { findSpecies } from '@/server/seedData/species';
@@ -87,19 +88,19 @@ export function DuplicateModal(props: DuplicatePayload) {
     <View style={{ gap: 16 }}>
       {step === 1 ? (
         <>
-          <AppText variant="sheetTitle">Something already exists 8 m away</AppText>
+          <AppText variant="sheetTitle">{t('duplicate.title')}</AppText>
           <Card tint={tokens.surface2} elevated={false} style={{ gap: 4 }}>
-            <AppText variant="cardTitle">{findSpecies(candidate.speciesId)?.name ?? 'Unlisted'}</AppText>
+            <AppText variant="cardTitle">{findSpecies(candidate.speciesId)?.name ?? t('filters.rarityUnrated')}</AppText>
             <AppText variant="body" dim>
               {candidate.street} · found by {candidate.finderHandle}
             </AppText>
           </Card>
-          <Button label="Same tree · +5" onPress={sameTree} loading={submitting} />
-          <Button label="It's a new one" variant="ghost" onPress={() => setStep(2)} />
+          <Button label={t('duplicate.sameTree')} onPress={sameTree} loading={submitting} />
+          <Button label={t('duplicate.itsANewOne')} variant="ghost" onPress={() => setStep(2)} />
         </>
       ) : (
         <>
-          <AppText variant="sheetTitle">Tell us how it differs</AppText>
+          <AppText variant="sheetTitle">{t('duplicate.tellUsHowItDiffers')}</AppText>
           <View>
             {(Object.keys(REASON_LABEL) as DuplicateClaimReason[]).map((r) => (
               <RadioRow key={r} label={REASON_LABEL[r]} selected={reason === r} onPress={() => setReason(r)} />
@@ -124,7 +125,7 @@ export function DuplicateModal(props: DuplicatePayload) {
               />
             ))}
           </View>
-          <Button label="Submit for review" disabled={!reason} loading={submitting} onPress={submitClaim} />
+          <Button label={t('duplicate.submitForReview')} disabled={!reason} loading={submitting} onPress={submitClaim} />
         </>
       )}
     </View>

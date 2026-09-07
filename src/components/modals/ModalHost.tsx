@@ -2,6 +2,7 @@ import { Modal, Pressable, View } from 'react-native';
 import Animated, { FadeIn, FadeOut, SlideInDown, SlideOutDown } from 'react-native-reanimated';
 
 import { useAppStore } from '@/store';
+import { t } from '@/i18n';
 import { useTheme } from '@/theme/ThemeProvider';
 import { radii } from '@/theme/spacing';
 import { durations } from '@/theme/motion';
@@ -53,7 +54,7 @@ export function ModalHost() {
         style={{ flex: 1, backgroundColor: 'rgba(8,14,8,0.58)', justifyContent: 'center' }}
       >
         <Pressable
-          accessibilityLabel="Dismiss"
+          accessibilityLabel={t('common.dismiss')}
           onPress={() => dismissable && closeModal()}
           style={{ position: 'absolute', inset: 0 }}
         />

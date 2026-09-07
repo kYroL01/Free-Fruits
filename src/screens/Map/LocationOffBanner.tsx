@@ -3,6 +3,7 @@ import { Pressable, View } from 'react-native';
 import { useTheme } from '@/theme/ThemeProvider';
 import { radii, spacing } from '@/theme/spacing';
 import { AppText } from '@/components/ui';
+import { t } from '@/i18n';
 
 export function LocationOffBanner({ cityLabel, onTurnOn }: { cityLabel: string; onTurnOn: () => void }) {
   const { tokens } = useTheme();
@@ -21,15 +22,15 @@ export function LocationOffBanner({ cityLabel, onTurnOn }: { cityLabel: string; 
       >
         <View style={{ flex: 1, gap: 2 }}>
           <AppText variant="microLabel" color={tokens.gold}>
-            GPS OFF
+            {t('map.gpsOff')}
           </AppText>
           <AppText variant="body" dim>
-            Browsing from {cityLabel} centre. You can read pins, not log or check in.
+            {t('map.browsingFromCentre', { city: cityLabel })}
           </AppText>
         </View>
         <Pressable accessibilityRole="button" onPress={onTurnOn} hitSlop={8}>
           <AppText variant="microLabel" color={tokens.gold}>
-            TURN ON
+            {t('map.turnOn')}
           </AppText>
         </Pressable>
       </View>

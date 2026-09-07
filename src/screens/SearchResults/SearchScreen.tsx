@@ -8,6 +8,7 @@ import { useAppStore } from '@/store';
 import { isInSeason } from '@/domain/rules';
 import { findSpecies, SPECIES } from '@/server/seedData/species';
 import { AppText, Card, Kicker } from '@/components/ui';
+import { t as tr } from '@/i18n';
 
 const RECENT_SEED = ['fig', 'Via Gola', 'michele-f', 'mulberry'];
 
@@ -64,7 +65,7 @@ export function SearchScreen() {
     <View style={{ flex: 1, backgroundColor: tokens.bg }}>
       <ScrollView contentContainerStyle={{ padding: spacing.screenH, paddingTop: spacing.screenTop, gap: 20 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-          <Pressable accessibilityRole="button" accessibilityLabel="Back" hitSlop={10} onPress={() => router.back()}>
+          <Pressable accessibilityRole="button" accessibilityLabel={tr('common.back')} hitSlop={10} onPress={() => router.back()}>
             <AppText variant="cardTitle">‹</AppText>
           </Pressable>
           <View
@@ -82,13 +83,13 @@ export function SearchScreen() {
             <TextInput
               value={query}
               onChangeText={runQuery}
-              placeholder="Search fruit, street, or forager"
+              placeholder={tr('filters.searchPlaceholder')}
               placeholderTextColor={tokens.dim}
               autoFocus
               style={{ flex: 1, color: tokens.text }}
             />
             {query.length > 0 && (
-              <Pressable accessibilityRole="button" accessibilityLabel="Clear" onPress={() => setQuery('')}>
+              <Pressable accessibilityRole="button" accessibilityLabel={tr('common.clear')} onPress={() => setQuery('')}>
                 <AppText variant="cardTitle" dim>
                   ×
                 </AppText>
@@ -100,7 +101,7 @@ export function SearchScreen() {
         {!results ? (
           <>
             <View style={{ gap: 10 }}>
-              <Kicker>Recent</Kicker>
+              <Kicker>{tr('search.recent')}</Kicker>
               <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
                 {recent.map((r) => (
                   <Pressable
@@ -121,7 +122,7 @@ export function SearchScreen() {
             </View>
 
             <View style={{ gap: 10 }}>
-              <Kicker>Ripe this month near you</Kicker>
+              <Kicker>{tr('search.ripeThisMonth')}</Kicker>
               {ripeThisMonth.map((s) => (
                 <View key={s.id} style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                   <AppText variant="rowLabel">{s.name}</AppText>
@@ -141,7 +142,7 @@ export function SearchScreen() {
             </AppText>
             <Pressable accessibilityRole="button" onPress={() => router.push('/add-tree')}>
               <AppText variant="microLabel" color={tokens.fuchsia}>
-                ADD IT YOURSELF
+                {tr('search.addItYourself')}
               </AppText>
             </Pressable>
           </Card>
@@ -164,7 +165,7 @@ export function SearchScreen() {
                       </AppText>
                     </View>
                     <AppText variant="microLabel" dim>
-                      {t.pending ? 'PENDING' : 'VERIFIED'}
+                      {t.pending ? tr('search.pending') : tr('search.verified')}
                     </AppText>
                   </Pressable>
                 ))}
@@ -173,7 +174,7 @@ export function SearchScreen() {
 
             {results.streets.length > 0 && (
               <View style={{ gap: 10 }}>
-                <Kicker>Streets</Kicker>
+                <Kicker>{tr('search.streets')}</Kicker>
                 {results.streets.map((street) => {
                   const first = allTrees.find((t) => t.street === street);
                   const count = allTrees.filter((t) => t.street === street).length;
@@ -196,7 +197,7 @@ export function SearchScreen() {
 
             {results.foragers.length > 0 && (
               <View style={{ gap: 10 }}>
-                <Kicker>Foragers</Kicker>
+                <Kicker>{tr('search.foragers')}</Kicker>
                 {results.foragers.map((handle) => {
                   const count = allTrees.filter((t) => t.finderHandle === handle).length;
                   return (

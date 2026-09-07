@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { useTheme } from '@/theme/ThemeProvider';
 import { spacing } from '@/theme/spacing';
 import { AppText, Kicker } from '@/components/ui';
+import { t } from '@/i18n';
 
 /** Temporary placeholder — replaced screen-by-screen in later milestones. */
 export function PlaceholderScreen({ title, kicker }: { title: string; kicker: string }) {
@@ -20,7 +21,7 @@ export function PlaceholderScreen({ title, kicker }: { title: string; kicker: st
       <Kicker>{kicker}</Kicker>
       <AppText variant="screenTitle">{title}</AppText>
       <AppText variant="body" dim>
-        Coming in a later milestone.
+        {t('common.comingLater')}
       </AppText>
     </View>
   );

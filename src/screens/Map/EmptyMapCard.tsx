@@ -2,6 +2,7 @@ import { View } from 'react-native';
 
 import { spacing } from '@/theme/spacing';
 import { AppText, Button, Card, Kicker } from '@/components/ui';
+import { t } from '@/i18n';
 
 type EmptyMapCardProps =
   | { variant: 'nothing_mapped'; onAddFirst: () => void }
@@ -15,18 +16,18 @@ export function EmptyMapCard(props: EmptyMapCardProps) {
       <Card style={{ gap: 10 }}>
         {props.variant === 'nothing_mapped' ? (
           <>
-            <Kicker>Nothing mapped here yet</Kicker>
-            <AppText variant="cardTitle">Be the first on this street</AppText>
+            <Kicker>{t('map.nothingMappedTitle')}</Kicker>
+            <AppText variant="cardTitle">{t('map.nothingMappedBody')}</AppText>
             <AppText variant="body" dim>
               The first pin on a block is always the hardest. Every tree you log helps the next
               forager find lunch.
             </AppText>
-            <Button label="Add the first tree" onPress={props.onAddFirst} />
+            <Button label={t('map.addFirstTree')} onPress={props.onAddFirst} />
           </>
         ) : (
           <>
-            <AppText variant="cardTitle">Nothing matches these filters</AppText>
-            <Button label="Loosen them" variant="ghost" onPress={props.onLoosen} />
+            <AppText variant="cardTitle">{t('map.nothingMatchesFilters')}</AppText>
+            <Button label={t('map.loosenThem')} variant="ghost" onPress={props.onLoosen} />
           </>
         )}
       </Card>

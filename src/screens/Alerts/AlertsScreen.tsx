@@ -6,6 +6,7 @@ import { spacing } from '@/theme/spacing';
 import { useAppStore } from '@/store';
 import { AppText, Button } from '@/components/ui';
 import { AlertRow } from './AlertRow';
+import { t } from '@/i18n';
 
 export function AlertsScreen() {
   const { tokens } = useTheme();
@@ -20,11 +21,11 @@ export function AlertsScreen() {
       contentContainerStyle={{ padding: spacing.screenH, paddingTop: spacing.screenTop, gap: 16 }}
     >
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-        <AppText variant="screenTitle">Alerts</AppText>
+        <AppText variant="screenTitle">{t('alerts.title')}</AppText>
         {alerts.length > 0 && (
           <Pressable accessibilityRole="button" onPress={markAllAlertsRead} hitSlop={8}>
             <AppText variant="microLabel" color={tokens.fuchsia}>
-              MARK ALL READ
+              {t('alerts.markAllRead')}
             </AppText>
           </Pressable>
         )}
@@ -32,12 +33,12 @@ export function AlertsScreen() {
 
       {alerts.length === 0 ? (
         <View style={{ gap: 10, paddingTop: 20 }}>
-          <AppText variant="cardTitle">Quiet for now</AppText>
+          <AppText variant="cardTitle">{t('alerts.quietForNow')}</AppText>
           <AppText variant="body" dim>
             You will hear about nearby unverified trees, claims that need your input, and trees
             back in season.
           </AppText>
-          <Button label="Log a tree to start the clock" variant="ghost" onPress={() => router.push('/add-tree')} />
+          <Button label={t('alerts.logTreeToStart')} variant="ghost" onPress={() => router.push('/add-tree')} />
         </View>
       ) : (
         alerts.map((alert) => (

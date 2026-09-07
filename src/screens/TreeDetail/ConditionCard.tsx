@@ -1,9 +1,10 @@
 import { View } from 'react-native';
 
 import { useTheme } from '@/theme/ThemeProvider';
-import { CONDITION_LABEL, isGoodReason } from '@/domain/copy';
+import { conditionLabel, isGoodReason } from '@/domain/copy';
 import type { ConditionReport } from '@/domain/types';
 import { AppText, IconTile } from '@/components/ui';
+import { t } from '@/i18n';
 
 function relativeTime(iso: string): string {
   const ms = Date.now() - new Date(iso).getTime();
@@ -39,9 +40,9 @@ export function ConditionCard({ report }: { report: ConditionReport | null }) {
       </IconTile>
       <View style={{ flex: 1 }}>
         <AppText variant="microLabel" dim>
-          CONDITION · LATEST REPORT
+          {t('treeDetail.conditionLatestReport')}
         </AppText>
-        <AppText variant="rowLabel">{CONDITION_LABEL[report.reason]}</AppText>
+        <AppText variant="rowLabel">{conditionLabel(report.reason)}</AppText>
       </View>
       <AppText variant="microLabel" dim>
         {relativeTime(report.at)} · {report.by}

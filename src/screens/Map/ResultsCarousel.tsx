@@ -5,6 +5,7 @@ import { spacing } from '@/theme/spacing';
 import type { Tree } from '@/domain/types';
 import { AppText } from '@/components/ui';
 import { TreeCard } from './TreeCard';
+import { t } from '@/i18n';
 
 const CARD_WIDTH = 212;
 const GAP = 12;
@@ -39,11 +40,11 @@ export function ResultsCarousel({
         }}
       >
         <AppText variant="rowTitle">
-          {trees.length} tree{trees.length === 1 ? '' : 's'} within {radiusLabel}
+          {t('map.treesWithin', { count: trees.length, radius: radiusLabel })}
         </AppText>
         <Pressable accessibilityRole="button" onPress={onSeeAll} hitSlop={8}>
           <AppText variant="microLabel" color={tokens.fuchsia}>
-            SEE ALL
+            {t('map.seeAll')}
           </AppText>
         </Pressable>
       </View>

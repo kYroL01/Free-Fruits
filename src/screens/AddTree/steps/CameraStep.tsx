@@ -10,6 +10,7 @@ import { useLocation } from '@/hooks/useLocation';
 import { mediumHaptic } from '@/utils/haptics';
 import { AppText } from '@/components/ui';
 import type { LatLng } from '@/domain/types';
+import { t } from '@/i18n';
 
 type CaptureResult = { photoUri: string; exifGps: LatLng; takenAt: string };
 
@@ -42,9 +43,9 @@ export function CameraStep({ onCaptured, onNoLocationUpload }: CameraStepProps) 
   if (!permission.granted) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 16, padding: 24 }}>
-        <AppText variant="cardTitle">Camera access needed</AppText>
+        <AppText variant="cardTitle">{t('addTree.cameraDeniedTitle')}</AppText>
         <AppText variant="body" dim style={{ textAlign: 'center' }}>
-          A tree only counts once you photograph it on site — the GPS stamp is the proof.
+          {t('addTree.cameraDeniedBody')}
         </AppText>
         <Pressable
           accessibilityRole="button"
@@ -52,7 +53,7 @@ export function CameraStep({ onCaptured, onNoLocationUpload }: CameraStepProps) 
           style={{ backgroundColor: tokens.fuchsia, paddingHorizontal: 20, paddingVertical: 12, borderRadius: 14 }}
         >
           <AppText variant="primaryButton" color="#FFFFFF">
-            Allow camera
+            {t('addTree.allowCamera')}
           </AppText>
         </Pressable>
       </View>
@@ -108,7 +109,9 @@ export function CameraStep({ onCaptured, onNoLocationUpload }: CameraStepProps) 
                 }}
               />
               <AppText variant="microLabel" color="#FFFFFF">
-                {gpsReady ? `GPS LOCKED · ${Math.round(accuracyM ?? 0)} M` : 'SEARCHING FOR GPS'}
+                {gpsReady
+                  ? t('addTree.gpsLocked', { meters: Math.round(accuracyM ?? 0) })
+                  : t('addTree.searchingForGps')}
               </AppText>
             </View>
             <View
@@ -138,24 +141,24 @@ export function CameraStep({ onCaptured, onNoLocationUpload }: CameraStepProps) 
               }}
             />
             <AppText variant="body" color="#FFFFFF" style={{ marginTop: 10, textAlign: 'center', paddingHorizontal: 40 }}>
-              Frame the whole tree, standing at its trunk
+              {t('addTree.frameTheTree')}
             </AppText>
           </View>
 
           <View style={{ padding: 20, gap: 10, alignItems: 'center' }}>
             <AppText variant="microLabel" color="rgba(255,255,255,0.7)">
-              {gpsReady ? 'Location is stamped into the photo' : 'Wait for a lock — without coordinates the photo proves nothing.'}
+              {gpsReady ? t('addTree.locationStamped') : t('addTree.waitForALock')}
             </AppText>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 32 }}>
-              <Pressable accessibilityRole="button" accessibilityLabel="Upload from library" onPress={upload}>
+              <Pressable accessibilityRole="button" accessibilityLabel={t('addTree.uploadFromLibrary')} onPress={upload}>
                 <AppText variant="microLabel" color="#FFFFFF">
-                  UPLOAD
+                  {t('addTree.upload')}
                 </AppText>
               </Pressable>
 
               <Pressable
                 accessibilityRole="button"
-                accessibilityLabel="Take photo"
+                accessibilityLabel={t('addTree.takePhoto')}
                 onPress={shutter}
                 disabled={!gpsReady || capturing}
                 style={{
@@ -169,9 +172,9 @@ export function CameraStep({ onCaptured, onNoLocationUpload }: CameraStepProps) 
                 }}
               />
 
-              <Pressable accessibilityRole="button" accessibilityLabel="Toggle flash" onPress={() => setTorch((t) => !t)}>
+              <Pressable accessibilityRole="button" accessibilityLabel={t('addTree.toggleFlash')} onPress={() => setTorch((t) => !t)}>
                 <AppText variant="microLabel" color={torch ? tokens.fuchsia : '#FFFFFF'}>
-                  FLASH
+                  {t('addTree.flash')}
                 </AppText>
               </Pressable>
             </View>

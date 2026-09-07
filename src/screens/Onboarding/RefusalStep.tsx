@@ -23,18 +23,18 @@ export function RefusalStep({ onBrowseWithoutIt }: { onBrowseWithoutIt: () => vo
         <View style={{ flexDirection: 'row', gap: 10 }}>
           <StatusDot color={tokens.gold} />
           <View style={{ flex: 1 }}>
-            <AppText variant="rowTitle">Logging a tree</AppText>
+            <AppText variant="rowTitle">{t('onboarding.refusalLoggingTitle')}</AppText>
             <AppText variant="body" dim>
-              The photo cannot prove anything without a location, so the pin is refused.
+              {t('onboarding.refusalLoggingBody')}
             </AppText>
           </View>
         </View>
         <View style={{ flexDirection: 'row', gap: 10 }}>
           <StatusDot color={tokens.gold} />
           <View style={{ flex: 1 }}>
-            <AppText variant="rowTitle">Checking in</AppText>
+            <AppText variant="rowTitle">{t('onboarding.refusalCheckinTitle')}</AppText>
             <AppText variant="body" dim>
-              We cannot tell you are within 25 m of the trunk.
+              {t('onboarding.refusalCheckinBody')}
             </AppText>
           </View>
         </View>

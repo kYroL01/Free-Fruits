@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import * as Crypto from 'expo-crypto';
 
 import { useAppStore } from '@/store';
+import { t } from '@/i18n';
 import { useNetworkStatus } from '@/hooks/useNetworkStatus';
 import { drainQueue } from '@/server/mockServer';
 import { findSpecies } from '@/server/seedData/species';
@@ -54,8 +55,8 @@ export function QueueDrainer() {
           addAlert({
             id: Crypto.randomUUID(),
             kind: 'info',
-            title: 'A queued tree expired',
-            body: 'It sat offline for more than 7 days, so the pin could no longer be trusted. Log it again if it is still there.',
+            title: t('queue.expiredTitle'),
+            body: t('queue.expiredBody'),
             at: new Date().toISOString(),
             read: false,
           });
@@ -66,8 +67,8 @@ export function QueueDrainer() {
         addAlert({
           id: Crypto.randomUUID(),
           kind: 'claim_review',
-          title: 'A queued tree matched an existing pin',
-          body: 'It landed near an already-mapped tree once it reached the server — open it to confirm or claim it as separate.',
+          title: t('queue.duplicateTitle'),
+          body: t('queue.duplicateBody'),
           at: new Date().toISOString(),
           read: false,
           treeId: outcome.candidate.id,

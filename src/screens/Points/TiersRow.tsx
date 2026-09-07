@@ -5,12 +5,13 @@ import { radii } from '@/theme/spacing';
 import { TIER_THRESHOLDS } from '@/domain/rules';
 import type { Tier } from '@/domain/types';
 import { AppText } from '@/components/ui';
+import { t } from '@/i18n';
 
-const TIERS: { key: Tier; label: string }[] = [
-  { key: 'sprout', label: 'Sprout' },
-  { key: 'picker', label: 'Picker' },
-  { key: 'forager', label: 'Forager' },
-  { key: 'orchardist', label: 'Orchardist' },
+const TIERS: { key: Tier; labelKey: string }[] = [
+  { key: 'sprout', labelKey: 'points.tierSprout' },
+  { key: 'picker', labelKey: 'points.tierPicker' },
+  { key: 'forager', labelKey: 'points.tierForager' },
+  { key: 'orchardist', labelKey: 'points.tierOrchardist' },
 ];
 
 export function TiersRow({ currentTier }: { currentTier: Tier }) {
@@ -18,11 +19,11 @@ export function TiersRow({ currentTier }: { currentTier: Tier }) {
 
   return (
     <View style={{ flexDirection: 'row', gap: 8 }}>
-      {TIERS.map((t) => {
-        const isCurrent = t.key === currentTier;
+      {TIERS.map((tier) => {
+        const isCurrent = tier.key === currentTier;
         return (
           <View
-            key={t.key}
+            key={tier.key}
             style={{
               flex: 1,
               alignItems: 'center',
@@ -33,9 +34,9 @@ export function TiersRow({ currentTier }: { currentTier: Tier }) {
               borderColor: isCurrent ? tokens.fuchsia : tokens.line,
             }}
           >
-            <AppText variant="rowLabel">{t.label}</AppText>
+            <AppText variant="rowLabel">{t(tier.labelKey)}</AppText>
             <AppText variant="microLabel" dim>
-              {TIER_THRESHOLDS[t.key]}
+              {TIER_THRESHOLDS[tier.key]}
             </AppText>
           </View>
         );

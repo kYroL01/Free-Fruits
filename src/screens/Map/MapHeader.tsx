@@ -4,6 +4,7 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { radii } from '@/theme/spacing';
 import { shadows } from '@/theme/shadows';
 import { AppText, StatusDot } from '@/components/ui';
+import { t } from '@/i18n';
 
 export type LocationBarState = 'ok' | 'locating' | 'off';
 
@@ -15,10 +16,10 @@ type MapHeaderProps = {
   onToggleTheme: () => void;
 };
 
-const KICKER_BY_STATE: Record<LocationBarState, string> = {
-  ok: 'Nearest city · auto',
-  locating: 'Locating · no fix yet',
-  off: 'Location off · city centre',
+const KICKER_KEY_BY_STATE: Record<LocationBarState, string> = {
+  ok: 'map.nearestCityAuto',
+  locating: 'map.locatingNoFix',
+  off: 'map.locationOffCityCentre',
 };
 
 /** Floating location bar + theme toggle, pinned above the map. */
@@ -46,13 +47,13 @@ export function MapHeader({ cityLabel, state, onFilterPress, dark, onToggleTheme
         <StatusDot color={dotColor} size={8} />
         <View style={{ flex: 1, gap: 2 }}>
           <AppText variant="microLabel" dim>
-            {KICKER_BY_STATE[state]}
+            {t(KICKER_KEY_BY_STATE[state])}
           </AppText>
-          <AppText variant="rowTitle">{state === 'locating' ? 'Finding you…' : cityLabel}</AppText>
+          <AppText variant="rowTitle">{state === 'locating' ? t('map.findingYou') : cityLabel}</AppText>
         </View>
         <Pressable
           accessibilityRole="button"
-          accessibilityLabel="Filter"
+          accessibilityLabel={t('map.filter')}
           onPress={onFilterPress}
           hitSlop={8}
           style={{
@@ -66,7 +67,7 @@ export function MapHeader({ cityLabel, state, onFilterPress, dark, onToggleTheme
           }}
         >
           <AppText variant="microLabel" color={tokens.fuchsia}>
-            FILTER
+            {t('map.filter')}
           </AppText>
         </Pressable>
       </View>
@@ -87,7 +88,7 @@ export function MapHeader({ cityLabel, state, onFilterPress, dark, onToggleTheme
           shadows.floatingHeader,
         ]}
       >
-        <AppText variant="microLabel">{dark ? 'LIGHT' : 'DARK'}</AppText>
+        <AppText variant="microLabel">{dark ? t('map.themeLight') : t('map.themeDark')}</AppText>
       </Pressable>
     </View>
   );

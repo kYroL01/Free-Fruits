@@ -3,6 +3,7 @@ import { useRouter } from 'expo-router';
 
 import { useTheme } from '@/theme/ThemeProvider';
 import { useAppStore } from '@/store';
+import { t } from '@/i18n';
 import { AppText, Button, Kicker } from '@/components/ui';
 
 type QueuedModalProps = { points: number; queueCount: number };
@@ -19,21 +20,20 @@ export function QueuedModal({ points, queueCount }: QueuedModalProps) {
 
   return (
     <View style={{ flex: 1, backgroundColor: tokens.bg, padding: 18, justifyContent: 'flex-end', gap: 16, paddingBottom: 48 }}>
-      <Kicker>{`Saved offline · ${queueCount} in queue`}</Kicker>
-      <AppText variant="successHeadline">It uploads itself.</AppText>
+      <Kicker>{t('queued.savedOffline', { count: queueCount })}</Kicker>
+      <AppText variant="successHeadline">{t('queued.uploadsItself')}</AppText>
       <AppText variant="pointsBig" color={tokens.gold} style={{ fontSize: 40 }}>
         +{points}
       </AppText>
       <AppText variant="microLabel" dim>
-        HELD ON THIS PHONE
+        {t('queued.heldOnThisPhone')}
       </AppText>
       <View style={{ height: 1, backgroundColor: tokens.line }} />
       <AppText variant="body" dim>
-        The photo, GPS stamp, and species are saved on your device. It sends itself the moment
-        you have signal — no need to open the app again.
+        {t('queued.body')}
       </AppText>
-      <Button label="Back to map" onPress={() => go('/map')} />
-      <Button label="See what is waiting" variant="ghost" onPress={() => go('/you')} />
+      <Button label={t('success.backToMap')} onPress={() => go('/map')} />
+      <Button label={t('queued.seeWhatIsWaiting')} variant="ghost" onPress={() => go('/you')} />
     </View>
   );
 }

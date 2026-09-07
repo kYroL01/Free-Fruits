@@ -4,6 +4,7 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { radii } from '@/theme/spacing';
 import { AppText, Kicker, SegmentedProgress } from '@/components/ui';
 import type { Tree } from '@/domain/types';
+import { t } from '@/i18n';
 
 export function VerificationBlock({ tree }: { tree: Tree }) {
   const { tokens } = useTheme();
@@ -21,12 +22,17 @@ export function VerificationBlock({ tree }: { tree: Tree }) {
     >
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
         <Kicker color={tree.pending ? tokens.fuchsia : tokens.green}>
-          {tree.pending ? `Needs ${remaining} more checks` : 'Verified by community'}
+          {tree.pending
+            ? t('treeDetail.needsMoreChecks', { count: remaining })
+            : t('treeDetail.verifiedByCommunity')}
         </Kicker>
         <AppText variant="microLabel" dim>
           {tree.pending
-            ? `${tree.confirmations} / ${tree.confirmationsNeeded} needed`
-            : `${tree.confirmations} on-site OKs`}
+            ? t('treeDetail.confirmationsNeeded', {
+                have: tree.confirmations,
+                need: tree.confirmationsNeeded,
+              })
+            : t('treeDetail.onSiteOks', { count: tree.confirmations })}
         </AppText>
       </View>
 
@@ -37,8 +43,7 @@ export function VerificationBlock({ tree }: { tree: Tree }) {
       />
 
       <AppText variant="body" dim>
-        Photo carried GPS matching the pin within 3 m, which is what lets other foragers trust
-        it enough to confirm on site.
+        {t('treeDetail.verificationBody')}
       </AppText>
 
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
@@ -56,14 +61,14 @@ export function VerificationBlock({ tree }: { tree: Tree }) {
         </View>
         <View style={{ flex: 1 }}>
           <AppText variant="microLabel" dim>
-            DISCOVERED BY
+            {t('treeDetail.discoveredBy')}
           </AppText>
           <AppText variant="rowLabel">
             {tree.finderHandle} · {new Date(tree.createdAt).toLocaleDateString()}
           </AppText>
         </View>
         <AppText variant="microLabel" dim>
-          PERMANENT CREDIT
+          {t('treeDetail.permanentCredit')}
         </AppText>
       </View>
     </View>

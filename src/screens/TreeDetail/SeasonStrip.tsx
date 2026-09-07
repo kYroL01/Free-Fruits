@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { useTheme } from '@/theme/ThemeProvider';
 import { isInSeason } from '@/domain/rules';
 import { AppText, Kicker } from '@/components/ui';
+import { t } from '@/i18n';
 
 export function SeasonStrip({ seasonWindow }: { seasonWindow: [number, number] }) {
   const { tokens } = useTheme();
@@ -12,7 +13,7 @@ export function SeasonStrip({ seasonWindow }: { seasonWindow: [number, number] }
 
   return (
     <View style={{ gap: 10 }}>
-      <Kicker>Season</Kicker>
+      <Kicker>{t('treeDetail.season')}</Kicker>
       <View style={{ flexDirection: 'row', gap: 4 }}>
         {Array.from({ length: 12 }).map((_, month) => {
           const isCurrent = month === currentMonth;
@@ -25,7 +26,7 @@ export function SeasonStrip({ seasonWindow }: { seasonWindow: [number, number] }
       </View>
       {inSeasonNow && (
         <AppText variant="body" color={tokens.green}>
-          In season right now
+          {t('treeDetail.inSeasonRightNow')}
         </AppText>
       )}
     </View>

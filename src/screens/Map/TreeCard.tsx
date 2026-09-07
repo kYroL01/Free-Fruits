@@ -4,7 +4,7 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { rarityColor } from '@/theme/tokens';
 import { radii } from '@/theme/spacing';
 import { shadows } from '@/theme/shadows';
-import { CONDITION_SHORT_LABEL, isGoodReason } from '@/domain/copy';
+import { conditionShortLabel, isGoodReason } from '@/domain/copy';
 import type { Tree } from '@/domain/types';
 import { AppText, HatchedPlaceholder, StatusDot } from '@/components/ui';
 
@@ -81,7 +81,7 @@ export function TreeCard({ tree, speciesName, distanceLabel, onPress }: TreeCard
           {tree.latestReport && (
             <AppText variant="microLabel" color={isGoodReason(tree.latestReport.reason) ? tokens.green : tokens.gold}>
               {' '}
-              · {CONDITION_SHORT_LABEL[tree.latestReport.reason]}
+              · {conditionShortLabel(tree.latestReport.reason)}
             </AppText>
           )}
         </View>
