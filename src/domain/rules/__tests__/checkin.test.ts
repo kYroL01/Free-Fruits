@@ -1,4 +1,8 @@
 import { canCheckIn } from '../checkin';
+import { isInSeason } from '../season';
+import { findSpecies } from '@/server/seedData/species';
+import { buildSeedMyReports } from '@/server/seedData/myReports';
+import { buildSeedTrees } from '@/server/seedData/trees';
 
 const BASE = {
   isOwnTree: false,
@@ -54,5 +58,74 @@ describe('canCheckIn', () => {
   it('own-tree check is evaluated before proximity/cooldown/season (fastest, clearest reason first)', () => {
     const decision = canCheckIn({ ...BASE, isOwnTree: true, withinCheckinRadius: false });
     expect(decision.reasonCode).toBe('own_tree');
+  });
+});
+
+/**
+ * The seeded report exists so the cooldown state is reachable on a fresh install. These guard the
+ * three properties that make it reachable — it is recent, it is not the user's own tree, and the
+ * cooldown gate is what the decision lands on — so a later edit to the seed cannot silently
+ * re-hide the state it was added to expose.
+ */
+describe('the seeded cooldown state', () => {
+  const seeded = buildSeedMyReports().t18;
+  const tree = buildSeedTrees().find((t) => t.id === 't18')!;
+  const FIG_SEASON = findSpecies('fig')!.seasonWindow;
+
+  const seedBase = {
+    isOwnTree: tree.finderId === 'me',
+    withinCheckinRadius: true,
+    myLastReportAt: seeded.at,
+    seasonWindow: FIG_SEASON,
+    locationPermission: 'granted' as const,
+  };
+
+  it('seeds a report on t18, the tree the cooldown copy is written against', () => {
+    expect(seeded.treeId).toBe('t18');
+  });
+
+  it('is not the user own tree, so own_tree cannot short-circuit ahead of the cooldown', () => {
+    expect(tree.finderId).not.toBe('me');
+  });
+
+  it('lands on the cooldown at whatever today happens to be', () => {
+    const decision = canCheckIn({ ...seedBase, now: new Date() });
+    expect(decision.reasonCode).toBe('on_cooldown');
+  });
+
+  it('reads "opens in 22 days" eight days after the report', () => {
+    const now = new Date(new Date(seeded.at).getTime() + 8 * 24 * 60 * 60 * 1000);
+    expect(canCheckIn({ ...seedBase, now })).toEqual({
+      allowed: false,
+      reasonCode: 'on_cooldown',
+      opensInDays: 22,
+    });
+  });
+
+  it('reports the cooldown even out of fig season — the cooldown gate is evaluated first', () => {
+    const reportedAt = new Date(2026, 0, 1); // January, well outside the fig window
+    const now = new Date(2026, 0, 9);
+    expect(isInSeason(FIG_SEASON, now)).toBe(false);
+    expect(canCheckIn({ ...seedBase, myLastReportAt: reportedAt.toISOString(), now })).toEqual({
+      allowed: false,
+      reasonCode: 'on_cooldown',
+      opensInDays: 22,
+    });
+  });
+
+  it('opens once the 30 days have passed, and the fig season then decides', () => {
+    const reportedAt = new Date(2026, 5, 1);
+    const inSeason = new Date(2026, 6, 5); // 34 days later, July, figs are running
+    expect(canCheckIn({ ...seedBase, myLastReportAt: reportedAt.toISOString(), now: inSeason })).toEqual({
+      allowed: true,
+      reasonCode: 'ok',
+    });
+
+    const outOfSeason = new Date(2026, 9, 5); // the cooldown is spent, but October is not fig season
+    expect(canCheckIn({ ...seedBase, myLastReportAt: reportedAt.toISOString(), now: outOfSeason })).toEqual({
+      allowed: false,
+      reasonCode: 'out_of_season',
+      opensInMonth: 'June',
+    });
   });
 });
