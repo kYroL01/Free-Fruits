@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Privacy policy for Free Fruits (com.freefruits.app): no account, no backend, no analytics. All data stays on your device.">
+<meta name="robots" content="index, follow">
+<title>Free Fruits Privacy Policy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #F5F7F2;
+    --surface: #FFFFFF;
+    --surface2: #EDF1E9;
+    --text: #10160F;
+    --dim: #6C7A6E;
+    --line: rgba(16, 22, 15, 0.10);
+    --line-strong: rgba(16, 22, 15, 0.22);
+    --green: #12734A;
+    --green-soft: #E2F1E6;
+    --gold: #A87400;
+    --gold-soft: #F7EBCF;
+    --fuchsia: #D4148B;
+
+    --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --body: "DM Sans", "Segoe UI", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0D1210;
+      --surface: #161D18;
+      --surface2: #1E2721;
+      --text: #EDF3EC;
+      --dim: #8FA093;
+      --line: rgba(255, 255, 255, 0.13);
+      --line-strong: rgba(255, 255, 255, 0.28);
+      --green: #43C384;
+      --green-soft: rgba(67, 195, 132, 0.15);
+      --gold: #EFC154;
+      --gold-soft: rgba(239, 193, 84, 0.16);
+      --fuchsia: #FF57BC;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #0D1210;
+    --surface: #161D18;
+    --surface2: #1E2721;
+    --text: #EDF3EC;
+    --dim: #8FA093;
+    --line: rgba(255, 255, 255, 0.13);
+    --line-strong: rgba(255, 255, 255, 0.28);
+    --green: #43C384;
+    --green-soft: rgba(67, 195, 132, 0.15);
+    --gold: #EFC154;
+    --gold-soft: rgba(239, 193, 84, 0.16);
+    --fuchsia: #FF57BC;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding-inline: 22px;
+    padding-block: 56px 72px;
+  }
+
+  a { color: var(--green); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--fuchsia);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* ---- masthead ---- */
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin: 0;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(2rem, 6vw, 2.9rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    margin: 14px 0 0;
+  }
+
+  .standfirst {
+    font-size: 1.075rem;
+    color: var(--dim);
+    margin: 16px 0 0;
+    max-width: 34em;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 30px;
+    margin-top: 30px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line-strong);
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.03em;
+  }
+  .meta div { display: flex; gap: 8px; }
+  .meta dt { color: var(--dim); text-transform: uppercase; letter-spacing: 0.1em; }
+  .meta dd { margin: 0; font-variant-numeric: tabular-nums; }
+
+  /* ---- the one accented panel ---- */
+  .glance {
+    margin-top: 40px;
+    padding: 24px 26px;
+    background: var(--green-soft);
+    border-left: 3px solid var(--green);
+  }
+  .glance h2 {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin: 0 0 14px;
+  }
+  .glance ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 11px; }
+  .glance li { display: grid; grid-template-columns: 1.1rem 1fr; gap: 10px; align-items: start; }
+  .glance li::before {
+    content: "—";
+    font-family: var(--mono);
+    color: var(--green);
+    line-height: 1.65;
+  }
+  .glance strong { font-weight: 500; }
+
+  /* ---- numbered clauses ---- */
+  section { margin-top: 52px; }
+  section > h2 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.32rem;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    text-wrap: balance;
+    margin: 0 0 14px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 2.6rem 1fr;
+    gap: 4px;
+  }
+  section > h2 .num {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: var(--dim);
+    letter-spacing: 0.06em;
+    padding-top: 0.42rem;
+    font-variant-numeric: tabular-nums;
+  }
+  section p, section ul, section ol { margin: 0 0 14px; }
+  section > p:last-child, section > ul:last-child { margin-bottom: 0; }
+  section ul, section ol { padding-left: 1.15rem; }
+  section li { margin-bottom: 7px; }
+
+  h3 {
+    font-family: var(--body);
+    font-weight: 500;
+    font-size: 1rem;
+    margin: 22px 0 8px;
+  }
+
+  code, .k {
+    font-family: var(--mono);
+    font-size: 0.86em;
+    background: var(--surface2);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+  /* ---- permission table ---- */
+  .scroller { overflow-x: auto; margin: 0 0 14px; border: 1px solid var(--line); }
+  table { border-collapse: collapse; width: 100%; min-width: 34rem; background: var(--surface); }
+  th, td { text-align: left; padding: 12px 14px; vertical-align: top; border-bottom: 1px solid var(--line); }
+  tr:last-child td { border-bottom: 0; }
+  th {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+    white-space: nowrap;
+  }
+  td:first-child { font-family: var(--mono); font-size: 0.8rem; white-space: nowrap; }
+  td { font-size: 0.92rem; line-height: 1.5; }
+
+  /* ---- retention list ---- */
+  .rows { display: grid; gap: 0; border-top: 1px solid var(--line); margin-bottom: 14px; }
+  .rows > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .rows .lbl { font-size: 0.95rem; }
+  .rows .val {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .val-keep { color: var(--green); }
+  .val-time { color: var(--gold); }
+  .val-never { color: var(--dim); }
+
+  .note {
+    padding: 16px 18px;
+    background: var(--gold-soft);
+    border-left: 3px solid var(--gold);
+    font-size: 0.95rem;
+  }
+  .note p:last-child { margin-bottom: 0; }
+
+  footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line-strong);
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    line-height: 1.8;
+    color: var(--dim);
+  }
+
+  @media (max-width: 560px) {
+    .wrap { padding-block: 40px 56px; }
+    section > h2 { grid-template-columns: 1fr; gap: 2px; }
+    section > h2 .num { padding-top: 0; }
+  }
+</style>
+<style>
+  :root { color-scheme: light dark; }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; }
+  img { max-width: 100%; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Free Fruits · Android</p>
+    <h1>Privacy Policy</h1>
+    <p class="standfirst">
+      Free Fruits is a foraging map for public fruit trees. A map like that only works if the
+      trees are real, so photos carry GPS — but nothing about <em>you</em> leaves your phone.
+    </p>
+    <dl class="meta">
+      <div><dt>Effective</dt><dd>11 September 2026</dd></div>
+      <div><dt>App version</dt><dd>1.0.0</dd></div>
+      <div><dt>Package</dt><dd>com.freefruits.app</dd></div>
+    </dl>
+  </header>
+
+  <div class="glance">
+    <h2>The short version</h2>
+    <ul>
+      <li><strong>No account.</strong> There is no sign-up, no login, no profile on any server.</li>
+      <li><strong>No servers of ours.</strong> Free Fruits has no backend. Your trees, points and settings are written to your phone's storage and stay there.</li>
+      <li><strong>No analytics, no ads, no trackers.</strong> No advertising identifier, no third-party analytics or attribution SDK, no crash reporter of our own.</li>
+      <li><strong>Your live position is never recorded.</strong> It is read while the app is open, used on the spot, and discarded.</li>
+      <li><strong>Uninstalling erases everything.</strong> Because the only copy is local, removing the app removes the data.</li>
+    </ul>
+  </div>
+
+  <section>
+    <h2><span class="num">01</span><span>Who is responsible</span></h2>
+    <p>
+      Free Fruits is an independent app published on Google Play under the package name
+      <code>com.freefruits.app</code>. For anything in this policy, write to
+      <a href="mailto:kraken86@proton.me">kraken86@proton.me</a>.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="num">02</span><span>What the app stores, and where</span></h2>
+    <p>
+      Everything Free Fruits remembers is written to your device's own app storage, under the key
+      <code>free-fruits-store</code>. It is not uploaded, backed up to us, or readable by us. That
+      store holds:
+    </p>
+    <ul>
+      <li>Your display name, handle, avatar and invite code — all chosen in-app, none verified against anything.</li>
+      <li>Your points, tree count, strikes and redeemed rewards.</li>
+      <li>The trees you have logged, including their photos and the GPS coordinates attached to them.</li>
+      <li>Your pending upload queue and your alerts.</li>
+      <li>Your settings: units, dark mode, map precision, and the tracking toggles described in section 4.</li>
+    </ul>
+    <p>
+      We never see any of it. There is no endpoint for it to be sent to.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="num">03</span><span>Device permissions and why each is asked</span></h2>
+    <p>Free Fruits requests only the permissions it uses, and only at the moment it needs them.</p>
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr><th scope="col">Permission</th><th scope="col">What it is for</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>CAMERA</td>
+            <td>To photograph a tree on site. The photo carries the GPS stamp that proves the tree exists.</td>
+          </tr>
+          <tr>
+            <td>ACCESS_FINE_LOCATION<br>ACCESS_COARSE_LOCATION</td>
+            <td>To show trees near you, to unlock a check-in when you are within 25 m of a pin, and to stamp new tree photos with GPS. Foreground only — the app never requests background location.</td>
+          </tr>
+          <tr>
+            <td>READ_MEDIA_IMAGES</td>
+            <td>To let you pick an existing photo when logging a tree, as long as that photo carries a location.</td>
+          </tr>
+          <tr>
+            <td>POST_NOTIFICATIONS</td>
+            <td>To show local reminders, such as a tree coming back into season. These are generated on your device; no push token is registered and no notification is sent from a server.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Each is optional. Decline any of them and the rest of the app still works — you simply lose
+      the feature that needs it.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="num">04</span><span>Location, in detail</span></h2>
+    <p>
+      Location is the most sensitive thing this app touches, so here is exactly how it behaves.
+    </p>
+    <h3>Your live position</h3>
+    <p>
+      Read only while the app is in the foreground, used to draw the map and measure the distance
+      to a pin, then discarded. It is never written to storage and never transmitted.
+    </p>
+    <h3>Your trail</h3>
+    <p>
+      If the <em>Keep my trail</em> setting is on — it is <strong>on by default</strong>, and you can
+      turn it off at any time under Profile → Privacy — the app keeps a short local history of
+      where you have been, purely to compute distances and unlock nearby check-ins. It stays on the
+      device. You can erase it at any time with <em>Wipe trail</em>, which deletes the trail and
+      leaves your logged trees intact.
+    </p>
+    <h3>Precision of trees you log</h3>
+    <p>Each tree you add carries the precision you choose for it:</p>
+    <ul>
+      <li><strong>Exact</strong> — the pin sits on the real coordinates.</li>
+      <li><strong>Blur</strong> — the pin is offset, so the tree is findable but your exact spot is not.</li>
+      <li><strong>Private</strong> — the tree is visible only to you.</li>
+    </ul>
+    <p>
+      The default is <em>Exact</em>. Change it before or after logging a tree.
+    </p>
+    <h3>Harvest counts</h3>
+    <p>
+      The <em>Share harvest counts</em> setting is <strong>off by default</strong> and stays off
+      until you turn it on.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="num">05</span><span>What actually leaves your device</span></h2>
+    <p>
+      Two things, neither of which carries your app data.
+    </p>
+    <h3>Over-the-air updates</h3>
+    <p>
+      The app checks <code>u.expo.dev</code> for a new JavaScript bundle, a service run by Expo. That
+      request tells Expo the usual things any HTTP request tells a server: your IP address, and
+      which app version and platform asked. It carries none of your trees, photos, location or
+      settings. Expo's handling of that request is covered by
+      <a href="https://expo.dev/privacy" rel="noopener noreferrer" target="_blank">Expo's privacy policy</a>.
+    </p>
+    <h3>Google Play</h3>
+    <p>
+      Distribution, installs and any crash reports you choose to send are handled by Google Play
+      under
+      <a href="https://policies.google.com/privacy" rel="noopener noreferrer" target="_blank">Google's privacy policy</a>,
+      not by us. We do not receive your identity from Google Play.
+    </p>
+    <div class="note">
+      <p>
+        <strong>On the shared map.</strong> In this version, trees you log stay on your own device —
+        the map you see is served locally. If a shared community map is introduced, this policy will
+        be updated and published before that release ships, and the precision setting in section 4
+        will govern what is shared.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">06</span><span>How long things are kept</span></h2>
+    <div class="rows">
+      <div><span class="lbl">GPS attached to tree photos</span><span class="val val-keep">Kept with the tree</span></div>
+      <div><span class="lbl">Pins you opened</span><span class="val val-time">30 days</span></div>
+      <div><span class="lbl">Your trail</span><span class="val val-time">Until you wipe it</span></div>
+      <div><span class="lbl">Your live position</span><span class="val val-never">Never stored</span></div>
+      <div><span class="lbl">Everything else in the app</span><span class="val val-keep">Until you delete it or uninstall</span></div>
+    </div>
+    <p>
+      Because there is no server copy, deletion is genuinely deletion. Clearing the app's storage or
+      uninstalling Free Fruits removes the data permanently, and it cannot be recovered — by you or
+      by us.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="num">07</span><span>Your controls</span></h2>
+    <p>All of these live under Profile → Privacy inside the app:</p>
+    <ul>
+      <li>Set the map precision for your trees: exact, blurred, or private.</li>
+      <li>Turn the trail on or off.</li>
+      <li>Turn harvest-count sharing on or off.</li>
+      <li>Wipe your trail without losing your trees.</li>
+      <li>Export your data, so you hold a copy before you erase anything.</li>
+    </ul>
+    <p>
+      Android's own settings give you the rest: revoke any permission per-app, or clear the app's
+      storage entirely.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="num">08</span><span>Your rights under the GDPR</span></h2>
+    <p>
+      If you are in the European Economic Area or the United Kingdom, the GDPR gives you rights of
+      access, rectification, erasure, restriction, portability and objection over your personal data.
+    </p>
+    <p>
+      Free Fruits is built so that these rights are exercised directly, without asking us: we hold no
+      copy of your data, so there is nothing for us to retrieve, correct or erase on your behalf. The
+      in-app controls in section 7 are how you access, export and delete. Where the app does process
+      personal data on your device — chiefly location — it does so on the basis of your consent, given
+      through the Android permission prompt and the in-app toggles, and withdrawable at any time by
+      the same means.
+    </p>
+    <p>
+      You retain the right to lodge a complaint with your national supervisory authority.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="num">09</span><span>Children</span></h2>
+    <p>
+      Free Fruits is not directed at children under 13, and we do not knowingly collect data from
+      them. Since the app collects nothing to a server, there is no such data for us to hold or
+      delete — but if you believe a child has been harmed by the app's handling of data on their
+      device, write to us and we will address it.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="num">10</span><span>Selling and sharing</span></h2>
+    <p>
+      We do not sell your personal data, share it with data brokers, or hand it to advertisers.
+      There is no mechanism in the app by which we could: no analytics SDK, no advertising
+      identifier, no server of ours that holds anything.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="num">11</span><span>Changes to this policy</span></h2>
+    <p>
+      If the app starts doing something this document does not describe — a shared map, an account
+      system, a server of any kind — this policy will be updated and its effective date changed
+      before that version reaches Google Play. Material changes will also be announced in the app.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="num">12</span><span>Contact</span></h2>
+    <p>
+      Questions, corrections, or a privacy concern about Free Fruits:
+      <a href="mailto:kraken86@proton.me">kraken86@proton.me</a>. We aim to answer within 30 days.
+    </p>
+  </section>
+
+  <footer>
+    Free Fruits · com.freefruits.app<br>
+    Privacy policy, effective 11 September 2026 · app version 1.0.0
+  </footer>
+</div>
+</body>
+</html>
