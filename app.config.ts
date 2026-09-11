@@ -91,6 +91,10 @@ const config: ExpoConfig = {
         color: '#D4148B',
       },
     ],
+    // Auth session tokens live in the keychain/keystore, and Google sign-in runs in a
+    // custom tab that redirects back to freefruits://auth-callback.
+    'expo-secure-store',
+    'expo-web-browser',
   ],
   experiments: {
     typedRoutes: true,

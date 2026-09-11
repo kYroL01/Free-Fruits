@@ -4,6 +4,7 @@ export { Card } from './Card';
 export { Pill } from './Pill';
 export { Chip } from './Chip';
 export { Button, type ButtonVariant } from './Button';
+export { TextField } from './TextField';
 export { IconTile } from './IconTile';
 export { SegmentedProgress, BarProgress } from './ProgressBar';
 export { Switch } from './Switch';

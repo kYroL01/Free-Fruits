@@ -66,9 +66,10 @@ export function OnboardingFlow() {
   const setPermission = useAppStore((s) => s.setPermission);
   const [, requestCameraPermission] = useCameraPermissions();
 
+  // '/' re-runs the entry decision: the tour is done, but the account gate is still ahead.
   const finish = () => {
     completeOnboarding();
-    router.replace('/map');
+    router.replace('/');
   };
 
   const onLocationAllow = async () => {

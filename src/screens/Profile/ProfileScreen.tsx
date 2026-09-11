@@ -9,6 +9,7 @@ import { TIER_THRESHOLDS, tierProgress } from '@/domain/rules';
 import { findAvatar } from '@/domain/avatars';
 import { findSpecies } from '@/server/seedData/species';
 import { CITY_LABEL } from '@/domain/constants';
+import { signOut } from '@/server/auth';
 import { AppText, AvatarGlyph, BarProgress, Card, Kicker, Switch } from '@/components/ui';
 import { MyTreeRow } from './MyTreeRow';
 import { WaitingToUploadRow } from './WaitingToUploadRow';
@@ -31,6 +32,7 @@ export function ProfileScreen() {
   const setUnits = useAppStore((s) => s.setUnits);
   const openModal = useAppStore((s) => s.openModal);
   const queue = useAppStore((s) => s.queue);
+  const account = useAppStore((s) => s.account);
 
   const shownName = displayName || tr('profile.defaultDisplayName');
 
@@ -225,6 +227,34 @@ export function ProfileScreen() {
             <AppText variant="microLabel" dim>
               ›
             </AppText>
+          </Pressable>
+          <View style={{ height: 1, backgroundColor: tokens.line }} />
+          <Pressable
+            accessibilityRole="button"
+            onPress={() => router.push('/set-password')}
+            style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 14 }}
+          >
+            <AppText variant="rowLabel">{tr('profile.changePassword')}</AppText>
+            <AppText variant="microLabel" dim>
+              ›
+            </AppText>
+          </Pressable>
+          <View style={{ height: 1, backgroundColor: tokens.line }} />
+          {/* No confirm step: signing out only clears the local session, and the account —
+              trees, points, strikes — is keyed to the server-side user. */}
+          <Pressable
+            accessibilityRole="button"
+            onPress={signOut}
+            style={{ padding: 14, gap: 2 }}
+          >
+            <AppText variant="rowLabel" color={tokens.fuchsia}>
+              {tr('profile.signOut')}
+            </AppText>
+            {account?.email ? (
+              <AppText variant="microLabel" dim>
+                {tr('profile.signedInAs', { email: account.email })}
+              </AppText>
+            ) : null}
           </Pressable>
         </Card>
       </View>

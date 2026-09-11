@@ -11,6 +11,10 @@ export type UserSlice = {
   avatarId: string;
   redeemedRewards: string[];
   setDisplayName: (name: string) => void;
+  /** Adopts the signed-in account: the profile follows the Supabase user, not the device. */
+  adoptAccount: (userId: string, displayName: string) => void;
+  /** Drops profile state on sign-out so the next account starts clean on a shared device. */
+  resetProfile: () => void;
   setAvatarId: (id: string) => void;
   addPoints: (delta: number) => void;
   incrementTreeCount: () => void;
@@ -35,6 +39,17 @@ export const createUserSlice: StateCreator<UserSlice, [], [], UserSlice> = (set)
   avatarId: 'fig',
   redeemedRewards: [],
   setDisplayName: (name) => set({ displayName: name }),
+  adoptAccount: (userId, displayName) =>
+    set((s) => ({ userId, displayName: displayName || s.displayName })),
+  resetProfile: () =>
+    set({
+      userId: 'me',
+      displayName: '',
+      points: 0,
+      treeCount: 0,
+      strikes: 0,
+      redeemedRewards: [],
+    }),
   setAvatarId: (id) => set({ avatarId: id }),
   addPoints: (delta) => set((s) => ({ points: Math.max(0, s.points + delta) })),
   incrementTreeCount: () => set((s) => ({ treeCount: s.treeCount + 1 })),
