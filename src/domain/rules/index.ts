@@ -8,3 +8,4 @@ export * from './strikes';
 export * from './queueGrading';
 export * from './tiers';
 export * from './filterTrees';
+export * from './password';

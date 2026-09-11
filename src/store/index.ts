@@ -3,6 +3,7 @@ import { createJSONStorage, persist } from 'zustand/middleware';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { createSettingsSlice, type SettingsSlice } from './slices/settingsSlice';
+import { createAuthSlice, type AuthSlice } from './slices/authSlice';
 import { createUserSlice, type UserSlice } from './slices/userSlice';
 import { createTreesSlice, type TreesSlice } from './slices/treesSlice';
 import { createReportsSlice, type ReportsSlice } from './slices/reportsSlice';
@@ -12,6 +13,7 @@ import { createPermissionsSlice, type PermissionsSlice } from './slices/permissi
 import { createUiSlice, type UiSlice } from './slices/uiSlice';
 
 export type AppState = SettingsSlice &
+  AuthSlice &
   UserSlice &
   TreesSlice &
   ReportsSlice &
@@ -48,6 +50,7 @@ export const useAppStore = create<AppState>()(
   persist(
     (...a) => ({
       ...createSettingsSlice(...a),
+      ...createAuthSlice(...a),
       ...createUserSlice(...a),
       ...createTreesSlice(...a),
       ...createReportsSlice(...a),
@@ -66,6 +69,7 @@ export const useAppStore = create<AppState>()(
 );
 
 export * from './slices/settingsSlice';
+export * from './slices/authSlice';
 export * from './slices/userSlice';
 export * from './slices/treesSlice';
 export * from './slices/reportsSlice';
