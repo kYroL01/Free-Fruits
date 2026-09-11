@@ -5,6 +5,12 @@ const config: ExpoConfig = {
   slug: 'free-fruits',
   owner: 'kyrol86',
   version: '1.0.0',
+  runtimeVersion: {
+    policy: 'fingerprint',
+  },
+  updates: {
+    url: 'https://u.expo.dev/094c68cc-d3e7-4c52-8295-2f0f4dbf09bc',
+  },
   scheme: 'freefruits',
   orientation: 'portrait',
   icon: './assets/icon.png',
